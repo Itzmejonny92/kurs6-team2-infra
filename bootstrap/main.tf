@@ -28,6 +28,7 @@ resource "google_storage_bucket" "terraform_state" {
   name     = "team${var.team_id}-tfstate-${random_id.bucket_suffix.hex}"
   location = "EU"
 
+  public_access_prevention = "enforced"
   uniform_bucket_level_access = true
 
   lifecycle_rule {
@@ -51,7 +52,7 @@ resource "google_storage_bucket" "terraform_state" {
 resource "google_storage_bucket_iam_member" "read_bucket" {
   bucket = google_storage_bucket.terraform_state.name
   role   = "roles/storage.objectViewer"
-  member = "allAuthenticatedUsers"
+  member = "serviceAccount:${google_service_account.cicd.email}"
 }
 
 resource "google_service_account" "cicd" {
