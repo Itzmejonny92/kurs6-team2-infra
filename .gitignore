@@ -4,3 +4,19 @@
 # Terraform state files
 *.tfstate
 *.tfstate.*
+
+# Terraform runtime and local-only files
+crash.log
+crash.*.log
+*.tfplan
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Local credentials and private keys
+*.pem
+*.key
+*-credentials.json
+*service-account*.json
