@@ -11,6 +11,7 @@ gruppens Blue Team-arbete med GCP och Terraform.
 
 | Fil | Syfte |
 | --- | --- |
+| [Anslutning till labbsidan via proxy](anslutning_via_proxy.md) | Steg för steg-instruktion för SSH-tunnel, SOCKS5 och Opera GX. |
 | [Arbetssammanfattning 2026-09-08](work_summary_2026-09-08.md) | Individuell sammanfattning av dagens backlogg-, WIF-, verifierings- och dokumentationsarbete. |
 | [Gemensam arbetssammanfattning 2026-09-08](../../docs/team_work_summary_2026-09-08.md) | Gruppens gemensamma resultat, bidrag, säkerhetsstatus och nästa steg. |
 
