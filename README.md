@@ -26,6 +26,7 @@ Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), grans
 - [.github/workflows/deploy.yml](.github/workflows/deploy.yml): Deploy-pipeline för main.
 - [docs/](docs/): Sammanfattningar, beslut och arbetsanteckningar.
 - [docs/product_backlog.md](docs/product_backlog.md): Backlog med säkerhetsrisker, förbättringar och status.
+- [docs/team_work_summary_2026-09-08.md](docs/team_work_summary_2026-09-08.md): Gemensam sammanfattning av dagens arbete, verifieringar och nästa steg.
 - [members/](members/): Personliga dokumentationsytor för gruppmedlemmarnas anteckningar, loggar och underlag.
 
 ## Arbetsflöde

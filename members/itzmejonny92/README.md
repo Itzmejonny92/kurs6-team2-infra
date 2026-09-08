@@ -7,6 +7,13 @@ gruppens Blue Team-arbete med GCP och Terraform.
 
 `member/itzmejonny92`
 
+## Viktiga filer
+
+| Fil | Syfte |
+| --- | --- |
+| [Arbetssammanfattning 2026-09-08](work_summary_2026-09-08.md) | Individuell sammanfattning av dagens backlogg-, WIF-, verifierings- och dokumentationsarbete. |
+| [Gemensam arbetssammanfattning 2026-09-08](../../docs/team_work_summary_2026-09-08.md) | Gruppens gemensamma resultat, bidrag, säkerhetsstatus och nästa steg. |
+
 ## Användning
 
 - Egna anteckningar och arbetssammanfattningar
@@ -18,7 +25,7 @@ gruppens Blue Team-arbete med GCP och Terraform.
 
 | Datum | Vad gjordes? | Nästa steg |
 | --- | --- | --- |
-| 2026-09-08 | Personlig dokumentationsyta skapad. | Dokumentera fortsatt WIF- och Blue Team-arbete. |
+| 2026-09-08 | Backlogg och agenda skapades, WIF infördes och verifierades, issues synkades och medlemsytor skapades. | Granska PR #22 och genomför kontrollerad nyckelrensning. |
 
 ## Viktigt
 
@@ -30,4 +37,5 @@ planfiler får aldrig sparas eller commitas här.
 - [Projektets README](../../README.md)
 - [Product Backlog](../../docs/product_backlog.md)
 - [Blue Team-agenda 2026-09-08](../../docs/blue_team_agenda_2026-09-08.md)
+- [Gemensam arbetssammanfattning 2026-09-08](../../docs/team_work_summary_2026-09-08.md)
 - [Setup Summary 2026-09-07](../../docs/setup_summary_2026-09-07.md)
