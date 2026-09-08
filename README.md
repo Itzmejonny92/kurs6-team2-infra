@@ -25,6 +25,7 @@ Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), grans
 - [.github/workflows/pr-checks.yml](.github/workflows/pr-checks.yml): CI-kontroller för pull requests.
 - [.github/workflows/deploy.yml](.github/workflows/deploy.yml): Deploy-pipeline för main.
 - [docs/](docs/): Sammanfattningar, beslut och arbetsanteckningar.
+- [docs/product_backlog.md](docs/product_backlog.md): Backlog med säkerhetsrisker, förbättringar och status.
 
 ## Arbetsflöde
 
