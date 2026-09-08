@@ -21,5 +21,5 @@ ssh_users = [
   {
     username   = "fajk"
     public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOtTi1pIWVlqmRwzBowIP4aPGz1k2PDzInEZvu3mKKmc fajk.zhupa@chasacademy.se"
-  }
+  },
 ]
