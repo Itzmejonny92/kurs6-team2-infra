@@ -6,6 +6,18 @@ Grupp 2 har fortsatt etablera och säkra sin Terraform-baserade infrastruktur i
 GCP. Dagens fokus har varit agilt Blue Team-arbete, WIF, SSH-åtkomst,
 säkerhetsanalys och spårbar dokumentation.
 
+## Närvaro
+
+Följande gruppmedlemmar var närvarande under arbetet den 2026-09-08:
+
+- Jonny Nguyen (`itzmejonny92`)
+- Fajk Zhupa (`fajkzhupa-chas`)
+- Lars Törngren (`larstorngrenchas`)
+- Tim Rundquist (`timrundquist`)
+- Willi Broad Ngebi (`willibroadngebi-lab`)
+
+Amin Mahamoud (`aminmahamoud-arch`) var inte närvarande.
+
 ## Gemensamma resultat
 
 ### Backlogg och dokumentation
