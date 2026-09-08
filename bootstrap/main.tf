@@ -28,6 +28,7 @@ resource "google_storage_bucket" "terraform_state" {
   name     = "team${var.team_id}-tfstate-${random_id.bucket_suffix.hex}"
   location = "EU"
 
+  #public_access_prevention = "enforced"
   uniform_bucket_level_access = true
 
   lifecycle_rule {
