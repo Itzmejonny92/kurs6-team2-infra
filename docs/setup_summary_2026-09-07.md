@@ -4,6 +4,17 @@
 
 Denna sammanfattning beskriver vad som har satts upp för grupp 2:s infra-repo under starten av vecka 4: Blue Team Start.
 
+## Närvaro
+
+Alla gruppmedlemmar var närvarande under arbetet den 2026-09-07.
+
+- Jonny Nguyen (`itzmejonny92`)
+- Amin Mahamoud (`aminmahamoud-arch`)
+- Fajk Zhupa (`fajkzhupa-chas`)
+- Lars Törngren (`larstorngrenchas`)
+- Tim Rundquist (`timrundquist`)
+- Willi Broad Ngebi (`willibroadngebi-lab`)
+
 ## Genomfört Arbete
 
 - Packade upp kursens Terraform-underlag.
