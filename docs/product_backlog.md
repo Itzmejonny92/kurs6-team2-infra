@@ -26,7 +26,7 @@ Syftet är att samla säkerhetsrisker, förbättringar och dokumentationsbehov p
 | PB-07 | [#11](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/11) | Granska Lasses föreslagna bucket-fix | Hög | Review | `member/larstorngrenchas` |
 | PB-08 | [#10](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/10) | Skapa tydlig rutin för secrets och variabler i GitHub Actions | Medel | In progress | GitHub Actions, repo settings |
 | PB-09 | [#15](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/15) | Kontrollera SSH-användare och åtkomstmodell | Medel | In progress | `terraform.tfvars`, Compute metadata |
-| PB-10 | [#14](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/14) | Dokumentera dagens Blue Team-beslut efter workshop | Medel | Review | `docs/blue_team_agenda_2026-09-08.md` |
+| PB-10 | [#14](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/14) | Dokumentera dagens Blue Team-beslut efter workshop | Medel | Done | `docs/blue_team_agenda_2026-09-08.md` |
 | PB-11 | [#16](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/16) | Granska och dokumentera uniform bucket-level access | Medel | Open | `bootstrap/main.tf`, GCS IAM |
 
 ## Första Prioritering
@@ -42,7 +42,7 @@ PB-11 är en granskningspunkt. Inställningen `uniform_bucket_level_access = tru
 - PB-03: WIF infördes via [PR #18](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/18), godkändes av två granskare och verifierades genom en [lyckad deploy från `main`](https://github.com/Itzmejonny92/kurs6-team2-infra/actions/runs/34231222239). Punkten är fortfarande `In progress` tills service account-nyckeln och `GCP_SA_KEY` har tagits bort och verifierats.
 - PB-08: Repository Variables för WIF är konfigurerade. En fullständig rutin för secrets och variables behöver fortfarande dokumenteras.
 - PB-09: SSH-användarna Jonny, Lasse, Willi, Tim och Fajk finns i `terraform.tfvars`. Amin saknas fortfarande och den gemensamma åtkomstrutinen återstår.
-- PB-10: Dagens agenda och säkerhetsbedömning finns i `docs/blue_team_agenda_2026-09-08.md` på member-branchen och behöver granskas innan den blir officiell på `main`.
+- PB-10: Dagens agenda och säkerhetsbedömning mergades till `main` via [PR #20](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/20) efter gruppens granskning.
 
 ## Arbetsflöde
 
