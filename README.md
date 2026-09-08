@@ -25,6 +25,7 @@ Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), grans
 - [.github/workflows/pr-checks.yml](.github/workflows/pr-checks.yml): CI-kontroller för pull requests.
 - [.github/workflows/deploy.yml](.github/workflows/deploy.yml): Deploy-pipeline för main.
 - [docs/](docs/): Sammanfattningar, beslut och arbetsanteckningar.
+- [docs/product_backlog.md](docs/product_backlog.md): Backlog med säkerhetsrisker, förbättringar och status.
 
 ## Arbetsflöde
 
@@ -45,6 +46,18 @@ terraform validate
 7. Vänta på CI-kontroller.
 8. Låt minst två personer granska och godkänna.
 9. Merga till `main`.
+
+## Arbeta Med Backloggen
+
+GitHub Issues är teamets källa för det dagliga arbetet. [Produktbackloggen](docs/product_backlog.md) ger gruppen och utbildaren en samlad översikt över prioritet, status och koppling till relevanta filer.
+
+- Skapa eller uppdatera ett GitHub Issue när en risk, förbättring eller dokumentationsuppgift identifieras.
+- Koppla större issues till ett PB-ID i produktbackloggen.
+- Uppdatera backlogfilen när en viktig punkt tillkommer, byter prioritet eller går vidare till en ny status.
+- Ändra status till `Done` först när arbetet är mergat och verifierat.
+- Uppdateringar av backlogfilen görs via branch och pull request på samma sätt som övriga ändringar.
+
+Backlogfilen synkroniseras inte automatiskt med GitHub Issues. Den som ändrar ett issue ansvarar därför för att kontrollera om även den sammanfattade backloggen behöver uppdateras.
 
 ## Brancher
 
