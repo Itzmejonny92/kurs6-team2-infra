@@ -27,12 +27,15 @@ Syftet är att samla säkerhetsrisker, förbättringar och dokumentationsbehov p
 | PB-08 | [#10](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/10) | Skapa tydlig rutin för secrets och variabler i GitHub Actions | Medel | Open | GitHub Actions, repo settings |
 | PB-09 | [#15](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/15) | Kontrollera SSH-användare och åtkomstmodell | Medel | Open | `terraform.tfvars`, Compute metadata |
 | PB-10 | [#14](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/14) | Dokumentera dagens Blue Team-beslut efter workshop | Medel | Open | `docs/` |
+| PB-11 | [#16](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/16) | Granska och dokumentera uniform bucket-level access | Medel | Open | `bootstrap/main.tf`, GCS IAM |
 
 ## Första Prioritering
 
 De viktigaste punkterna att börja med är PB-02, PB-03, PB-04 och PB-05 eftersom de direkt påverkar åtkomst, credentials och nätverksexponering.
 
 PB-02 har två GitHub issues eftersom Lasse också skapade en mer konkret observation om `allAuthenticatedUsers` i issue #13. Den bör hanteras tillsammans med PB-02/PB-07 i reviewarbetet.
+
+PB-11 är en granskningspunkt. Inställningen `uniform_bucket_level_access = true` är normalt en säkerhetsförbättring eftersom åtkomst då styrs enhetligt via IAM, men teamet ska verifiera och dokumentera hur den samverkar med bucketens övriga behörigheter.
 
 ## Arbetsflöde
 
