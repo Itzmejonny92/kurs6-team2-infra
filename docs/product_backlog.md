@@ -13,7 +13,7 @@ Syftet är att samla säkerhetsrisker, förbättringar och dokumentationsbehov p
 | Review | Ändring finns i pull request och behöver granskas. |
 | Done | Klart och verifierat. |
 
-## Backlog
+## Backlog 
 
 | ID | GitHub Issue | Titel | Prioritet | Status | Koppling |
 | --- | --- | --- | --- | --- | --- |
