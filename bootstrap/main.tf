@@ -60,9 +60,15 @@ resource "google_service_account" "cicd" {
   display_name = "CI/CD Pipeline Service Account"
 }
 
-resource "google_project_iam_member" "cicd_editor" {
+resource "google_project_iam_member" "cicd_compute_network_admin" {
   project = var.project_id
-  role    = "roles/editor"
+  role    = "roles/compute.networkAdmin"
+  member  = "serviceAccount:${google_service_account.cicd.email}"
+}
+
+resource "google_project_iam_member" "cicd_compute_instance_admin" {
+  project = var.project_id
+  role    = "roles/compute.instanceAdmin.v1"
   member  = "serviceAccount:${google_service_account.cicd.email}"
 }
 
