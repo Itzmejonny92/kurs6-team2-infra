@@ -1,0 +1,404 @@
+{
+  "version": 4,
+  "terraform_version": "1.16.1",
+  "serial": 11,
+  "lineage": "7231a3e8-f425-7142-e8dd-2314dc223b69",
+  "outputs": {
+    "bucket_name": {
+      "value": "team2-tfstate-dd541fba",
+      "type": "string"
+    },
+    "cicd_service_account_email": {
+      "value": "team2-cicd@itsx25-lab.iam.gserviceaccount.com",
+      "type": "string"
+    },
+    "cicd_service_account_key_json": {
+      "value": "ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAgInByb2plY3RfaWQiOiAiaXRzeDI1LWxhYiIsCiAgInByaXZhdGVfa2V5X2lkIjogImViYzhmYjIwMTE0YTczMzQ2ZTE3NmUwZTk1NDVhNGFjMjg2MWIwNmMiLAogICJwcml2YXRlX2tleSI6ICItLS0tLUJFR0lOIFBSSVZBVEUgS0VZLS0tLS1cbk1JSUV2UUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktjd2dnU2pBZ0VBQW9JQkFRRE80QWppcWlQVXNkTjFcbnNLeTltb0tUeFlqMXY5QjJqM2Jlc0drRG90TjNiWGs2MkcydEhqUGYwd0lQOXVrODRuZEJGWE9VR3ZSRnBqUnZcbmhpOUpkejR0Sm56eWN3OFJMSVoyYVF0MVMxSXJqNWhHdGFYSnJodWpscDdMb24yOFdLNDVGWm1WZ0sveUZjUmFcbkI1cFVGdGcxa2kxcVJRQjlXRFhIREttcFM0Yyt2c1dLdmExR0dDN2R1czQ5ZXozeEZuTEVjSm56NjZJKzJraXVcbkJqNHg3RXdITXNISmZsVFFWV2U3Y1hHVjVJa05QR3NUclcvMHBERDArL1NmUXEzYnhjMlA4cTZ4TkJJSWFTbGxcblhGbUszeFZRMEkwNVZNV2V0U1VMUTlNdlNOR0crdWxocVlNUUl0SGxYVmRzSTV1bXJZS3luTTlBWFZ0dzlTMXJcbk13Q2RMdXVqQWdNQkFBRUNnZ0VBTmc0ek5DcjU3dGRDWmxPeVoxNnF0UHNlSlB5b2QzcFlPS3NHM2FUYnRhNmNcbnlVUUpNSDJlVjJOVy9CM3I1dlZUN09VeWpLWVlZdVNoZWV5cGlYeEhlbHUrdFVsY1RBUUM1SWpoTGhadTA2UVRcblNaS29UZEVaTnI4aUlocUUyVVNnelppM3gybFhVQjNnN3hkaWU0dDJsbFRxV2dUS3NuWHNvMlRMSmtudWZuVzVcbkVNelVUdjZoekt3RTlTdWx2M1Z1UGpwM3prQ0R4OEpLcTlLNi9KdHE5ZXNSZnlqdWp5VmE1aTRCNFNEMnNoMzNcblhhcXZhQ3BuWXdUako3T2RraCtVbVViYXFCSDFSSGNBVUpRZFo2dXBPKzZHZS9NQ01LcExGempDZWRKYi8vSUFcbmo4WUN3djAyREpRZ3ovRFdpeUdOZnhoT1RJdUZZczYzSE5KTWFIcFJ0UUtCZ1FENkZrYWVoVDI4RTdkK3dGS2xcbmhhTWdmTitrVXUrQTZFL2dVa0l5YUJxVU1ZMmtSL0tlM0xDRkVkYzNMV3dLOG9mL0JhdVZwRmsxNkpUNFBPelVcbm53b29kNXd1aVhGbzFZYWg0MG05OUtLL0czU2xSTkFpZ0RmUDJ1Z0NSVmJERmNpS0EzTW00OHJBQWpVWlZLbTJcbndpY2J0dWI0dTVyWVhkTitqSlhiUTB5cGpRS0JnUURUeERUWWFrU0NjNVFibm92ZUltZkROa1JHdloyVkoydFVcbk9qcDZRa28zWE1PZ3pYMU54TU9rbTNZMjNQRit4TExqMldvcEpNejArUUpHNjVMZ0RQSDF3NHZDTmNua01LVmNcbkk0eU9xS3k2TWhxSXF4M3d5eFI1YVRMRElSeHUySTUxMnUwWHdlOWRObld5Vy9NSlRXRFZLa2ZNSlY3cHZlMGhcblB4YzcxcGhsN3dLQmdFd09XRDIvY2Mzd0JSOFVLRTVVZlE3VlMwSnpRb2xtblZ3d1NCZUNWNHI0SXdaeUp4UXZcbk03UFVnQ28wc3lZRktsemhnWlJKM2lPcDd4d3JreTc2aXlGUmR2c2tLNHhoVzhlQ0V4d2srUlc3cU5iV1BhSXdcbmNralJYenZKa0tCVjBKNUFmRlc0Y3lHL3loeEJCamdoaGJsRS82dG5pcWtBcCtCVnF3RjZ6eWJGQW9HQUMxUXBcbng1SVh6Q3JHdDV1SnUvNTNNcGhLbXNZMkVlNmo3VU9ZTVVZdWxqdWVNNUlLckFoa3R2K2lHVmxFaWhXWHhGeXpcbk16Ukd5cXd2bFAreFFjOHZlb2hWaDdRODhyb3ZmbmhnWXBsZmRDNk9BTlcycWxVUzZWUFpaVnIySEcvMVh4U3hcbkxsNHZvZnJ4M1BMU1U2TVNGUlZIOWdIaHkvdGZIakl6MmYybTlYMENnWUVBcWE1Z0JwbmJDUkRzT1VhNkhpZExcbjcxSUx4Si9xajc4OTBpdHFVRm9wQ2M3TEs3aWNJZHBaTWZSUE45Sm1ZM1VKVGowMkVneDFPWEdFT3R1Yk4vSjNcbi9NTytGcm12d1laNkRjdUhUSkp3Q0M2MFZsNE9OQjBvSzA2TFNhVElIT2FDMTk2Mm1nbXJaTnRwMkdFZDAwdFJcbnlYK1FqcnpVb2hXZytSenhIbFV6bnBZPVxuLS0tLS1FTkQgUFJJVkFURSBLRVktLS0tLVxuIiwKICAiY2xpZW50X2VtYWlsIjogInRlYW0yLWNpY2RAaXRzeDI1LWxhYi5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsCiAgImNsaWVudF9pZCI6ICIxMTU3NzIyMTY3MTc0NjI0MTIyNzciLAogICJhdXRoX3VyaSI6ICJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20vby9vYXV0aDIvYXV0aCIsCiAgInRva2VuX3VyaSI6ICJodHRwczovL29hdXRoMi5nb29nbGVhcGlzLmNvbS90b2tlbiIsCiAgImF1dGhfcHJvdmlkZXJfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9vYXV0aDIvdjEvY2VydHMiLAogICJjbGllbnRfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9yb2JvdC92MS9tZXRhZGF0YS94NTA5L3RlYW0yLWNpY2QlNDBpdHN4MjUtbGFiLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwKICAidW5pdmVyc2VfZG9tYWluIjogImdvb2dsZWFwaXMuY29tIgp9Cg==",
+      "type": "string",
+      "sensitive": true
+    },
+    "workload_identity_provider": {
+      "value": "projects/974448703406/locations/global/workloadIdentityPools/team2-github-pool/providers/team2-github-provider",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "google_iam_workload_identity_pool",
+      "name": "github",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "attestation_rules": [],
+            "deletion_policy": "DELETE",
+            "description": "",
+            "disabled": false,
+            "display_name": "GitHub Actions Pool",
+            "id": "projects/itsx25-lab/locations/global/workloadIdentityPools/team2-github-pool",
+            "inline_certificate_issuance_config": [],
+            "inline_trust_config": [],
+            "mode": "",
+            "name": "projects/974448703406/locations/global/workloadIdentityPools/team2-github-pool",
+            "project": "itsx25-lab",
+            "state": "ACTIVE",
+            "timeouts": null,
+            "workload_identity_pool_id": "team2-github-pool"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "project": "itsx25-lab",
+            "workload_identity_pool_id": "team2-github-pool"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19"
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_iam_workload_identity_pool_provider",
+      "name": "github",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "attribute_condition": "assertion.repository == 'Itzmejonny92/kurs6-team2-infra'",
+            "attribute_mapping": {
+              "attribute.repository": "assertion.repository",
+              "google.subject": "assertion.sub"
+            },
+            "aws": [],
+            "deletion_policy": "DELETE",
+            "description": "",
+            "disabled": false,
+            "display_name": "GitHub Actions Provider",
+            "id": "projects/itsx25-lab/locations/global/workloadIdentityPools/team2-github-pool/providers/team2-github-provider",
+            "name": "projects/974448703406/locations/global/workloadIdentityPools/team2-github-pool/providers/team2-github-provider",
+            "oidc": [
+              {
+                "allowed_audiences": null,
+                "issuer_uri": "https://token.actions.githubusercontent.com",
+                "jwks_json": ""
+              }
+            ],
+            "project": "itsx25-lab",
+            "saml": [],
+            "state": "ACTIVE",
+            "timeouts": null,
+            "workload_identity_pool_id": "team2-github-pool",
+            "workload_identity_pool_provider_id": "team2-github-provider",
+            "x509": []
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "project": "itsx25-lab",
+            "workload_identity_pool_id": "team2-github-pool",
+            "workload_identity_pool_provider_id": "team2-github-provider"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_iam_workload_identity_pool.github"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_project_iam_member",
+      "name": "cicd_editor",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "condition": [],
+            "etag": "BwZa5Hz6wmA=",
+            "id": "itsx25-lab/roles/editor/serviceAccount:team2-cicd@itsx25-lab.iam.gserviceaccount.com",
+            "member": "serviceAccount:team2-cicd@itsx25-lab.iam.gserviceaccount.com",
+            "project": "itsx25-lab",
+            "role": "roles/editor"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "condition_title": null,
+            "member": "serviceAccount:team2-cicd@itsx25-lab.iam.gserviceaccount.com",
+            "project": "itsx25-lab",
+            "role": "roles/editor"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_service_account.cicd"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_service_account",
+      "name": "cicd",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "team2-cicd",
+            "create_ignore_already_exists": null,
+            "deletion_policy": "DELETE",
+            "description": "",
+            "disabled": false,
+            "display_name": "CI/CD Pipeline Service Account",
+            "email": "team2-cicd@itsx25-lab.iam.gserviceaccount.com",
+            "id": "projects/itsx25-lab/serviceAccounts/team2-cicd@itsx25-lab.iam.gserviceaccount.com",
+            "member": "serviceAccount:team2-cicd@itsx25-lab.iam.gserviceaccount.com",
+            "name": "projects/itsx25-lab/serviceAccounts/team2-cicd@itsx25-lab.iam.gserviceaccount.com",
+            "project": "itsx25-lab",
+            "timeouts": null,
+            "unique_id": "115772216717462412277"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "email": "team2-cicd@itsx25-lab.iam.gserviceaccount.com",
+            "project": "itsx25-lab"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDB9fQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_service_account_iam_member",
+      "name": "cicd_workload_identity",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "condition": [],
+            "etag": "BwZa+DHKw80=",
+            "id": "projects/itsx25-lab/serviceAccounts/team2-cicd@itsx25-lab.iam.gserviceaccount.com/roles/iam.workloadIdentityUser/principalSet://iam.googleapis.com/projects/974448703406/locations/global/workloadIdentityPools/team2-github-pool/attribute.repository/Itzmejonny92/kurs6-team2-infra",
+            "member": "principalSet://iam.googleapis.com/projects/974448703406/locations/global/workloadIdentityPools/team2-github-pool/attribute.repository/Itzmejonny92/kurs6-team2-infra",
+            "role": "roles/iam.workloadIdentityUser",
+            "service_account_id": "projects/itsx25-lab/serviceAccounts/team2-cicd@itsx25-lab.iam.gserviceaccount.com"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "condition_title": null,
+            "member": "principalSet://iam.googleapis.com/projects/974448703406/locations/global/workloadIdentityPools/team2-github-pool/attribute.repository/Itzmejonny92/kurs6-team2-infra",
+            "role": "roles/iam.workloadIdentityUser",
+            "service_account_id": "projects/itsx25-lab/serviceAccounts/team2-cicd@itsx25-lab.iam.gserviceaccount.com"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_iam_workload_identity_pool.github",
+            "google_service_account.cicd"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_service_account_key",
+      "name": "cicd",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "deletion_policy": "DELETE",
+            "id": "projects/itsx25-lab/serviceAccounts/team2-cicd@itsx25-lab.iam.gserviceaccount.com/keys/ebc8fb20114a73346e176e0e9545a4ac2861b06c",
+            "keepers": null,
+            "key_algorithm": "KEY_ALG_RSA_2048",
+            "name": "projects/itsx25-lab/serviceAccounts/team2-cicd@itsx25-lab.iam.gserviceaccount.com/keys/ebc8fb20114a73346e176e0e9545a4ac2861b06c",
+            "private_key": "ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAgInByb2plY3RfaWQiOiAiaXRzeDI1LWxhYiIsCiAgInByaXZhdGVfa2V5X2lkIjogImViYzhmYjIwMTE0YTczMzQ2ZTE3NmUwZTk1NDVhNGFjMjg2MWIwNmMiLAogICJwcml2YXRlX2tleSI6ICItLS0tLUJFR0lOIFBSSVZBVEUgS0VZLS0tLS1cbk1JSUV2UUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktjd2dnU2pBZ0VBQW9JQkFRRE80QWppcWlQVXNkTjFcbnNLeTltb0tUeFlqMXY5QjJqM2Jlc0drRG90TjNiWGs2MkcydEhqUGYwd0lQOXVrODRuZEJGWE9VR3ZSRnBqUnZcbmhpOUpkejR0Sm56eWN3OFJMSVoyYVF0MVMxSXJqNWhHdGFYSnJodWpscDdMb24yOFdLNDVGWm1WZ0sveUZjUmFcbkI1cFVGdGcxa2kxcVJRQjlXRFhIREttcFM0Yyt2c1dLdmExR0dDN2R1czQ5ZXozeEZuTEVjSm56NjZJKzJraXVcbkJqNHg3RXdITXNISmZsVFFWV2U3Y1hHVjVJa05QR3NUclcvMHBERDArL1NmUXEzYnhjMlA4cTZ4TkJJSWFTbGxcblhGbUszeFZRMEkwNVZNV2V0U1VMUTlNdlNOR0crdWxocVlNUUl0SGxYVmRzSTV1bXJZS3luTTlBWFZ0dzlTMXJcbk13Q2RMdXVqQWdNQkFBRUNnZ0VBTmc0ek5DcjU3dGRDWmxPeVoxNnF0UHNlSlB5b2QzcFlPS3NHM2FUYnRhNmNcbnlVUUpNSDJlVjJOVy9CM3I1dlZUN09VeWpLWVlZdVNoZWV5cGlYeEhlbHUrdFVsY1RBUUM1SWpoTGhadTA2UVRcblNaS29UZEVaTnI4aUlocUUyVVNnelppM3gybFhVQjNnN3hkaWU0dDJsbFRxV2dUS3NuWHNvMlRMSmtudWZuVzVcbkVNelVUdjZoekt3RTlTdWx2M1Z1UGpwM3prQ0R4OEpLcTlLNi9KdHE5ZXNSZnlqdWp5VmE1aTRCNFNEMnNoMzNcblhhcXZhQ3BuWXdUako3T2RraCtVbVViYXFCSDFSSGNBVUpRZFo2dXBPKzZHZS9NQ01LcExGempDZWRKYi8vSUFcbmo4WUN3djAyREpRZ3ovRFdpeUdOZnhoT1RJdUZZczYzSE5KTWFIcFJ0UUtCZ1FENkZrYWVoVDI4RTdkK3dGS2xcbmhhTWdmTitrVXUrQTZFL2dVa0l5YUJxVU1ZMmtSL0tlM0xDRkVkYzNMV3dLOG9mL0JhdVZwRmsxNkpUNFBPelVcbm53b29kNXd1aVhGbzFZYWg0MG05OUtLL0czU2xSTkFpZ0RmUDJ1Z0NSVmJERmNpS0EzTW00OHJBQWpVWlZLbTJcbndpY2J0dWI0dTVyWVhkTitqSlhiUTB5cGpRS0JnUURUeERUWWFrU0NjNVFibm92ZUltZkROa1JHdloyVkoydFVcbk9qcDZRa28zWE1PZ3pYMU54TU9rbTNZMjNQRit4TExqMldvcEpNejArUUpHNjVMZ0RQSDF3NHZDTmNua01LVmNcbkk0eU9xS3k2TWhxSXF4M3d5eFI1YVRMRElSeHUySTUxMnUwWHdlOWRObld5Vy9NSlRXRFZLa2ZNSlY3cHZlMGhcblB4YzcxcGhsN3dLQmdFd09XRDIvY2Mzd0JSOFVLRTVVZlE3VlMwSnpRb2xtblZ3d1NCZUNWNHI0SXdaeUp4UXZcbk03UFVnQ28wc3lZRktsemhnWlJKM2lPcDd4d3JreTc2aXlGUmR2c2tLNHhoVzhlQ0V4d2srUlc3cU5iV1BhSXdcbmNralJYenZKa0tCVjBKNUFmRlc0Y3lHL3loeEJCamdoaGJsRS82dG5pcWtBcCtCVnF3RjZ6eWJGQW9HQUMxUXBcbng1SVh6Q3JHdDV1SnUvNTNNcGhLbXNZMkVlNmo3VU9ZTVVZdWxqdWVNNUlLckFoa3R2K2lHVmxFaWhXWHhGeXpcbk16Ukd5cXd2bFAreFFjOHZlb2hWaDdRODhyb3ZmbmhnWXBsZmRDNk9BTlcycWxVUzZWUFpaVnIySEcvMVh4U3hcbkxsNHZvZnJ4M1BMU1U2TVNGUlZIOWdIaHkvdGZIakl6MmYybTlYMENnWUVBcWE1Z0JwbmJDUkRzT1VhNkhpZExcbjcxSUx4Si9xajc4OTBpdHFVRm9wQ2M3TEs3aWNJZHBaTWZSUE45Sm1ZM1VKVGowMkVneDFPWEdFT3R1Yk4vSjNcbi9NTytGcm12d1laNkRjdUhUSkp3Q0M2MFZsNE9OQjBvSzA2TFNhVElIT2FDMTk2Mm1nbXJaTnRwMkdFZDAwdFJcbnlYK1FqcnpVb2hXZytSenhIbFV6bnBZPVxuLS0tLS1FTkQgUFJJVkFURSBLRVktLS0tLVxuIiwKICAiY2xpZW50X2VtYWlsIjogInRlYW0yLWNpY2RAaXRzeDI1LWxhYi5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsCiAgImNsaWVudF9pZCI6ICIxMTU3NzIyMTY3MTc0NjI0MTIyNzciLAogICJhdXRoX3VyaSI6ICJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20vby9vYXV0aDIvYXV0aCIsCiAgInRva2VuX3VyaSI6ICJodHRwczovL29hdXRoMi5nb29nbGVhcGlzLmNvbS90b2tlbiIsCiAgImF1dGhfcHJvdmlkZXJfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9vYXV0aDIvdjEvY2VydHMiLAogICJjbGllbnRfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9yb2JvdC92MS9tZXRhZGF0YS94NTA5L3RlYW0yLWNpY2QlNDBpdHN4MjUtbGFiLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwKICAidW5pdmVyc2VfZG9tYWluIjogImdvb2dsZWFwaXMuY29tIgp9Cg==",
+            "private_key_type": "TYPE_GOOGLE_CREDENTIALS_FILE",
+            "public_key": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvVENDQWVXZ0F3SUJBZ0lKQUxHbERFMHlMNnJwTUEwR0NTcUdTSWIzRFFFQkJRVUFNQ0F4SGpBY0JnTlYKQkFNTUZURXhOVGMzTWpJeE5qY3hOelEyTWpReE1qSTNOekFnRncweU5qQTVNRGN4TWpRMk5EWmFHQTg1T1RrNQpNVEl6TVRJek5UazFPVm93SURFZU1Cd0dBMVVFQXd3Vk1URTFOemN5TWpFMk56RTNORFl5TkRFeU1qYzNNSUlCCklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUF6dUFJNHFvajFMSFRkYkNzdlpxQ2s4V0kKOWIvUWRvOTIzckJwQTZMVGQyMTVPdGh0clI0ejM5TUNEL2JwUE9KM1FSVnpsQnIwUmFZMGI0WXZTWGMrTFNaOAo4bk1QRVN5R2Rta0xkVXRTSzQrWVJyV2x5YTRibzVhZXk2Sjl2Rml1T1JXWmxZQ3Y4aFhFV2dlYVZCYllOWkl0CmFrVUFmVmcxeHd5cHFVdUhQcjdGaXIydFJoZ3UzYnJPUFhzOThSWnl4SENaOCt1aVB0cElyZ1krTWV4TUJ6TEIKeVg1VTBGVm51M0Z4bGVTSkRUeHJFNjF2OUtRdzlQdjBuMEt0MjhYTmovS3VzVFFTQ0drcFpWeFppdDhWVU5DTgpPVlRGbnJVbEMwUFRMMGpSaHZycFlhbURFQ0xSNVYxWGJDT2JwcTJDc3B6UFFGMWJjUFV0YXpNQW5TN3Jvd0lECkFRQUJvemd3TmpBTUJnTlZIUk1CQWY4RUFqQUFNQTRHQTFVZER3RUIvd1FFQXdJSGdEQVdCZ05WSFNVQkFmOEUKRERBS0JnZ3JCZ0VGQlFjREFqQU5CZ2txaGtpRzl3MEJBUVVGQUFPQ0FRRUFMOWovL2JMdGIrU3JxaG9QeWU2YQpZQUc3UWtqemtSL1NocDdVdm9pTmpKekFRTUFYUC93RzZhbDMzWU12VUxHQUhGUGFqNWsxVFZkeW9FYjQ0cTJyCkloUEEzMHNTR0ZIWUVTT2NsVEFGbVpETzl4QlRlVG5PU01oa3kvTUxZNlhSU3BINjFoWnRvN2NrTVFhR2VqNmoKT1c4UzJVN3JXNGhnZk11cmE3NVIyeVBTZWQxL1IzMEc0Zmt6WW83WU8za1FJMjFXTDU0UGkvMFc4aU8vOFNxRwpYdmxwdmhzODFXMFVaR2lidFA3Skc0SmROYzVubXdXZG9sTk9GUzJqSHJaVjVhemc4c0J2Z0tac2pWL2JSSDliClZxMWRVV1N5U1ZHZXkxeHNCZEpZMEVUaDVDYkpxcjJqZTBXU010V3l0SXFEM2g2UjVEaXYxZmdqczAzWmQ5Y3EKcnc9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==",
+            "public_key_data": null,
+            "public_key_type": "TYPE_X509_PEM_FILE",
+            "service_account_id": "projects/itsx25-lab/serviceAccounts/team2-cicd@itsx25-lab.iam.gserviceaccount.com",
+            "valid_after": "2026-09-07T12:46:46Z",
+            "valid_before": "9999-12-31T23:59:59Z"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key"
+              }
+            ]
+          ],
+          "identity_schema_version": 1,
+          "identity": {
+            "name": "projects/itsx25-lab/serviceAccounts/team2-cicd@itsx25-lab.iam.gserviceaccount.com/keys/ebc8fb20114a73346e176e0e9545a4ac2861b06c"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_service_account.cicd"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_storage_bucket",
+      "name": "terraform_state",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 4,
+          "attributes": {
+            "autoclass": [],
+            "cors": [],
+            "custom_placement_config": [],
+            "default_event_based_hold": false,
+            "deletion_policy": "DELETE",
+            "effective_labels": {
+              "goog-terraform-provisioned": "true"
+            },
+            "enable_object_retention": false,
+            "encryption": [],
+            "force_destroy": false,
+            "hierarchical_namespace": [
+              {
+                "enabled": false
+              }
+            ],
+            "id": "team2-tfstate-dd541fba",
+            "ip_filter": [],
+            "labels": {},
+            "lifecycle_rule": [
+              {
+                "action": [
+                  {
+                    "storage_class": "",
+                    "type": "Delete"
+                  }
+                ],
+                "condition": [
+                  {
+                    "age": 0,
+                    "created_before": "",
+                    "custom_time_before": "",
+                    "days_since_custom_time": 0,
+                    "days_since_noncurrent_time": 0,
+                    "matches_prefix": [],
+                    "matches_storage_class": [],
+                    "matches_suffix": [],
+                    "noncurrent_time_before": "",
+                    "num_newer_versions": 10,
+                    "send_age_if_zero": false,
+                    "send_days_since_custom_time_if_zero": false,
+                    "send_days_since_noncurrent_time_if_zero": false,
+                    "send_num_newer_versions_if_zero": false,
+                    "size_above_bytes": 0,
+                    "size_below_bytes": 0,
+                    "with_state": "ANY"
+                  }
+                ]
+              }
+            ],
+            "location": "EU",
+            "logging": [],
+            "name": "team2-tfstate-dd541fba",
+            "project": "itsx25-lab",
+            "project_number": 974448703406,
+            "public_access_prevention": "enforced",
+            "requester_pays": false,
+            "retention_policy": [],
+            "rpo": "DEFAULT",
+            "self_link": "https://www.googleapis.com/storage/v1/b/team2-tfstate-dd541fba",
+            "soft_delete_policy": [
+              {
+                "effective_time": "2026-09-07T12:46:34.368Z",
+                "retention_duration_seconds": 604800
+              }
+            ],
+            "storage_class": "STANDARD",
+            "terraform_labels": {
+              "goog-terraform-provisioned": "true"
+            },
+            "time_created": "2026-09-07T12:46:34.368Z",
+            "timeouts": null,
+            "uniform_bucket_level_access": true,
+            "updated": "2026-09-07T14:48:05.340Z",
+            "url": "gs://team2-tfstate-dd541fba",
+            "versioning": [
+              {
+                "enabled": true
+              }
+            ],
+            "website": []
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "name": "team2-tfstate-dd541fba",
+            "project": "itsx25-lab"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsInJlYWQiOjI0MDAwMDAwMDAwMCwidXBkYXRlIjoyNDAwMDAwMDAwMDB9LCJzY2hlbWFfdmVyc2lvbiI6IjQifQ==",
+          "dependencies": [
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_storage_bucket_iam_member",
+      "name": "read_bucket",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "bucket": "b/team2-tfstate-dd541fba",
+            "condition": [],
+            "etag": "CAM=",
+            "id": "b/team2-tfstate-dd541fba/roles/storage.objectViewer/allAuthenticatedUsers",
+            "member": "allAuthenticatedUsers",
+            "role": "roles/storage.objectViewer",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "google_storage_bucket.terraform_state",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "random_id",
+      "name": "bucket_suffix",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "b64_std": "3VQfug==",
+            "b64_url": "3VQfug",
+            "byte_length": 4,
+            "dec": "3713277882",
+            "hex": "dd541fba",
+            "id": "3VQfug",
+            "keepers": null,
+            "prefix": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
