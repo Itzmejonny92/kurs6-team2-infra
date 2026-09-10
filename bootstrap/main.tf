@@ -60,6 +60,25 @@ resource "google_project_iam_member" "cicd_compute_network_admin" {
   member  = "serviceAccount:${google_service_account.cicd.email}"
 }
 
+resource "google_project_iam_custom_role" "cicd_firewall_manager" {
+  project     = var.project_id
+  role_id     = "team${var.team_id}_firewall_manager"
+  title       = "Team ${var.team_id} CI/CD Firewall Manager"
+  description = "Allows the CI/CD service account to manage VPC firewall rules"
+
+  permissions = [
+    "compute.firewalls.create",
+    "compute.firewalls.delete",
+    "compute.firewalls.update",
+  ]
+}
+
+resource "google_project_iam_member" "cicd_firewall_manager" {
+  project = var.project_id
+  role    = google_project_iam_custom_role.cicd_firewall_manager.name
+  member  = "serviceAccount:${google_service_account.cicd.email}"
+}
+
 resource "google_project_iam_member" "cicd_compute_instance_admin" {
   project = var.project_id
   role    = "roles/compute.instanceAdmin.v1"
