@@ -19,7 +19,7 @@ Syftet är att samla säkerhetsrisker, förbättringar och dokumentationsbehov p
 | --- | --- | --- | --- | --- | --- |
 | PB-01 | [#1](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/1) | Verifiera PR-flöde och CI-checks | Hög | Done | GitHub Actions, branch protection |
 | PB-02 | [#6](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/6), [#13](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/13) | Begränsa åtkomst till Terraform state-bucket | Hög | Open | `bootstrap/main.tf` |
-| PB-03 | [#9](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/9) | Ersätt `GCP_SA_KEY` med Workload Identity Federation | Hög | In progress | `.github/workflows/deploy.yml`, `bootstrap/` |
+| PB-03 | [#9](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/9) | Ersätt `GCP_SA_KEY` med Workload Identity Federation | Hög | Review | `.github/workflows/deploy.yml`, `bootstrap/` |
 | PB-04 | [#7](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/7) | Minska behörighet för CI/CD service account | Hög | Open | `bootstrap/main.tf`, IAM |
 | PB-05 | [#8](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/8) | Begränsa firewall-regeln från `0.0.0.0/0` | Hög | Open | `main.tf`, nätverk |
 | PB-06 | [#12](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/12) | Dokumentera säker hantering av Terraform state och credentials | Medel | Open | `docs/`, `.gitignore` |
@@ -43,6 +43,15 @@ PB-11 är en granskningspunkt. Inställningen `uniform_bucket_level_access = tru
 - PB-08: Repository Variables för WIF är konfigurerade. En fullständig rutin för secrets och variables behöver fortfarande dokumenteras.
 - PB-09: SSH-användarna Jonny, Lasse, Willi, Tim och Fajk finns i `terraform.tfvars`. Amin saknas fortfarande och den gemensamma åtkomstrutinen återstår.
 - PB-10: Dagens agenda och säkerhetsbedömning mergades till `main` via [PR #20](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/20) efter gruppens granskning.
+
+## Statusuppdatering 2026-09-10
+
+- PB-03: Borttagningen av den långlivade service account-nyckeln och dess
+  känsliga Terraform-output är förberedd för granskning. Bootstrap-konfigurationen
+  är validerad och planen visar `0 to add, 0 to change, 1 to destroy`, där den
+  enda resursen som tas bort är `google_service_account_key.cicd`. Punkten
+  markeras som `Done` först efter mergad PR, genomförd bootstrap-apply, borttagen
+  GitHub-hemlighet `GCP_SA_KEY` och en ny lyckad WIF-deploy från `main`.
 
 ## Arbetsflöde
 
