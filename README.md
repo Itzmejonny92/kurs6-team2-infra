@@ -102,3 +102,11 @@ Exempel på säkerhetsområden att granska:
 Terraform state, credentials, privata nycklar och planfiler ska inte commitas.
 
 `.gitignore` skyddar mot vanliga Terraform- och credential-filer, men varje teammedlem ansvarar fortfarande för att kontrollera `git status` innan commit.
+
+## Hantering av SSH-åtkomst och Nycklar
+För att upprätthålla säkerheten i vår infrastruktur gäller följande rutin för SSH-nycklar:
+
+1. **Skapa nyckel:** Nya användare genererar ett SSH-nyckelpar lokalt via terminalen: `ssh-keygen -t ed25519`.
+2. **Dela publik nyckel:** Användaren kopierar innehållet i sin **publika** nyckel (filen som slutar på `.pub`) och lägger in den i `terraform.tfvars` under variabeln `ssh_users`.
+3. **VIKTIGT om Privata nycklar:** Den privata nyckeln (t.ex. `id_ed25519` utan filändelse) får **ALDRIG** delas, skickas i chattar eller commitas till GitHub.
+4. **Driftsättning:** När den publika nyckeln är inlagd körs `terraform plan` och `terraform apply` för att provisionera åtkomsten.
