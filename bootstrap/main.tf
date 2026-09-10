@@ -49,12 +49,6 @@ resource "google_storage_bucket" "terraform_state" {
   }
 }
 
-resource "google_storage_bucket_iam_member" "read_bucket" {
-  bucket = google_storage_bucket.terraform_state.name
-  role   = "roles/storage.objectViewer"
-  member = "allAuthenticatedUsers"
-}
-
 resource "google_service_account" "cicd" {
   account_id   = "team${var.team_id}-cicd"
   display_name = "CI/CD Pipeline Service Account"
