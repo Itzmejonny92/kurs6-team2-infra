@@ -22,6 +22,8 @@ Syftet är att samla säkerhetsrisker, förbättringar och dokumentationsbehov p
 | PB-03 | [#9](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/9) | Ersätt `GCP_SA_KEY` med Workload Identity Federation | Hög | Review | `.github/workflows/deploy.yml`, `bootstrap/` |
 | PB-04 | [#7](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/7) | Minska behörighet för CI/CD service account | Hög | Review | `bootstrap/main.tf`, IAM |
 | PB-05 | [#8](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/8) | Begränsa firewall-regeln från `0.0.0.0/0` | Hög | Review | `main.tf`, nätverk |
+| PB-04 | [#7](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/7) | Minska behörighet för CI/CD service account | Hög | Done | `bootstrap/main.tf`, IAM |
+| PB-05 | [#8](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/8) | Begränsa firewall-regeln från `0.0.0.0/0` | Hög | Open | `main.tf`, nätverk |
 | PB-06 | [#12](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/12) | Dokumentera säker hantering av Terraform state och credentials | Medel | Open | `docs/`, `.gitignore` |
 | PB-07 | [#11](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/11) | Granska Lasses föreslagna bucket-fix | Hög | Review | `member/larstorngrenchas` |
 | PB-08 | [#10](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/10) | Skapa tydlig rutin för secrets och variabler i GitHub Actions | Medel | In progress | GitHub Actions, repo settings |
