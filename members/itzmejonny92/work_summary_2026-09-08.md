@@ -52,6 +52,34 @@ hålla GitHub Issues, backlogg och dokumentation synkroniserade.
 - Skapade en personlig dokumentationsyta för varje gruppmedlem.
 - Uppdaterade projektets README så medlemsytorna är lätta att hitta.
 
+### Åtkomst till Spectre och flagganalys
+
+- Hämtade jumphostens externa IP från Terraform och verifierade SSH-åtkomsten.
+- Startade en lokal SOCKS5-proxy med dynamisk port forwarding över SSH.
+- Verifierade att Windows nådde proxyn på `127.0.0.1:1080`.
+- Startade Opera GX med en separat profil, SOCKS5-proxy och fjärrbaserad
+  DNS-uppslagning.
+- Verifierade att Spectre identifierade anslutningen som Team 2 via
+  jumphostens interna IP-adress `10.0.2.2`.
+- Skapade en återanvändbar personlig instruktion för anslutning, verifiering,
+  felsökning och säker frånkoppling.
+
+### Säkerhetsfynd i flaggövningen
+
+- Analyserade en lokalt kvarlämnad och ignorerad `terraform.tfstate.backup`.
+- Identifierade att Terraform state kan innehålla känsliga värden i klartext
+  eller Base64-kodad form även när värdet markeras som känsligt i Terraform.
+- Avkodade övningens Base64-värde lokalt och identifierade den första flaggan
+  utan att dokumentera själva flaggvärdet.
+- Kartlade statefilens nätverksuppgifter och skilde mellan CIDR-intervall,
+  gateway, intern VM-adress och publik NAT-adress.
+- Undersökte Spectres Looking Glass och verifierade med en neutral markör att
+  fältet `target` var sårbart för command injection.
+- Använde endast läsande kommandon för att förstå körmiljön och identifierade
+  övningens andra flagga i `flag.txt`.
+- Dokumenterade att flaggvärden, credentials och statefiler inte ska publiceras
+  i repot.
+
 ## Egna bedömningar
 
 - WIF skulle testas på en branch före merge för att inte riskera den fungerande
@@ -65,6 +93,11 @@ hålla GitHub Issues, backlogg och dokumentation synkroniserade.
   prevention bör användas som ytterligare skydd.
 - Inget issue ska stängas enbart för att en ändring är påbörjad eller finns i en
   branch. Kontrollpunkterna ska vara verifierade först.
+- En ignorerad statefil är fortfarande en lokal säkerhetsrisk. `.gitignore`
+  förhindrar en commit men krypterar, raderar eller skyddar inte filens innehåll.
+- Looking Glass-fyndet visar att extern inmatning inte får byggas in i ett
+  shell-kommando. Inmatningen behöver valideras och kommandon ska köras med
+  separata argument och minsta möjliga behörighet.
 
 ## Samarbete och spårbarhet
 
@@ -73,22 +106,25 @@ hålla GitHub Issues, backlogg och dokumentation synkroniserade.
 - [WIF-test på member-branch](https://github.com/Itzmejonny92/kurs6-team2-infra/actions/runs/34228835871): lyckad autentisering, plan och apply.
 - [WIF-deploy från main](https://github.com/Itzmejonny92/kurs6-team2-infra/actions/runs/34231222239): lyckad verifiering efter merge.
 - [PR #20](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/20): Blue Team-agenda och backloggstatus.
-- [PR #22](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/22): medlemsytor och avslutande backloggstatus, under review.
+- [PR #22](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/22): medlemsytor och avslutande backloggstatus, mergad.
+- [PR #23](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/23): uppdaterad närvaro i gruppens sammanfattning, mergad.
+- [PR #24](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/24): kompletterad riskdokumentation, mergad.
 
 ## Kvarstående arbete
 
-1. Få PR #22 granskad och mergad.
-2. Ta bort den gamla service account-nyckeln och dess känsliga Terraform-output.
-3. Applicera och verifiera nyckelrensningen i bootstrap-modulen.
-4. Ta bort `GCP_SA_KEY` från GitHub Secrets och avsluta PB-03/issue #9.
-5. Åtgärda state-bucketens `allAuthenticatedUsers` och inför public access
+1. Ta bort den gamla service account-nyckeln och dess känsliga Terraform-output.
+2. Applicera och verifiera nyckelrensningen i bootstrap-modulen.
+3. Ta bort `GCP_SA_KEY` från GitHub Secrets och avsluta PB-03/issue #9.
+4. Åtgärda state-bucketens `allAuthenticatedUsers` och inför public access
    prevention.
-6. Fortsätt med least privilege för CI/CD-service accountet och begränsning av
+5. Fortsätt med least privilege för CI/CD-service accountet och begränsning av
    brandväggsregeln.
-7. Lägg till Amin i SSH-konfigurationen när hans publika nyckel är tillgänglig
+6. Lägg till Amin i SSH-konfigurationen när hans publika nyckel är tillgänglig
    och dokumentera gruppens SSH-rutin.
+7. Ta med riskerna från Terraform state och command injection i fortsatt
+   Blue Team-analys och backloggprioritering.
 
 ## Säker hantering
 
-Inga privata SSH-nycklar, service account keys, credentials, Terraform state
-eller planfiler har lagts i dokumentationen eller commitats.
+Inga privata SSH-nycklar, service account keys, credentials, Terraform state,
+planfiler eller flaggvärden har lagts i dokumentationen eller commitats.
