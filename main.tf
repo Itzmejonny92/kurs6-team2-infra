@@ -169,14 +169,38 @@ resource "google_compute_instance" "jumphost" {
 #   }
 # }
 
-resource "google_compute_firewall" "allow_traffic" {
-  name    = "team${var.team_id}-allow-traffic"
+# SECURITY FIX (PB-05): Replaced overly permissive allow-all firewall rule
+# with two specific rules following the principle of least privilege.
+#
+# Original issue: Single rule allowed ALL protocols from 0.0.0.0/0 (entire
+# internet) to both jumphost and primary machines, exposing every port to
+# the entire internet.
+#
+# Fix:
+# 1. allow_ssh - Only TCP port 22 from internet, jumphost only.
+# 2. allow_internal - All protocols within team subnet only (10.0.2.0/24).
+
+resource "google_compute_firewall" "allow_ssh" {
+  name    = "team${var.team_id}-allow-ssh"
+  network = data.google_compute_network.team_vpc.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["jumphost"]
+}
+
+resource "google_compute_firewall" "allow_internal" {
+  name    = "team${var.team_id}-allow-internal"
   network = data.google_compute_network.team_vpc.name
 
   allow {
     protocol = "all"
   }
 
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["10.0.2.0/24"]
   target_tags   = ["jumphost", "primary"]
 }
