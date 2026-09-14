@@ -14,6 +14,7 @@ Följande gruppmedlemmar var närvarande under arbetet den 2026-09-14:
 - Jonny Nguyen (`itzmejonny92`)
 - Fajk Zhupa (`fajkzhupa-chas`)
 - Lars Törngren (`larstorngrenchas`)
+- Willi Broad Ngebi (`willibroadngebi-lab`)
 
 ## Spårbara bidrag
 
@@ -99,8 +100,8 @@ commit-historiken.
 
 ## Nästa steg
 
-1. Granska och merga dagens dokumentationsändringar.
-2. Slutför granskningen av bucket-issues #6, #11 och #16.
+1. Granska och merga backloggsynkroniseringen efter slutkontrollen.
+2. Slutför granskningen av bucket-issues #6 och #16.
 3. Slutför rutinen för GitHub Actions secrets och variables i issue #10.
 4. Låt gruppmedlemmarna testa den gemensamma anslutningsguiden.
 
