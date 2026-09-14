@@ -40,6 +40,14 @@ The platform access exercise directly validated our security
 findings — particularly the state bucket vulnerability (PB-02)
 which was exploitable in a real CTF scenario.
 
+## Instance management
+- team2-jumphost was found TERMINATED (stopped by daily schedule)
+- Started manually: gcloud compute instances start team2-jumphost
+  --project=itsx25-lab --zone=europe-north2-b
+- External IP confirmed: 34.51.183.245
+- Connect via: gcloud compute ssh team2-jumphost
+  --project=itsx25-lab --zone=europe-north2-b
+
 ## Pending
 - Monitor merged PRs and continue Blue Team security review
 - Contribute to remaining open issues in the backlog
