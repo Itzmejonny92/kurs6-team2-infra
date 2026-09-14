@@ -40,10 +40,10 @@ Om nyckeln har läsrättigheter till databaser (Cloud SQL, BigQuery) eller stora
 
 Erfarna angripare vill inte bli utslängda om vi upptäcker den stulna nyckeln och raderar den.
 
-- **Metod:** De använder nyckelns behörighet för att skapa _nya_ tjänstekonton, generera _nya_ nycklar, eller bjuda in externa Gmail-adresser som administratörer i ert GCP-projekt.
+- **Metod:** De använder nyckelns behörighet för att skapa _nya_ tjänstekonton, generera _nya_ nycklar, eller bjuda in externa Gmail-adresser som administratörer i vårt GCP-projekt.
 - **Konsekvens:** Även om vi hittar och tar bort den ursprungliga läckta nyckeln, har angriparen skapat permanenta bakdörrar in i systemen som är svåra att spåra.
 
-**5. Supply Chain-attacker**
+**5. Supply Chain-attacker** 
 
 Om nyckeln har behörighet att bygga eller publicera kod (t.ex. till Artifact Registry eller Cloud Build).
 
