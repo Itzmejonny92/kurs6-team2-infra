@@ -48,6 +48,17 @@ which was exploitable in a real CTF scenario.
 - Connect via: gcloud compute ssh team2-jumphost
   --project=itsx25-lab --zone=europe-north2-b
 
+## Headscale Installation - 2026-09-14
+- Installed Headscale v0.29.3 on team2-jumphost
+- Installation method: downloaded official Debian package from GitHub
+- Version confirmed: headscale version v0.29.3
+- Headscale acts as the control server for the team Tailnet
+- Next steps: DNS registration via Spectre, config.yaml setup,
+  Tailscale client installation on team devices
+- Team members do NOT need to reinstall Headscale - 
+  only need to install Tailscale client on their own devices
+
+
 ## Pending
 - Monitor merged PRs and continue Blue Team security review
 - Contribute to remaining open issues in the backlog
