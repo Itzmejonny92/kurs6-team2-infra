@@ -16,9 +16,9 @@ Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), grans
 ## Viktiga Filer
 
 - [main.tf](main.tf): Teamets huvudinfrastruktur, bland annat subnet, jumphost, routes och firewall.
-- [variables.tf](variables.tf): Variabler för team-modulen.
+- [variables.tf](variables.tf): Variabler för team-modulen, inklusive OS Login-identiteter.
 - [outputs.tf](outputs.tf): Outputs från team-modulen.
-- [terraform.tfvars](terraform.tfvars): Teamets projekt-, team- och SSH-inställningar.
+- [terraform.tfvars](terraform.tfvars): Teamets projekt- och teaminställningar. Fältet `ssh_users` är kvar som äldre konfiguration men används inte av jumphosten efter OS Login-migreringen.
 - [backend.tf](backend.tf): Remote backend för teamets Terraform state.
 - [bootstrap/main.tf](bootstrap/main.tf): Bootstrap-resurser, bland annat state-bucket och CI/CD service account.
 - [bootstrap/terraform.tfvars](bootstrap/terraform.tfvars): Projekt- och team-id för bootstrap.
@@ -28,6 +28,7 @@ Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), grans
 - [docs/gemensam_anslutningsguide.md](docs/gemensam_anslutningsguide.md): Gemensam säker guide för Git, GCP, Terraform, SSH och proxyanslutning.
 - [docs/product_backlog.md](docs/product_backlog.md): Backlog med säkerhetsrisker, förbättringar och status.
 - [docs/team_work_summary_2026-09-08.md](docs/team_work_summary_2026-09-08.md): Gemensam sammanfattning av dagens arbete, verifieringar och nästa steg.
+- [docs/team_work_summary_2026-09-14.md](docs/team_work_summary_2026-09-14.md): Gemensam sammanfattning av WIF, IAM, OS Login och övrigt säkerhetsarbete den 14 september.
 - [members/](members/): Personliga dokumentationsytor för gruppmedlemmarnas anteckningar, loggar och underlag.
 
 ## Arbetsflöde
@@ -99,6 +100,13 @@ Exempel på säkerhetsområden att granska:
   borttagen.
 - Den tidigare öppna brandväggsregeln är ersatt med SSH till jumphosten och
   intern trafik från Team 2:s subnet.
+- Jumphosten använder OS Login och blockerar projektets metadatahanterade
+  SSH-nycklar. Identitetslistan behöver kompletteras och behörighetsnivån
+  `osAdminLogin` ska följas upp i issue #15.
+- Ett dedikerat jumphost-service account är kopplat till VM:n. Kontot hade inga
+  projektroller vid kontrollen den 2026-09-14.
+- Headscale-installation har dokumenterats av Willi och följs upp i issue #41
+  för oberoende verifiering och reproducerbar installation.
 - Branch protection är aktiverad på `main`.
 - Pull requests kräver två approvals.
 - `Format & Validate` krävs som statuscheck.
@@ -110,15 +118,23 @@ Terraform state, credentials, privata nycklar och planfiler ska inte commitas.
 
 `.gitignore` skyddar mot vanliga Terraform- och credential-filer, men varje teammedlem ansvarar fortfarande för att kontrollera `git status` innan commit.
 
-## Hantering av SSH-åtkomst och Nycklar
+## Hantering av SSH-åtkomst och nycklar
 
 För att upprätthålla säkerheten i vår infrastruktur gäller följande rutin för nya användare och SSH-nycklar:
 
 Den fullständiga rutinen finns i
 [Team 2:s gemensamma anslutningsguide](docs/gemensam_anslutningsguide.md).
 
-1. **Skapa nyckel:** Användaren genererar ett SSH-nyckelpar lokalt via terminalen: 
-   `ssh-keygen -t ed25519`
-2. **Dela publik nyckel:** Användaren kopierar innehållet i sin **publika** nyckel (filen som slutar på `.pub`) och klistrar in den i filen `terraform.tfvars` under variabeln `ssh_users`.
-3. **Privata nycklar:** Den privata nyckeln (t.ex. `id_ed25519` utan filändelse) får **ALDRIG** delas, skickas i chattar eller commitas till GitHub. Detta är ett strikt säkerhetskrav.
-4. **Driftsättning:** När den publika nyckeln är inlagd körs infrastrukturansvarig `terraform plan` och `terraform apply` för att provisionera åtkomsten till servrarna.
+1. **Personlig identitet:** Varje medlem loggar in med sitt eget Chas
+   Academy-konto via `gcloud auth login`.
+2. **Egen SSH-nyckel:** Medlemmen skapar vid behov ett personligt nyckelpar med
+   `ssh-keygen -t ed25519` och registrerar den publika nyckeln i sin OS
+   Login-profil.
+3. **IAM via kod:** Medlemmens e-postadress läggs till i `os_admin_users` via
+   branch, pull request och granskning. Teamet ska först bedöma om
+   `roles/compute.osLogin` räcker eller om administrativ
+   `roles/compute.osAdminLogin` verkligen behövs.
+4. **Anslutning:** SSH sker med `gcloud compute ssh` enligt den gemensamma
+   guiden, inte med användarnamn från `ssh_users`.
+5. **Privata nycklar:** Den privata nyckeln får aldrig delas, skickas i chattar
+   eller commitas till GitHub.

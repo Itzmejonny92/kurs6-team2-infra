@@ -24,6 +24,11 @@ GitHub-historiken visar följande spårbara bidrag den 2026-09-14:
   WIF-verifiering, nyckelrensning, issues och dokumentation.
 - Lars Törngren (`larstorngrenchas`): mergad uppdatering av backlogg och
   riskdokumentation via PR #35.
+- Fajk Zhupa (`fajkzhupa-chas`): OS Login och dedikerat service account för
+  jumphosten via PR #39.
+- Willi Broad Ngebi (`willibroadngebi-lab`): individuella sammanfattningar,
+  proxy- och instansanteckningar samt dokumentation av Headscale via PR #40.
+- Lars och Willi granskade PR #39. Jonny och Lars granskade PR #40.
 
 Pull request-granskningar och muntliga bidrag kan finnas utan att framgå av
 commit-historiken.
@@ -75,6 +80,30 @@ commit-historiken.
   använder WIF.
 - README, produktbacklogg och Jonnys personliga README uppdaterades.
 
+### OS Login och jumphost
+
+- PR #39 ersatte metadatahanterade SSH-nycklar med GCP OS Login.
+- Jumphosten blockerar projektets metadata-nycklar och använder
+  `enable-oslogin=TRUE`.
+- Dennis, Fajk, Jonny, Lars och Willi har `roles/compute.osAdminLogin` på
+  instansen. Tim och Amin saknas och följs upp i återöppnade issue #15.
+- Ett dedikerat `team2-jumphost` service account är kopplat till VM:n med
+  `cloud-platform`-scope. Kontot hade inga projektroller vid livekontrollen.
+- Teamet behöver bedöma vilka användare som verkligen behöver administrativ
+  OS Login i stället för vanlig OS Login.
+
+### Willis dokumentation och Headscale
+
+- PR #40 lade till Willis individuella sammanfattningar för den 8 och 14
+  september.
+- Willi dokumenterade felsökning av VM-start, SSH-tunnel, proxy och åtkomst till
+  Spectre-plattformen.
+- Willi dokumenterade en manuell installation av Headscale v0.29.3 på
+  jumphosten. Installationen kunde inte verifieras oberoende vid denna
+  uppföljning eftersom SSH-nyckeln inte var upplåst.
+- Issue #41 skapades för att verifiera version och tjänstestatus samt göra
+  installation, återställning och säker konfiguration reproducerbar.
+
 ## Pull requests och verifieringar
 
 | Underlag | Resultat |
@@ -82,10 +111,16 @@ commit-historiken.
 | [PR #34](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/34) | Första försöket med minimal brandväggsroll |
 | [PR #35](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/35) | Backlogg och riskdokumentation |
 | [PR #36](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/36) | Tillgänglig inbyggd IAM-roll efter projektbegränsning |
+| [PR #37](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/37) | Gemensam anslutningsguide och säkerhetsdokumentation |
+| [PR #38](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/38) | Synkroniserad backlogg efter slutkontroll |
+| [PR #39](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/39) | OS Login och jumphost-service account |
+| [PR #40](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/40) | Willis arbets- och instansdokumentation |
 | [Branch-deploy](https://github.com/Itzmejonny92/kurs6-team2-infra/actions/runs/34824365603) | WIF och brandväggsändring lyckades |
 | [Deploy efter merge](https://github.com/Itzmejonny92/kurs6-team2-infra/actions/runs/34825510839) | `main` lyckades |
 | [Test med inaktiverade nycklar](https://github.com/Itzmejonny92/kurs6-team2-infra/actions/runs/34825821057) | WIF fungerade utan användbara nycklar |
 | [Sluttest efter radering](https://github.com/Itzmejonny92/kurs6-team2-infra/actions/runs/34826524653) | WIF fungerade utan användarhanterade nycklar |
+| [Deploy efter OS Login](https://github.com/Itzmejonny92/kurs6-team2-infra/actions/runs/34831901973) | PR #39 applicerades framgångsrikt från `main` |
+| [Deploy efter PR #40](https://github.com/Itzmejonny92/kurs6-team2-infra/actions/runs/34861398773) | Senaste `main` verifierades framgångsrikt |
 
 ## Aktuell säkerhetsstatus
 
@@ -96,14 +131,17 @@ commit-historiken.
 | Brandvägg | Done för aktuell issue | Ompröva SSH-källan när en stabil tillåten CIDR finns. |
 | State-bucket | Delvis klar | Följ upp public access prevention i issue #16. |
 | CI/CD-IAM | Fungerande med känd avvägning | Be utbildaren om möjlighet till smalare custom role. |
-| Anslutningsrutin | Dokumenterad | Låt medlemmarna testa guiden och rapportera oklarheter. |
+| OS Login | In progress | Lägg till avsedda medlemmar och minimera administrativ åtkomst i issue #15. |
+| Anslutningsrutin | Uppdaterad för OS Login | Låt medlemmarna testa guiden och rapportera oklarheter. |
+| Headscale | Dokumenterad men inte oberoende verifierad | Följ upp reproducerbarhet och säker konfiguration i issue #41. |
 
 ## Nästa steg
 
-1. Granska och merga backloggsynkroniseringen efter slutkontrollen.
+1. Komplettera och minimera OS Login-behörigheterna i issue #15.
 2. Slutför granskningen av bucket-issues #6 och #16.
 3. Slutför rutinen för GitHub Actions secrets och variables i issue #10.
-4. Låt gruppmedlemmarna testa den gemensamma anslutningsguiden.
+4. Verifiera och dokumentera Headscale enligt issue #41.
+5. Låt gruppmedlemmarna testa den uppdaterade anslutningsguiden.
 
 ## Säkerhetsprincip
 
