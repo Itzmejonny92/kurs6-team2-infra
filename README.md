@@ -25,6 +25,7 @@ Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), grans
 - [.github/workflows/pr-checks.yml](.github/workflows/pr-checks.yml): CI-kontroller för pull requests.
 - [.github/workflows/deploy.yml](.github/workflows/deploy.yml): Deploy-pipeline för main.
 - [docs/](docs/): Sammanfattningar, beslut och arbetsanteckningar.
+- [docs/gemensam_anslutningsguide.md](docs/gemensam_anslutningsguide.md): Gemensam säker guide för Git, GCP, Terraform, SSH och proxyanslutning.
 - [docs/product_backlog.md](docs/product_backlog.md): Backlog med säkerhetsrisker, förbättringar och status.
 - [docs/team_work_summary_2026-09-08.md](docs/team_work_summary_2026-09-08.md): Gemensam sammanfattning av dagens arbete, verifieringar och nästa steg.
 - [members/](members/): Personliga dokumentationsytor för gruppmedlemmarnas anteckningar, loggar och underlag.
@@ -91,7 +92,13 @@ Exempel på säkerhetsområden att granska:
 
 - Bootstrap-resurser har skapats i GCP.
 - Terraform state-bucket finns: `team2-tfstate-dd541fba`.
-- GitHub Actions deploy har körts framgångsrikt.
+- GitHub Actions autentiserar mot GCP med WIF och deploy har verifierats utan
+  långlivade service account-nycklar.
+- Inga användarhanterade nycklar finns kvar för `team2-cicd`.
+- State-bucketens tidigare publika `allAuthenticatedUsers`-bindning är
+  borttagen.
+- Den tidigare öppna brandväggsregeln är ersatt med SSH till jumphosten och
+  intern trafik från Team 2:s subnet.
 - Branch protection är aktiverad på `main`.
 - Pull requests kräver två approvals.
 - `Format & Validate` krävs som statuscheck.
@@ -106,6 +113,9 @@ Terraform state, credentials, privata nycklar och planfiler ska inte commitas.
 ## Hantering av SSH-åtkomst och Nycklar
 
 För att upprätthålla säkerheten i vår infrastruktur gäller följande rutin för nya användare och SSH-nycklar:
+
+Den fullständiga rutinen finns i
+[Team 2:s gemensamma anslutningsguide](docs/gemensam_anslutningsguide.md).
 
 1. **Skapa nyckel:** Användaren genererar ett SSH-nyckelpar lokalt via terminalen: 
    `ssh-keygen -t ed25519`

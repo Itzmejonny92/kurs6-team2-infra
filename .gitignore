@@ -1,6 +1,4 @@
 .DS_Store
-.github
-
 # Local .terraform directories
 .terraform/
 
