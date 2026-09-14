@@ -99,8 +99,8 @@ commit-historiken.
 
 ## Nästa steg
 
-1. Granska och merga dagens dokumentationsändringar.
-2. Slutför granskningen av bucket-issues #6, #11 och #16.
+1. Granska och merga backloggsynkroniseringen efter slutkontrollen.
+2. Slutför granskningen av bucket-issues #6 och #16.
 3. Slutför rutinen för GitHub Actions secrets och variables i issue #10.
 4. Låt gruppmedlemmarna testa den gemensamma anslutningsguiden.
 

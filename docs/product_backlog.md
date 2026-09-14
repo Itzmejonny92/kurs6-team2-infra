@@ -18,12 +18,12 @@ Syftet är att samla säkerhetsrisker, förbättringar och dokumentationsbehov p
 | ID | GitHub Issue | Titel | Prioritet | Status | Koppling |
 | --- | --- | --- | --- | --- | --- |
 | PB-01 | [#1](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/1) | Verifiera PR-flöde och CI-checks | Hög | Done | GitHub Actions, branch protection |
-| PB-02 | [#6](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/6), [#13](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/13) | Begränsa åtkomst till Terraform state-bucket | Hög | Review | `bootstrap/main.tf` |
+| PB-02 | [#6](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/6), [#13](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/13) | Begränsa åtkomst till Terraform state-bucket | Hög | In progress | `bootstrap/main.tf` |
 | PB-03 | [#9](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/9) | Ersätt `GCP_SA_KEY` med Workload Identity Federation | Hög | Done | `.github/workflows/deploy.yml`, `bootstrap/` |
 | PB-04 | [#7](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/7) | Minska behörighet för CI/CD service account | Hög | Done | `bootstrap/main.tf`, IAM |
 | PB-05 | [#8](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/8) | Begränsa firewall-regeln från `0.0.0.0/0` | Hög | Done | `main.tf`, nätverk |
 | PB-06 | [#12](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/12) | Dokumentera säker hantering av Terraform state och credentials | Medel | Done | `docs/`, `.gitignore` |
-| PB-07 | [#11](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/11) | Granska Lasses föreslagna bucket-fix | Hög | Review | `member/larstorngrenchas` |
+| PB-07 | [#11](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/11) | Granska Lasses föreslagna bucket-fix | Hög | Done | `member/larstorngrenchas` |
 | PB-08 | [#10](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/10) | Skapa tydlig rutin för secrets och variabler i GitHub Actions | Medel | In progress | GitHub Actions, repo settings |
 | PB-09 | [#15](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/15) | Kontrollera SSH-användare och åtkomstmodell | Medel | Done | `terraform.tfvars`, Compute metadata |
 | PB-10 | [#14](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/14) | Dokumentera dagens Blue Team-beslut efter workshop | Medel | Done | `docs/blue_team_agenda_2026-09-08.md` |
@@ -77,9 +77,15 @@ PB-11 är en granskningspunkt. Inställningen `uniform_bucket_level_access = tru
 - PB-09 är `Done` enligt stängt issue #15. En
   [gemensam anslutningsguide](gemensam_anslutningsguide.md) har också skapats
   för Git, GCP, Terraform, SSH och proxyanslutning.
-- PB-02 och PB-07 står kvar i `Review` eftersom issue #6 och #11 fortfarande
-  är öppna. Den publika `allAuthenticatedUsers`-bindningen är borttagen och
-  verifierad; `public_access_prevention` följs upp separat i PB-11/issue #16.
+- PB-07 är `Done`. Lasses ändring i PR #27 klarade kontroller, fick två
+  approvals, mergades och verifierades i GCP. Issue #11 är stängt.
+- PB-02 är fortsatt `In progress`. Den publika `allAuthenticatedUsers`-bindningen
+  är borttagen och verifierad, men åtkomsten via projektets grundroller behöver
+  fortfarande bedömas i issue #6. `public_access_prevention` följs upp separat
+  i PB-11/issue #16.
+- Dokumentations-PR #37 mergades och efterföljande
+  [deploy från `main`](https://github.com/Itzmejonny92/kurs6-team2-infra/actions/runs/34828593323)
+  lyckades.
 
 ## Arbetsflöde
 
