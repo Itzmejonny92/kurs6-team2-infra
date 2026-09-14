@@ -14,6 +14,7 @@ Följande gruppmedlemmar var närvarande under arbetet den 2026-09-14:
 - Jonny Nguyen (`itzmejonny92`)
 - Fajk Zhupa (`fajkzhupa-chas`)
 - Lars Törngren (`larstorngrenchas`)
+- Willi Broad Ngebi (`willibroadngebi-lab`)
 
 ## Spårbara bidrag
 
