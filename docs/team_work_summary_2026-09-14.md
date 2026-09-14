@@ -7,10 +7,17 @@ långlivade Google service account-nycklar till Workload Identity Federation
 (WIF). Arbetet har även verifierat brandvägg, IAM och åtkomst till Terraform
 state samt förbättrat gruppens gemensamma anslutningsdokumentation.
 
-## Närvaro och spårbarhet
+## Närvaro
 
-Fysisk närvaro har inte registrerats i denna sammanfattning. GitHub-historiken
-visar följande spårbara bidrag den 2026-09-14:
+Följande gruppmedlemmar var närvarande under arbetet den 2026-09-14:
+
+- Jonny Nguyen (`itzmejonny92`)
+- Fajk Zhupa (`fajkzhupa-chas`)
+- Lars Törngren (`larstorngrenchas`)
+
+## Spårbara bidrag
+
+GitHub-historiken visar följande spårbara bidrag den 2026-09-14:
 
 - Jonny Nguyen (`itzmejonny92`): IAM-korrigering, bootstrap-apply,
   WIF-verifiering, nyckelrensning, issues och dokumentation.
