@@ -18,8 +18,10 @@ Syftet är att samla säkerhetsrisker, förbättringar och dokumentationsbehov p
 | ID | GitHub Issue | Titel | Prioritet | Status | Koppling |
 | --- | --- | --- | --- | --- | --- |
 | PB-01 | [#1](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/1) | Verifiera PR-flöde och CI-checks | Hög | Done | GitHub Actions, branch protection |
-| PB-02 | [#6](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/6), [#13](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/13) | Begränsa åtkomst till Terraform state-bucket | Hög | Open | `bootstrap/main.tf` |
+| PB-02 | [#6](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/6), [#13](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/13) | Begränsa åtkomst till Terraform state-bucket | Hög | Review | `bootstrap/main.tf` |
 | PB-03 | [#9](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/9) | Ersätt `GCP_SA_KEY` med Workload Identity Federation | Hög | Review | `.github/workflows/deploy.yml`, `bootstrap/` |
+| PB-04 | [#7](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/7) | Minska behörighet för CI/CD service account | Hög | Review | `bootstrap/main.tf`, IAM |
+| PB-05 | [#8](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/8) | Begränsa firewall-regeln från `0.0.0.0/0` | Hög | Review | `main.tf`, nätverk |
 | PB-04 | [#7](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/7) | Minska behörighet för CI/CD service account | Hög | Done | `bootstrap/main.tf`, IAM |
 | PB-05 | [#8](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/8) | Begränsa firewall-regeln från `0.0.0.0/0` | Hög | Open | `main.tf`, nätverk |
 | PB-06 | [#12](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/12) | Dokumentera säker hantering av Terraform state och credentials | Medel | Open | `docs/`, `.gitignore` |
@@ -52,6 +54,13 @@ PB-11 är en granskningspunkt. Inställningen `uniform_bucket_level_access = tru
   enda resursen som tas bort är `google_service_account_key.cicd`. Punkten
   markeras som `Done` först efter mergad PR, genomförd bootstrap-apply, borttagen
   GitHub-hemlighet `GCP_SA_KEY` och en ny lyckad WIF-deploy från `main`.
+- PB-02, PB-04 och PB-05: Kodändringarna för explicit stateåtkomst,
+  least privilege och begränsade brandväggsregler är mergade. WIF når nu
+  state-backenden, men apply stoppas eftersom `compute.networkAdmin` saknar
+  `compute.firewalls.create`, `compute.firewalls.delete` och
+  `compute.firewalls.update`. En snäv projektspecifik roll med endast dessa tre
+  rättigheter är förberedd för granskning. Punkterna står kvar i `Review` tills
+  bootstrap har applicerats och en deploy från `main` är verifierad.
 
 ## Arbetsflöde
 
