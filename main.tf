@@ -72,6 +72,13 @@ resource "google_compute_resource_policy" "daily_schedule" {
     }
   }
 }
+resource "google_compute_instance_iam_member" "jumphost_os_login" {
+  for_each      = toset(var.os_admin_users)
+  instance_name = google_compute_instance.jumphost.name
+  zone          = google_compute_instance.jumphost.zone
+  role          = "roles/compute.osAdminLogin"
+  member        = "user:${each.value}"
+}
 
 resource "google_compute_instance" "jumphost" {
   name         = "team${var.team_id}-jumphost"
@@ -99,9 +106,12 @@ resource "google_compute_instance" "jumphost" {
       nat_ip = google_compute_address.jumphost.address
     }
   }
-
+  service_account {
+    email  = "team${var.team_id}-jumphost@${var.project_id}.iam.gserviceaccount.com"
+    scopes = ["cloud-platform"]
+  }
   metadata = {
-    ssh-keys               = join("\n", [for user in var.ssh_users : "${user.username}:${user.public_key}"])
+    enable-oslogin         = "TRUE"
     block-project-ssh-keys = true
     startup-script         = <<-EOT
       #!/bin/bash
