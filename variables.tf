@@ -42,11 +42,11 @@ variable "ssh_users" {
 variable "os_admin_users" {
   type        = list(string)
   description = "List of Google identities granted OS Admin Login"
-  default     = [
+  default = [
     "dennis.heimbert@chasacademy.se",
-    "fajk.zhupa@chasacademy.se", 
-    "jonny.nguyen@chasacademy.se", 
-    "lars.torngren@chasacademy.se", 
+    "fajk.zhupa@chasacademy.se",
+    "jonny.nguyen@chasacademy.se",
+    "lars.torngren@chasacademy.se",
     "willibroad.ngebi@chasacademy.se"
   ]
 }
