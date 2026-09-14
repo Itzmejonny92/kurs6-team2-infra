@@ -29,7 +29,7 @@ gruppens Blue Team-arbete med GCP och Terraform.
 | Datum | Vad gjordes? | Nästa steg |
 | --- | --- | --- |
 | 2026-09-08 | Backlogg och agenda skapades, WIF infördes och verifierades, issues synkades och medlemsytor skapades. | Granska PR #22 och genomför kontrollerad nyckelrensning. |
-| 2026-09-14 | WIF-migreringen slutfördes, gamla nycklar raderades, brandväggen verifierades och en gemensam anslutningsguide skapades. | Granska dokumentations-PR:n och fortsätt med öppna bucket- och secret-rutiner. |
+| 2026-09-14 | WIF-migreringen slutfördes, medlems-PR #39 och #40 följdes upp, OS Login verifierades och gemensam dokumentation synkades. | Komplettera OS Login i issue #15, granska bucketfrågor och följ upp Headscale i issue #41. |
 
 ## Viktigt
 
