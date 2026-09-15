@@ -59,6 +59,13 @@ which was exploitable in a real CTF scenario.
   only need to install Tailscale client on their own devices
 
 
+## Tailscale Installation on Jumphost - 2026-09-15
+- Installed Tailscale v1.102.4 on team2-jumphost
+- Installation method: official install script (tailscale.com/install.sh)
+- Tailscale service started automatically via systemd
+- Next step: connect jumphost to Headscale server at
+  https://team2.itsx25.chas-lab.dev
+
 ## Pending
 - Monitor merged PRs and continue Blue Team security review
 - Contribute to remaining open issues in the backlog
