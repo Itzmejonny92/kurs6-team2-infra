@@ -226,3 +226,17 @@ resource "google_compute_firewall" "allow_headscale" {
   source_ranges = ["0.0.0.0/0"]
   target_tags   = ["jumphost"]
 }
+
+
+resource "google_compute_firewall" "allow_instructor_ssh" {
+  name    = "team${var.team_id}-allow-instructor-ssh"
+  network = data.google_compute_network.team_vpc.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["10.0.0.0/24"]
+  target_tags   = ["jumphost"]
+}
