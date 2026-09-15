@@ -1,8 +1,8 @@
 # Gemensam anslutningsguide för Team 2
 
 Den här guiden beskriver hur gruppmedlemmar arbetar med repot, autentiserar sig
-mot GCP och ansluter till labbsidan via Team 2:s jumphost. Guiden innehåller
-inga hemligheter. Ersätt platshållare med dina egna lokala uppgifter.
+mot GCP, ansluter till Team 2:s Tailnet och når labbsidan via jumphosten. Guiden
+innehåller inga hemligheter. Ersätt platshållare med dina egna lokala uppgifter.
 
 ## Säkerhetsregler
 
@@ -11,6 +11,8 @@ inga hemligheter. Ersätt platshållare med dina egna lokala uppgifter.
   (WIF). En medlem behöver därför inte skapa eller spara `GCP_SA_KEY`.
 - Logga in lokalt med ditt eget Chas Academy-konto.
 - Den privata SSH-nyckeln ska endast finnas på din egen dator.
+- Auth-id:n från Headscale är tillfälliga och får inte delas eller sparas i
+  repot.
 - Commita aldrig credentials, privata nycklar, Terraform state eller planfiler.
 - Kontrollera alltid `git status` innan du committar.
 
@@ -87,9 +89,8 @@ gcloud compute os-login ssh-keys add \
 ```
 
 Din Chas Academy-adress måste även finnas i `os_admin_users` i
-`variables.tf`. Ändringen ska gå via branch, pull request och granskning. Tim
-och Amin saknades i listan vid kontrollen den 2026-09-14 och följs upp i issue
-#15.
+`variables.tf`. Ändringen ska gå via branch, pull request och granskning. Amin
+saknades i listan vid kontrollen den 2026-09-15 och följs upp i issue #15.
 
 `roles/compute.osAdminLogin` ger administrativ åtkomst på VM:n. Teamet ska
 bedöma om en medlem bara behöver `roles/compute.osLogin` innan behörighet
@@ -126,7 +127,87 @@ ssh-add "$HOME/.ssh/id_ed25519"
 
 Skicka aldrig lösenfrasen till någon annan.
 
-## 8. Starta en SOCKS5-tunnel
+## 8. Installera Tailscale lokalt
+
+Headscale-servern installeras och administreras gemensamt på jumphosten. Varje
+medlem installerar däremot Tailscale-klienten på sin egen arbetsstation eller
+WSL-miljö.
+
+På Ubuntu eller WSL kan det officiella installationsskriptet hämtas och köras
+så här:
+
+```bash
+curl -fsSL https://tailscale.com/install.sh -o /tmp/tailscale-install.sh
+sudo sh /tmp/tailscale-install.sh
+```
+
+Verifiera installationen och tjänsten:
+
+```bash
+tailscale version
+systemctl is-active tailscaled
+```
+
+## 9. Skapa en personlig Headscale-användare
+
+Detta moment görs en gång per medlem av en administratör på jumphosten. Börja
+med att kontrollera vilka användare som redan finns:
+
+```bash
+sudo headscale users list
+```
+
+Skapa därefter användaren om den saknas:
+
+```bash
+sudo headscale users create PERSONLIGT_NAMN
+```
+
+Använd korta och tydliga namn, exempelvis `jonny`, `fajk` eller `tim`. Skapa
+inte samma användare flera gånger.
+
+## 10. Anslut arbetsstationen till Headscale
+
+Kör lokalt på medlemmens arbetsstation eller i WSL:
+
+```bash
+sudo tailscale up \
+  --login-server https://team2.itsx25.chas-lab.dev \
+  --hostname PERSONLIGT_ENHETSNAMN
+```
+
+Kommandot visar en tillfällig registreringsadress. Öppna adressen i
+webbläsaren. Sidan visar ett kommando med ett auth-id. Kör kommandot på
+jumphosten, ersätt `USERNAME` med den personliga Headscale-användaren och
+behåll auth-id:t oförändrat:
+
+```bash
+sudo headscale auth register --auth-id AUTH_ID --user USERNAME
+```
+
+Kommandot ovan gäller Headscale `0.29.3`. Auth-id:t ska inte skickas i chatt,
+läggas i dokumentation eller committas.
+
+## 11. Verifiera Tailnet-anslutningen
+
+Kör lokalt:
+
+```bash
+tailscale status
+tailscale ping team2-jumphost
+```
+
+Den personliga enheten ska visas under rätt användare och jumphosten ska svara
+på `100.64.0.2`. En anslutning via en DERP-reläserver är fortfarande krypterad
+och godkänd för grundverifieringen, även om en direktanslutning är effektivare.
+
+En administratör kan kontrollera registreringen på jumphosten:
+
+```bash
+sudo headscale nodes list
+```
+
+## 12. Starta en SOCKS5-tunnel
 
 ```bash
 gcloud compute ssh team2-jumphost \
@@ -140,7 +221,7 @@ Låt terminalen vara öppen. Att inget nytt skrivs ut är normalt: processen
 håller tunneln aktiv. Första gången kan SSH fråga om jumphostens host key;
 kontrollera fingeravtrycket med teamet innan du godkänner det.
 
-## 9. Kontrollera den lokala proxyn
+## 13. Kontrollera den lokala proxyn
 
 Linux eller macOS:
 
@@ -158,7 +239,7 @@ På Windows betyder `TcpTestSucceeded : True` att den lokala SOCKS5-porten är
 öppen. Om Windows inte når WSL-tunneln via `127.0.0.1`, hämta WSL-adressen med
 `hostname -I` och använd den adressen som proxyvärd.
 
-## 10. Starta webbläsaren via proxyn
+## 14. Starta webbläsaren via proxyn
 
 Starta en separat webbläsarprofil med följande inställningar:
 
@@ -184,7 +265,7 @@ https://spectre.itsx25.chas-lab.dev
 
 Kontrollera att sidan identifierar anslutningen som Team 2.
 
-## 11. Avsluta säkert
+## 15. Avsluta SOCKS5-tunneln säkert
 
 1. Stäng webbläsarens separata labbprofil.
 2. Gå tillbaka till terminalen som kör SSH-tunneln.
@@ -200,6 +281,14 @@ Kontrollera att sidan identifierar anslutningen som Team 2.
   och kontrollera valt projekt.
 - **Port 1080 används redan:** stäng en gammal tunnel eller välj samma nya port
   i både SSH-kommandot och webbläsarens proxyinställning.
+- **Headscale returnerar `403`:** kontrollera att klienten använder
+  `https://team2.itsx25.chas-lab.dev`, inte Spectre-portalens adress.
+- **`Unable to read/write to headscale socket`:** kör Headscale-kommandot på
+  jumphosten med `sudo`.
+- **En Headscale-användare saknar enhet:** användaren är bara skapad. Medlemmen
+  måste även köra `tailscale up` och en administratör måste godkänna auth-id:t.
+- **En registrerad enhet är offline:** starta `tailscaled` och kör
+  `sudo tailscale up` på den aktuella arbetsstationen.
 - **Labbsidan laddas inte:** kontrollera att SSH-terminalen är öppen och att
   webbläsaren verkligen startades med den separata proxyprofilen.
 - **Fel team visas:** stäng andra proxy- eller VPN-anslutningar och verifiera
