@@ -60,6 +60,23 @@ arbetssätt för gruppen.
 - Be gruppmedlemmarna testa den gemensamma anslutningsguiden.
 - Undersök med utbildaren om en smalare brandväggsroll kan tillhandahållas.
 
+## Senare uppföljning av medlemsarbete
+
+- Synkade in Fajks PR #39 och Willis PR #40 från `main`.
+- Verifierade att båda efterföljande deployerna från `main` lyckades.
+- Kontrollerade live att OS Login är aktiverat och att metadatahanterade
+  SSH-nycklar blockeras på jumphosten.
+- Identifierade att Tim och Amin saknas i `os_admin_users` och att alla listade
+  identiteter har administrativ OS Login. Issue #15 återöppnades för fortsatt
+  granskning och minsta möjliga behörighet.
+- Kontrollerade att jumphostens service account saknar projektroller.
+- Granskade Willis Headscale-anteckningar. Driftstatus kunde inte verifieras
+  oberoende eftersom min SSH-nyckel inte var upplåst vid kontrollen.
+- Skapade issue #41 för verifiering, säker konfiguration och reproducerbar
+  installation av Headscale.
+- Uppdaterade README, anslutningsguide, backlogg och teamsammanfattning så att
+  de beskriver den nya OS Login-modellen.
+
 ## Säker dokumentation
 
 Jag har inte dokumenterat privata nycklar, credentials, känsliga statevärden

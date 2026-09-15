@@ -79,9 +79,21 @@ ssh-keygen -t ed25519 -C "DIN_CHAS_EPOST"
 Dela endast innehållet i den publika filen, normalt
 `~/.ssh/id_ed25519.pub`. Dela aldrig `~/.ssh/id_ed25519`.
 
-Din publika nyckel och ditt SSH-användarnamn måste finnas i teamets
-`ssh_users`-konfiguration innan du kan ansluta. Ändringen ska granskas och
-mergas på vanligt sätt.
+Registrera den publika nyckeln i din personliga OS Login-profil:
+
+```bash
+gcloud compute os-login ssh-keys add \
+  --key-file="$HOME/.ssh/id_ed25519.pub"
+```
+
+Din Chas Academy-adress måste även finnas i `os_admin_users` i
+`variables.tf`. Ändringen ska gå via branch, pull request och granskning. Tim
+och Amin saknades i listan vid kontrollen den 2026-09-14 och följs upp i issue
+#15.
+
+`roles/compute.osAdminLogin` ger administrativ åtkomst på VM:n. Teamet ska
+bedöma om en medlem bara behöver `roles/compute.osLogin` innan behörighet
+läggs till.
 
 ## 6. Hämta jumphostens adress
 
@@ -94,19 +106,41 @@ printf '%s\n' "$JUMPHOST_IP"
 
 Skriv inte ut eller dela andra värden från Terraform state.
 
-## 7. Starta en SOCKS5-tunnel
+## 7. Anslut till jumphosten
 
-Ersätt `DITT_SSH_NAMN` med användarnamnet som finns i `ssh_users`:
+Använd `gcloud compute ssh`, som kopplar ditt Google-konto till rätt OS
+Login-användare:
 
 ```bash
-ssh -N -D 1080 DITT_SSH_NAMN@"$JUMPHOST_IP"
+gcloud compute ssh team2-jumphost \
+  --project=itsx25-lab \
+  --zone=europe-north2-b \
+  --ssh-key-file="$HOME/.ssh/id_ed25519"
+```
+
+Om nyckeln har en lösenfras kan den låsas upp lokalt först:
+
+```bash
+ssh-add "$HOME/.ssh/id_ed25519"
+```
+
+Skicka aldrig lösenfrasen till någon annan.
+
+## 8. Starta en SOCKS5-tunnel
+
+```bash
+gcloud compute ssh team2-jumphost \
+  --project=itsx25-lab \
+  --zone=europe-north2-b \
+  --ssh-key-file="$HOME/.ssh/id_ed25519" \
+  -- -N -D 127.0.0.1:1080
 ```
 
 Låt terminalen vara öppen. Att inget nytt skrivs ut är normalt: processen
 håller tunneln aktiv. Första gången kan SSH fråga om jumphostens host key;
 kontrollera fingeravtrycket med teamet innan du godkänner det.
 
-## 8. Kontrollera den lokala proxyn
+## 9. Kontrollera den lokala proxyn
 
 Linux eller macOS:
 
@@ -121,9 +155,10 @@ Test-NetConnection 127.0.0.1 -Port 1080
 ```
 
 På Windows betyder `TcpTestSucceeded : True` att den lokala SOCKS5-porten är
-öppen.
+öppen. Om Windows inte når WSL-tunneln via `127.0.0.1`, hämta WSL-adressen med
+`hostname -I` och använd den adressen som proxyvärd.
 
-## 9. Starta webbläsaren via proxyn
+## 10. Starta webbläsaren via proxyn
 
 Starta en separat webbläsarprofil med följande inställningar:
 
@@ -149,7 +184,7 @@ https://spectre.itsx25.chas-lab.dev
 
 Kontrollera att sidan identifierar anslutningen som Team 2.
 
-## 10. Avsluta säkert
+## 11. Avsluta säkert
 
 1. Stäng webbläsarens separata labbprofil.
 2. Gå tillbaka till terminalen som kör SSH-tunneln.
@@ -158,8 +193,9 @@ Kontrollera att sidan identifierar anslutningen som Team 2.
 
 ## Felsökning
 
-- **`Permission denied (publickey)`:** kontrollera SSH-användarnamn, privat
-  nyckel och att den publika nyckeln är driftsatt.
+- **`Permission denied (publickey)`:** kontrollera att du är inloggad med rätt
+  Google-konto, att din publika nyckel finns i OS Login och att adressen finns
+  i `os_admin_users`.
 - **Terraform kan inte läsa backend:** kör båda `gcloud auth`-kommandona igen
   och kontrollera valt projekt.
 - **Port 1080 används redan:** stäng en gammal tunnel eller välj samma nya port
