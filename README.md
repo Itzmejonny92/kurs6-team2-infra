@@ -138,3 +138,9 @@ Den fullständiga rutinen finns i
    guiden, inte med användarnamn från `ssh_users`.
 5. **Privata nycklar:** Den privata nyckeln får aldrig delas, skickas i chattar
    eller commitas till GitHub.
+
+## Aktuell Status: Infrastruktur & Headscale
+* **Brandvägg (Terraform):** Port 8080 är nu öppen för Headscale mot jumphosten.
+* **Server (Manuellt):** Headscale är installerat på jumphosten och lyssnar på `0.0.0.0:8080`.
+* **Användare:** Namnrymden `team2` är skapad på servern.
+* **Verifiering:** Anslutning via Tailscale lokalt från klientdator till VPN är testad och fungerar.
