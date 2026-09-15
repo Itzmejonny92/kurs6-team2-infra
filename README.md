@@ -138,3 +138,8 @@ Den fullständiga rutinen finns i
    guiden, inte med användarnamn från `ssh_users`.
 5. **Privata nycklar:** Den privata nyckeln får aldrig delas, skickas i chattar
    eller commitas till GitHub.
+
+## Statusuppdatering: Klara med Steg 4 & 5
+* **DNS & config.yaml:** Headscale är nu konfigurerat att lyssna via domänen (`spectre.itsx25.chas-lab.dev`).
+* **Tailscale på Jumphost:** Jumphosten har Tailscale-klienten installerad och är registrerad som en nod i vårt Tailnet.
+* **Nästa steg för teamet:** Vi befinner oss på **Steg 6**. Det som är kvar är att lägga till brandväggsregler för instruktörerna i Terraform, aktivera `primary`-maskinen, samt sätta upp routing och policys.
