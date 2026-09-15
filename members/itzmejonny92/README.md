@@ -13,7 +13,9 @@ gruppens Blue Team-arbete med GCP och Terraform.
 | --- | --- |
 | [Anslutning till labbsidan via proxy](anslutning_via_proxy.md) | Steg för steg-instruktion för SSH-tunnel, SOCKS5 och Opera GX. |
 | [Arbetssammanfattning 2026-09-08](work_summary_2026-09-08.md) | Individuell sammanfattning av dagens backlogg-, WIF-, verifierings- och dokumentationsarbete. |
+| [Arbetssammanfattning 2026-09-14](work_summary_2026-09-14.md) | Individuell sammanfattning av slutförd WIF-migrering, IAM, brandvägg och dokumentation. |
 | [Gemensam arbetssammanfattning 2026-09-08](../../docs/team_work_summary_2026-09-08.md) | Gruppens gemensamma resultat, bidrag, säkerhetsstatus och nästa steg. |
+| [Gemensam arbetssammanfattning 2026-09-14](../../docs/team_work_summary_2026-09-14.md) | Teamets verifierade säkerhetsarbete och aktuella status. |
 
 ## Användning
 
@@ -27,6 +29,7 @@ gruppens Blue Team-arbete med GCP och Terraform.
 | Datum | Vad gjordes? | Nästa steg |
 | --- | --- | --- |
 | 2026-09-08 | Backlogg och agenda skapades, WIF infördes och verifierades, issues synkades och medlemsytor skapades. | Granska PR #22 och genomför kontrollerad nyckelrensning. |
+| 2026-09-14 | WIF-migreringen slutfördes, medlems-PR #39 och #40 följdes upp, OS Login verifierades och gemensam dokumentation synkades. | Komplettera OS Login i issue #15, granska bucketfrågor och följ upp Headscale i issue #41. |
 
 ## Viktigt
 
@@ -37,6 +40,8 @@ planfiler får aldrig sparas eller commitas här.
 
 - [Projektets README](../../README.md)
 - [Product Backlog](../../docs/product_backlog.md)
+- [Gemensam anslutningsguide](../../docs/gemensam_anslutningsguide.md)
 - [Blue Team-agenda 2026-09-08](../../docs/blue_team_agenda_2026-09-08.md)
 - [Gemensam arbetssammanfattning 2026-09-08](../../docs/team_work_summary_2026-09-08.md)
+- [Gemensam arbetssammanfattning 2026-09-14](../../docs/team_work_summary_2026-09-14.md)
 - [Setup Summary 2026-09-07](../../docs/setup_summary_2026-09-07.md)
