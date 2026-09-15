@@ -215,6 +215,10 @@ resource "google_compute_firewall" "allow_internal" {
   target_tags   = ["jumphost", "primary"]
 }
 
+# Headscale clients connect to the team domain through the instructor's reverse
+# proxy. Restricting the source to 10.0.0.2/32 lets that proxy reach port 8080
+# without exposing the Headscale backend directly to the internet, as the
+# previous 0.0.0.0/0 source range did.
 resource "google_compute_firewall" "allow_headscale" {
   name    = "team${var.team_id}-allow-headscale"
   network = data.google_compute_network.team_vpc.name
