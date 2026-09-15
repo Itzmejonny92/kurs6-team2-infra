@@ -109,14 +109,21 @@ Skriv inte ut eller dela andra värden från Terraform state.
 
 ## 7. Anslut till jumphosten
 
-Använd `gcloud compute ssh`, som kopplar ditt Google-konto till rätt OS
-Login-användare:
+Efter att steg 6 driftsattes den 2026-09-15 är publik SSH begränsad till
+instruktörsnätet. En medlem ansluter därför normalt via Tailnet efter att den
+egna klienten registrerats enligt steg 8-11.
+
+Ta fram ditt OS Login-användarnamn:
 
 ```bash
-gcloud compute ssh team2-jumphost \
-  --project=itsx25-lab \
-  --zone=europe-north2-b \
-  --ssh-key-file="$HOME/.ssh/id_ed25519"
+gcloud compute os-login describe-profile \
+  --format="value(posixAccounts[0].username)"
+```
+
+Anslut därefter till jumphosten via dess Tailnet-adress:
+
+```bash
+ssh -i "$HOME/.ssh/id_ed25519" DIN_OS_LOGIN_ANVANDARE@100.64.0.2
 ```
 
 Om nyckeln har en lösenfras kan den låsas upp lokalt först:
@@ -210,11 +217,9 @@ sudo headscale nodes list
 ## 12. Starta en SOCKS5-tunnel
 
 ```bash
-gcloud compute ssh team2-jumphost \
-  --project=itsx25-lab \
-  --zone=europe-north2-b \
-  --ssh-key-file="$HOME/.ssh/id_ed25519" \
-  -- -N -D 127.0.0.1:1080
+ssh -i "$HOME/.ssh/id_ed25519" \
+  -N -D 127.0.0.1:1080 \
+  DIN_OS_LOGIN_ANVANDARE@100.64.0.2
 ```
 
 Låt terminalen vara öppen. Att inget nytt skrivs ut är normalt: processen
@@ -277,6 +282,8 @@ Kontrollera att sidan identifierar anslutningen som Team 2.
 - **`Permission denied (publickey)`:** kontrollera att du är inloggad med rätt
   Google-konto, att din publika nyckel finns i OS Login och att adressen finns
   i `os_admin_users`.
+- **Publik `gcloud compute ssh` fungerar inte hemifrån:** detta är förväntat
+  efter steg 6. Starta Tailscale och anslut via jumphostens Tailnet-adress.
 - **Terraform kan inte läsa backend:** kör båda `gcloud auth`-kommandona igen
   och kontrollera valt projekt.
 - **Port 1080 används redan:** stäng en gammal tunnel eller välj samma nya port

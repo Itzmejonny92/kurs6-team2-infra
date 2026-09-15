@@ -1,6 +1,7 @@
 # Kurs 6 Team 2 Infra
 
-Detta repository innehåller grupp 2:s Terraform-baserade infrastruktur för Kurs 6, vecka 4: Blue Team Start.
+Detta repository innehåller grupp 2:s Terraform-baserade infrastruktur för Kurs
+6, vecka 4 och 5: Blue Team.
 
 Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), granska Terraform-kod ur ett säkerhetsperspektiv och förbättra lösningen steg för steg via ett agilt arbetsflöde.
 
@@ -29,6 +30,7 @@ Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), grans
 - [docs/product_backlog.md](docs/product_backlog.md): Backlog med säkerhetsrisker, förbättringar och status.
 - [docs/team_work_summary_2026-09-08.md](docs/team_work_summary_2026-09-08.md): Gemensam sammanfattning av dagens arbete, verifieringar och nästa steg.
 - [docs/team_work_summary_2026-09-14.md](docs/team_work_summary_2026-09-14.md): Gemensam sammanfattning av WIF, IAM, OS Login och övrigt säkerhetsarbete den 14 september.
+- [docs/team_work_summary_2026-09-15.md](docs/team_work_summary_2026-09-15.md): Gemensam sammanfattning av Metadata Service, Headscale, Tailscale och brandväggsarbetet den 15 september.
 - [members/](members/): Personliga dokumentationsytor för gruppmedlemmarnas anteckningar, loggar och underlag.
 
 ## Arbetsflöde
@@ -98,15 +100,15 @@ Exempel på säkerhetsområden att granska:
 - Inga användarhanterade nycklar finns kvar för `team2-cicd`.
 - State-bucketens tidigare publika `allAuthenticatedUsers`-bindning är
   borttagen.
-- Den tidigare öppna brandväggsregeln är ersatt med SSH till jumphosten och
-  intern trafik från Team 2:s subnet.
+- Headscale-porten är begränsad till utbildarens reverse proxy och SSH-porten
+  till instruktörsnätet. Intern trafik tillåts från Team 2:s subnet.
 - Jumphosten använder OS Login och blockerar projektets metadatahanterade
-  SSH-nycklar. Identitetslistan behöver kompletteras och behörighetsnivån
-  `osAdminLogin` ska följas upp i issue #15.
+  SSH-nycklar. Amin behöver läggas till och behovet av `osAdminLogin` ska
+  följas upp i issue #15.
 - Ett dedikerat jumphost-service account är kopplat till VM:n. Kontot hade inga
   projektroller vid kontrollen den 2026-09-14.
-- Headscale-installation har dokumenterats av Willi och följs upp i issue #41
-  för oberoende verifiering och reproducerbar installation.
+- Headscale och dagens medlemsanslutningar är verifierade. Den manuella
+  serverinstallationen följs upp i issue #41 för reproducerbarhet.
 - Branch protection är aktiverad på `main`.
 - Pull requests kräver två approvals.
 - `Format & Validate` krävs som statuscheck.
@@ -134,8 +136,9 @@ Den fullständiga rutinen finns i
    branch, pull request och granskning. Teamet ska först bedöma om
    `roles/compute.osLogin` räcker eller om administrativ
    `roles/compute.osAdminLogin` verkligen behövs.
-4. **Anslutning:** SSH sker med `gcloud compute ssh` enligt den gemensamma
-   guiden, inte med användarnamn från `ssh_users`.
+4. **Anslutning:** Efter Tailnet-registrering sker medlemmarnas SSH via
+   jumphostens Tailscale-adress enligt den gemensamma guiden. Publik SSH är
+   begränsad till instruktörsnätet.
 5. **Privata nycklar:** Den privata nyckeln får aldrig delas, skickas i chattar
    eller commitas till GitHub.
 
@@ -156,6 +159,6 @@ Den fullständiga rutinen finns i
   proxy på `10.0.0.2/32`.
 - Terraform begränsar SSH på port 22 till instruktörsnätet `10.0.0.0/24`.
   Jonnys SSH-åtkomst via Tailnet till `team2-jumphost` har verifierats.
-- Nästa moment är att slutföra steg 6 genom att mergea, driftsätta och verifiera
-  båda brandväggsreglerna. Därefter fortsätter arbetet med `primary`-instansen,
-  subnet advertisement, routing och ACL-policy enligt steg 7 och 8.
+- Workshopens steg 6 är mergat, driftsatt och liveverifierat.
+- Nästa moment är `primary`-instansen, subnet advertisement och routing i
+  PB-13/issue #51. ACL-policy följer i PB-14/issue #52.
