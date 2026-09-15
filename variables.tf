@@ -47,6 +47,7 @@ variable "os_admin_users" {
     "fajk.zhupa@chasacademy.se",
     "jonny.nguyen@chasacademy.se",
     "lars.torngren@chasacademy.se",
-    "willibroad.ngebi@chasacademy.se"
+    "willibroad.ngebi@chasacademy.se",
+    "tim.rundquist@chasacademy.se"
   ]
 }
