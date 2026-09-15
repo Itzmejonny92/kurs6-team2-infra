@@ -1,7 +1,7 @@
 # Jonny Nguyen - individuell arbetsyta
 
 Den här mappen är Jonnys personliga dokumentationsyta för Kurs 6, vecka 4 och
-gruppens Blue Team-arbete med GCP och Terraform.
+5 samt gruppens Blue Team-arbete med GCP, Terraform, Headscale och Tailscale.
 
 ## Arbetsbranch
 
@@ -24,12 +24,26 @@ gruppens Blue Team-arbete med GCP och Terraform.
 - Underlag och källor kopplade till gruppens issues
 - Resultat från tester som inte innehåller känsliga värden
 
+## Aktuell personlig status
+
+Senast verifierad: 2026-09-15.
+
+- OS Login fungerar med Jonnys personliga Google-identitet och SSH-nyckel.
+- Metadata Service och jumphostens service account har verifierats utan att
+  exponera token eller innehåll från Secret Manager.
+- Headscale-användaren `jonny` är skapad på teamets gemensamma server.
+- WSL-klienten `jonny-workstation` är registrerad och online i Tailnet med
+  Tailscale-adressen `100.64.0.3`.
+- Anslutningen till `team2-jumphost` på `100.64.0.2` har verifierats med
+  `tailscale ping`. Trafiken gick vid testet via `DERP(hel)`.
+
 ## Arbetslogg
 
 | Datum | Vad gjordes? | Nästa steg |
 | --- | --- | --- |
 | 2026-09-08 | Backlogg och agenda skapades, WIF infördes och verifierades, issues synkades och medlemsytor skapades. | Granska PR #22 och genomför kontrollerad nyckelrensning. |
 | 2026-09-14 | WIF-migreringen slutfördes, medlems-PR #39 och #40 följdes upp, OS Login verifierades och gemensam dokumentation synkades. | Komplettera OS Login i issue #15, granska bucketfrågor och följ upp Headscale i issue #41. |
+| 2026-09-15 | Metadata och instansidentitet verifierades, Headscales serveradress rättades och den personliga WSL-klienten anslöts till teamets Tailnet. | Granska och mergea säkerhetsrättningen, verifiera brandväggen och fortsätt med workshopens steg 6. |
 
 ## Viktigt
 

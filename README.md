@@ -139,15 +139,23 @@ Den fullständiga rutinen finns i
 5. **Privata nycklar:** Den privata nyckeln får aldrig delas, skickas i chattar
    eller commitas till GitHub.
 
- docs/status-update-step5
-## Statusuppdatering: Klara med Steg 4 & 5
-* **DNS & config.yaml:** Headscale är nu konfigurerat att lyssna via domänen (`spectre.itsx25.chas-lab.dev`).
-* **Tailscale på Jumphost:** Jumphosten har Tailscale-klienten installerad och är registrerad som en nod i vårt Tailnet.
-* **Nästa steg för teamet:** Vi befinner oss på **Steg 6**. Det som är kvar är att lägga till brandväggsregler för instruktörerna i Terraform, aktivera `primary`-maskinen, samt sätta upp routing och policys.
-=======
-## Aktuell Status: Infrastruktur & Headscale
-* **Brandvägg (Terraform):** Port 8080 är nu öppen för Headscale mot jumphosten.
-* **Server (Manuellt):** Headscale är installerat på jumphosten och lyssnar på `0.0.0.0:8080`.
-* **Användare:** Namnrymden `team2` är skapad på servern.
-* **Verifiering:** Anslutning via Tailscale lokalt från klientdator till VPN är testad och fungerar.
- main
+## Aktuell status: Headscale och Tailscale
+
+- Headscale `v0.29.3` är installerat och aktivt på jumphosten.
+- Headscale använder `https://team2.itsx25.chas-lab.dev` som serveradress,
+  lyssnar på `0.0.0.0:8080` bakom utbildarens reverse proxy och använder
+  `team2.arpa` som intern basdomän.
+- Personliga Headscale-användare finns för Jonny, Lasse, Fajk, Tim och
+  Willibroad. Amin återstår eftersom han inte deltog den 2026-09-15.
+- Tailscale är installerat på jumphosten. Noden `team2-jumphost` är registrerad
+  och online i teamets Tailnet.
+- De verifierade medlemsnoderna `jonny-workstation`, `recharge`, `fajk`,
+  `macbook-air-som-tillhor-tim` och `willibroad` är registrerade under rätt
+  personliga användare och var online vid slutkontrollen den 2026-09-15.
+- Terraform begränsar åtkomst till Headscale-porten till instruktörens reverse
+  proxy på `10.0.0.2/32`.
+- Terraform begränsar SSH på port 22 till instruktörsnätet `10.0.0.0/24`.
+  Jonnys SSH-åtkomst via Tailnet till `team2-jumphost` har verifierats.
+- Nästa moment är att slutföra steg 6 genom att mergea, driftsätta och verifiera
+  båda brandväggsreglerna. Därefter fortsätter arbetet med `primary`-instansen,
+  subnet advertisement, routing och ACL-policy enligt steg 7 och 8.
