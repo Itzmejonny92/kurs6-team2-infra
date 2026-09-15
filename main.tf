@@ -187,7 +187,7 @@ resource "google_compute_instance" "jumphost" {
 # the entire internet.
 #
 # Fix:
-# 1. allow_ssh - Only TCP port 22 from internet, jumphost only.
+# 1. allow_ssh - Only TCP port 22 from the instructor network, jumphost only.
 # 2. allow_internal - All protocols within team subnet only (10.0.2.0/24).
 
 resource "google_compute_firewall" "allow_ssh" {
@@ -199,7 +199,7 @@ resource "google_compute_firewall" "allow_ssh" {
     ports    = ["22"]
   }
 
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["10.0.0.0/24"]
   target_tags   = ["jumphost"]
 }
 

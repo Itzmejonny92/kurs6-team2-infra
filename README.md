@@ -149,8 +149,8 @@ Den fullständiga rutinen finns i
   och online i teamets Tailnet.
 - Terraform begränsar åtkomst till Headscale-porten till instruktörens reverse
   proxy på `10.0.0.2/32`.
-- Nästa huvudmoment är att slutföra workshopens steg 6 genom att driftsätta och
-  verifiera brandväggsregeln för instruktörens reverse proxy. SSH-regeln ska
-  begränsas enligt workshopkravet först när teamets fortsatta åtkomst är
-  verifierad. Därefter fortsätter arbetet med `primary`-instansen, subnet
-  advertisement, routing och ACL-policy enligt steg 7 och 8.
+- Terraform begränsar SSH på port 22 till instruktörsnätet `10.0.0.0/24`.
+  Jonnys SSH-åtkomst via Tailnet till `team2-jumphost` har verifierats.
+- Nästa moment är att slutföra steg 6 genom att mergea, driftsätta och verifiera
+  båda brandväggsreglerna. Därefter fortsätter arbetet med `primary`-instansen,
+  subnet advertisement, routing och ACL-policy enligt steg 7 och 8.
