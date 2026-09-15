@@ -214,3 +214,15 @@ resource "google_compute_firewall" "allow_internal" {
   source_ranges = ["10.0.2.0/24"]
   target_tags   = ["jumphost", "primary"]
 }
+resource "google_compute_firewall" "allow_headscale" {
+  name    = "team${var.team_id}-allow-headscale"
+  network = data.google_compute_network.team_vpc.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["8080"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["jumphost"]
+}
