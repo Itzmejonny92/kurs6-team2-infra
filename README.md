@@ -142,11 +142,16 @@ Den fullständiga rutinen finns i
 ## Aktuell status: Headscale och Tailscale
 
 - Headscale `v0.29.3` är installerat och aktivt på jumphosten.
-- Headscale lyssnar på `0.0.0.0:8080` och använder `team2.arpa` som intern
-  basdomän.
-- Headscale-användaren `team2` är skapad.
+- Headscale använder `https://team2.itsx25.chas-lab.dev` som serveradress,
+  lyssnar på `0.0.0.0:8080` bakom utbildarens reverse proxy och använder
+  `team2.arpa` som intern basdomän.
+- Personliga Headscale-användare finns för Jonny, Lasse, Fajk, Tim och
+  Willibroad. Amin återstår eftersom han inte deltog den 2026-09-15.
 - Tailscale är installerat på jumphosten. Noden `team2-jumphost` är registrerad
   och online i teamets Tailnet.
+- De verifierade medlemsnoderna `jonny-workstation`, `recharge`, `fajk`,
+  `macbook-air-som-tillhor-tim` och `willibroad` är registrerade under rätt
+  personliga användare och var online vid slutkontrollen den 2026-09-15.
 - Terraform begränsar åtkomst till Headscale-porten till instruktörens reverse
   proxy på `10.0.0.2/32`.
 - Terraform begränsar SSH på port 22 till instruktörsnätet `10.0.0.0/24`.
