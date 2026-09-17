@@ -223,6 +223,26 @@ resource "google_compute_firewall" "allow_internal" {
   target_tags   = ["jumphost", "primary"]
 }
 
+# When subnet-router SNAT is disabled, primary sees the authenticated client's
+# Tailnet address instead of the jumphost's VPC address. Limit that traffic to
+# the protocols needed for connectivity checks, administration and this lab.
+resource "google_compute_firewall" "allow_tailnet_to_primary" {
+  name    = "team${var.team_id}-allow-tailnet-to-primary"
+  network = data.google_compute_network.team_vpc.name
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22", "8000"]
+  }
+
+  source_ranges = ["100.64.0.0/10"]
+  target_tags   = ["primary"]
+}
+
 # Headscale clients connect to the team domain through the instructor's reverse
 # proxy. Restricting the source to 10.0.0.2/32 lets that proxy reach port 8080
 # without exposing the Headscale backend directly to the internet, as the
