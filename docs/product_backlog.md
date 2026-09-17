@@ -27,18 +27,22 @@ Syftet är att samla säkerhetsrisker, förbättringar och dokumentationsbehov p
 | PB-08 | [#10](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/10) | Skapa tydlig rutin för secrets och variabler i GitHub Actions | Medel | In progress | GitHub Actions, repo settings |
 | PB-09 | [#15](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/15) | Kontrollera SSH-användare och åtkomstmodell | Hög | In progress | `variables.tf`, OS Login, Compute IAM |
 | PB-10 | [#14](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/14) | Dokumentera dagens Blue Team-beslut efter workshop | Medel | Done | `docs/blue_team_agenda_2026-09-08.md` |
-| PB-11 | [#16](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/16) | Granska och dokumentera uniform bucket-level access | Medel | Open | `bootstrap/main.tf`, GCS IAM |
-| PB-12 | [#41](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/41) | Dokumentera och gör Headscale-installationen reproducerbar | Medel | Open | Jumphost, Headscale, `docs/` |
+| PB-11 | [#16](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/16) | Granska och dokumentera uniform bucket-level access | Medel | Done | `bootstrap/main.tf`, GCS IAM |
+| PB-12 | [#41](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/41) | Dokumentera och gör Headscale-installationen reproducerbar | Medel | In progress | Jumphost, Headscale, `docs/` |
+| PB-13 | [#51](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/51) | Aktivera `primary` och verifiera subnet routing | Hög | Open | `main.tf`, Headscale, routing |
+| PB-14 | [#52](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/52) | Inför och verifiera Headscale ACL-policy | Hög | Open | Headscale, ACL, åtkomsttest |
 
 ## Första Prioritering
 
-Nuvarande prioritering är PB-02, PB-08, PB-09, PB-11 och PB-12 eftersom övriga
-punkter är klara och dessa fortfarande berör åtkomst, autentisering eller
-reproducerbar drift.
+Nuvarande prioritering är PB-02, PB-08, PB-09, PB-12, PB-13 och PB-14 eftersom
+de berör åtkomst, autentisering, reproducerbar drift och nästa workshopsteg.
 
 PB-02 har två GitHub issues eftersom Lasse också skapade en mer konkret observation om `allAuthenticatedUsers` i issue #13. Den bör hanteras tillsammans med PB-02/PB-07 i reviewarbetet.
 
-PB-11 är en granskningspunkt. Inställningen `uniform_bucket_level_access = true` är normalt en säkerhetsförbättring eftersom åtkomst då styrs enhetligt via IAM, men teamet ska verifiera och dokumentera hur den samverkar med bucketens övriga behörigheter.
+PB-11 avslutades efter att teamet konstaterat att
+`uniform_bucket_level_access = true` är en säkerhetsförbättring som flyttar
+åtkomststyrningen till IAM. Frågan om explicit `public_access_prevention` kan
+följas upp separat från denna avslutade granskning.
 
 ## Statusuppdatering 2026-09-08
 
@@ -99,6 +103,31 @@ PB-11 är en granskningspunkt. Inställningen `uniform_bucket_level_access = tru
   installerad Headscale-version. Installationen följs upp som PB-12/issue #41
   eftersom driftstatus, installationskälla och reproducerbarhet behöver
   verifieras och dokumenteras.
+
+## Statusuppdatering 2026-09-15
+
+- PR #43 lade till Lasses individuella arbetssammanfattningar.
+- PR #44 kompletterade `os_admin_users` med Tim. Amin och bedömningen av minsta
+  nödvändiga OS Login-roll återstår i PB-09/issue #15.
+- PR #45-#48 införde Headscale-regeln och dokumenterade Headscale, DNS och
+  Tailscale på jumphosten. Den första regeln var för bred och korrigerades i
+  PR #49.
+- PR #49 slutförde workshopens steg 5 för dagens deltagare och steg 6 för
+  brandväggen. Efter lyckad deploy verifierades de avsedda källnäten,
+  Headscale health och SSH via Tailnet.
+- Jonny, Lasse, Fajk, Tim och Willibroad hade personliga Headscale-användare och
+  online-enheter vid slutkontrollen. Amin registreras senare.
+- PR #50 lade till en tvådagarssammanfattning och återanslutningschecklista för
+  Amin.
+- PB-11/issue #16 är `Done` efter dokumenterad bedömning av uniform
+  bucket-level access.
+- PB-12 är `In progress`: installation och drift är verifierade och
+  anslutningsflödet är dokumenterat, men serverinstallationen och
+  `config.yaml` behöver fortfarande göras reproducerbara.
+- PB-13/issue #51 och PB-14/issue #52 skapades för workshopens steg 7 och 8.
+  Ett befintligt medlemsutkast för `primary` måste synkas med senaste `main`
+  och får inte återinföra metadatahanterade SSH-nycklar eller öppna
+  brandväggsregler.
 
 ## Arbetsflöde
 

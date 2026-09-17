@@ -14,8 +14,10 @@ Den här mappen är Jonnys personliga dokumentationsyta för Kurs 6, vecka 4 och
 | [Anslutning till labbsidan via proxy](anslutning_via_proxy.md) | Steg för steg-instruktion för SSH-tunnel, SOCKS5 och Opera GX. |
 | [Arbetssammanfattning 2026-09-08](work_summary_2026-09-08.md) | Individuell sammanfattning av dagens backlogg-, WIF-, verifierings- och dokumentationsarbete. |
 | [Arbetssammanfattning 2026-09-14](work_summary_2026-09-14.md) | Individuell sammanfattning av slutförd WIF-migrering, IAM, brandvägg och dokumentation. |
+| [Arbetssammanfattning 2026-09-15](work_summary_2026-09-15.md) | Individuell sammanfattning av Metadata Service, Headscale, Tailscale och steg 6. |
 | [Gemensam arbetssammanfattning 2026-09-08](../../docs/team_work_summary_2026-09-08.md) | Gruppens gemensamma resultat, bidrag, säkerhetsstatus och nästa steg. |
 | [Gemensam arbetssammanfattning 2026-09-14](../../docs/team_work_summary_2026-09-14.md) | Teamets verifierade säkerhetsarbete och aktuella status. |
+| [Gemensam arbetssammanfattning 2026-09-15](../../docs/team_work_summary_2026-09-15.md) | Teamets gemensamma Workshop 2-resultat, PR:er och nästa steg. |
 
 ## Användning
 
@@ -44,6 +46,7 @@ Senast verifierad: 2026-09-15.
 | 2026-09-08 | Backlogg och agenda skapades, WIF infördes och verifierades, issues synkades och medlemsytor skapades. | Granska PR #22 och genomför kontrollerad nyckelrensning. |
 | 2026-09-14 | WIF-migreringen slutfördes, medlems-PR #39 och #40 följdes upp, OS Login verifierades och gemensam dokumentation synkades. | Komplettera OS Login i issue #15, granska bucketfrågor och följ upp Headscale i issue #41. |
 | 2026-09-15 | Metadata och instansidentitet verifierades, Headscales serveradress rättades och den personliga WSL-klienten anslöts till teamets Tailnet. | Granska och mergea säkerhetsrättningen, verifiera brandväggen och fortsätt med workshopens steg 6. |
+| 2026-09-15, avslut | PR #49 och #50 mergades, steg 6 verifierades live och backloggen kompletterades med steg 7 och 8. | Synka och granska PB-13 innan `primary` driftsätts. |
 
 ## Viktigt
 
@@ -58,4 +61,5 @@ planfiler får aldrig sparas eller commitas här.
 - [Blue Team-agenda 2026-09-08](../../docs/blue_team_agenda_2026-09-08.md)
 - [Gemensam arbetssammanfattning 2026-09-08](../../docs/team_work_summary_2026-09-08.md)
 - [Gemensam arbetssammanfattning 2026-09-14](../../docs/team_work_summary_2026-09-14.md)
+- [Gemensam arbetssammanfattning 2026-09-15](../../docs/team_work_summary_2026-09-15.md)
 - [Setup Summary 2026-09-07](../../docs/setup_summary_2026-09-07.md)
