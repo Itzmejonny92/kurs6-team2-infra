@@ -1,0 +1,9 @@
+{
+  "groups": {
+    "group:admin": ["fajk", "jonny", "lasse", "tim", "willibroad"]
+  },
+  "acls": [
+    // Tillåt admins att nå alla maskiner på alla portar
+    { "action": "accept", "src": ["group:admin"], "dst": ["*:*"] }
+  ]
+}
