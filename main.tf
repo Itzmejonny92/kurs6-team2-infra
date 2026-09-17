@@ -187,7 +187,7 @@ resource "google_compute_instance" "primary" {
 # the entire internet.
 #
 # Fix:
-# 1. allow_ssh - Only TCP port 22 from internet, jumphost only.
+# 1. allow_ssh - Only TCP port 22 from the instructor network, jumphost only.
 # 2. allow_internal - All protocols within team subnet only (10.0.2.0/24).
 
 resource "google_compute_firewall" "allow_ssh" {
@@ -199,7 +199,7 @@ resource "google_compute_firewall" "allow_ssh" {
     ports    = ["22"]
   }
 
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["10.0.0.0/24"]
   target_tags   = ["jumphost"]
 }
 
@@ -214,6 +214,11 @@ resource "google_compute_firewall" "allow_internal" {
   source_ranges = ["10.0.2.0/24"]
   target_tags   = ["jumphost", "primary"]
 }
+
+# Headscale clients connect to the team domain through the instructor's reverse
+# proxy. Restricting the source to 10.0.0.2/32 lets that proxy reach port 8080
+# without exposing the Headscale backend directly to the internet, as the
+# previous 0.0.0.0/0 source range did.
 resource "google_compute_firewall" "allow_headscale" {
   name    = "team${var.team_id}-allow-headscale"
   network = data.google_compute_network.team_vpc.name
@@ -223,7 +228,7 @@ resource "google_compute_firewall" "allow_headscale" {
     ports    = ["8080"]
   }
 
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["10.0.0.2/32"]
   target_tags   = ["jumphost"]
 }
 
