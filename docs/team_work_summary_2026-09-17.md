@@ -4,7 +4,8 @@
 
 Team 2 fortsatte Workshop 2:s steg 7 med fokus på en privat `primary`-instans,
 subnet routing, skillnaden mellan NAT och direkt routing samt åtkomst till
-Spectre via Split DNS.
+Spectre via Split DNS. Arbetet fortsatte därefter med steg 8 och en första
+Headscale ACL-policy.
 
 ## Närvaro
 
@@ -41,6 +42,22 @@ Amin Mahamoud (`aminmahamoud-arch`) och Lars Törngren
 - Spectre verifierades via `10.0.0.2` och
   `spectre.itsx25.chas-lab.dev`; HTTP svarade med en normal `301`-omdirigering.
 
+### Headscale ACL
+
+- Fajk skapade och aktiverade `policy.hujson` via PR #58.
+- Teamet valde medvetet att ge alla registrerade medlemmar adminåtkomst för att
+  förenkla det gemensamma kursarbetet. Det är inte en optimal
+  least-privilege-modell och ska omprövas utanför labbmiljön.
+- Den första policyn använde användarnamn utan avslutande `@`. Headscale
+  `0.29.3` avvisade policyn och hamnade i en restart-loop.
+- Policyn korrigerades till `fajk@`, `jonny@`, `lasse@`, `tim@` och
+  `willibroad@`, validerades mot databasen och aktiverades med backup av den
+  felaktiga filen.
+- Headscale health svarade HTTP 200 efter korrigeringen. SSH till `primary` och
+  åtkomst till Spectre verifierades från Jonny.
+- Amin är ännu inte registrerad och läggs till i admin-gruppen när hans
+  Headscale-användare finns.
+
 ## Pull requests och verifiering
 
 | PR | Resultat |
@@ -48,6 +65,7 @@ Amin Mahamoud (`aminmahamoud-arch`) och Lars Törngren
 | [#54](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/54) | `primary` aktiverad med OS Login; deploy lyckades. |
 | [#55](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/55) | Begränsad Tailnet-regel till `primary`; deploy lyckades. |
 | [#56](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/56) | Persistent Spectre-NAT; deploy lyckades. |
+| [#58](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/58) | Första ACL-policyn mergad; syntaxfel upptäcktes och korrigerades efter livekontroll. |
 
 Terraform-planerna visade inga borttagningar. Format, validering och relevanta
 säkerhetskontroller lyckades före merge.
@@ -61,8 +79,8 @@ leveransen.
 
 ## Nästa steg
 
-1. Genomför PB-14/issue #52 med en begränsad Headscale ACL-policy och säker
-   rollback.
+1. Slutför PB-14/issue #52 genom att dokumentera rollback och testa både
+   tillåten och nekad trafik från minst två användare.
 2. Följ PB-12/issue #41 så att Headscale-, dnsmasq- och Split DNS-installationen
    blir reproducerbar som kod eller granskad automation.
 3. Hjälp Amin med personlig Tailnet-registrering och verifiering.
