@@ -80,6 +80,14 @@ resource "google_compute_instance_iam_member" "jumphost_os_login" {
   member        = "user:${each.value}"
 }
 
+resource "google_compute_instance_iam_member" "primary_os_login" {
+  for_each      = toset(var.os_admin_users)
+  instance_name = google_compute_instance.primary.name
+  zone          = google_compute_instance.primary.zone
+  role          = "roles/compute.osAdminLogin"
+  member        = "user:${each.value}"
+}
+
 resource "google_compute_instance" "jumphost" {
   name         = "team${var.team_id}-jumphost"
   machine_type = "e2-micro"
@@ -130,7 +138,10 @@ resource "google_compute_instance" "jumphost" {
       sysctl --system
 
       DEFAULT_IF=$(ip ro sh default | awk '/default/ {print $5}')
-      iptables -t nat -A POSTROUTING -o "$DEFAULT_IF" -s "${local.subnet_cidr}" -j MASQUERADE
+      iptables -t nat -C POSTROUTING -o "$DEFAULT_IF" -s "${local.subnet_cidr}" -j MASQUERADE 2>/dev/null || \
+        iptables -t nat -A POSTROUTING -o "$DEFAULT_IF" -s "${local.subnet_cidr}" -j MASQUERADE
+      iptables -t nat -C POSTROUTING -o "$DEFAULT_IF" -d 10.0.0.2/32 -j MASQUERADE 2>/dev/null || \
+        iptables -t nat -A POSTROUTING -o "$DEFAULT_IF" -d 10.0.0.2/32 -j MASQUERADE
     EOT
   }
 }
@@ -159,7 +170,7 @@ resource "google_compute_instance" "primary" {
   }
 
   metadata = {
-    ssh-keys               = join("\n", [for user in var.ssh_users : "${user.username}:${user.public_key}"])
+    enable-oslogin         = "TRUE"
     block-project-ssh-keys = true
     startup-script         = <<-EOT
       #!/bin/bash
@@ -213,6 +224,26 @@ resource "google_compute_firewall" "allow_internal" {
 
   source_ranges = ["10.0.2.0/24"]
   target_tags   = ["jumphost", "primary"]
+}
+
+# When subnet-router SNAT is disabled, primary sees the authenticated client's
+# Tailnet address instead of the jumphost's VPC address. Limit that traffic to
+# the protocols needed for connectivity checks, administration and this lab.
+resource "google_compute_firewall" "allow_tailnet_to_primary" {
+  name    = "team${var.team_id}-allow-tailnet-to-primary"
+  network = data.google_compute_network.team_vpc.name
+
+  allow {
+    protocol = "icmp"
+  }
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22", "8000"]
+  }
+
+  source_ranges = ["100.64.0.0/10"]
+  target_tags   = ["primary"]
 }
 
 # Headscale clients connect to the team domain through the instructor's reverse
