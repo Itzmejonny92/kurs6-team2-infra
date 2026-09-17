@@ -29,13 +29,13 @@ Syftet är att samla säkerhetsrisker, förbättringar och dokumentationsbehov p
 | PB-10 | [#14](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/14) | Dokumentera dagens Blue Team-beslut efter workshop | Medel | Done | `docs/blue_team_agenda_2026-09-08.md` |
 | PB-11 | [#16](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/16) | Granska och dokumentera uniform bucket-level access | Medel | Done | `bootstrap/main.tf`, GCS IAM |
 | PB-12 | [#41](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/41) | Dokumentera och gör Headscale-installationen reproducerbar | Medel | In progress | Jumphost, Headscale, `docs/` |
-| PB-13 | [#51](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/51) | Aktivera `primary` och verifiera subnet routing | Hög | Open | `main.tf`, Headscale, routing |
+| PB-13 | [#51](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/51) | Aktivera `primary` och verifiera subnet routing | Hög | Done | `main.tf`, Headscale, routing |
 | PB-14 | [#52](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/52) | Inför och verifiera Headscale ACL-policy | Hög | Open | Headscale, ACL, åtkomsttest |
 
 ## Första Prioritering
 
-Nuvarande prioritering är PB-02, PB-08, PB-09, PB-12, PB-13 och PB-14 eftersom
-de berör åtkomst, autentisering, reproducerbar drift och nästa workshopsteg.
+Nuvarande prioritering är PB-02, PB-08, PB-09, PB-12 och PB-14 eftersom de
+berör åtkomst, autentisering, reproducerbar drift och nästa workshopsteg.
 
 PB-02 har två GitHub issues eftersom Lasse också skapade en mer konkret observation om `allAuthenticatedUsers` i issue #13. Den bör hanteras tillsammans med PB-02/PB-07 i reviewarbetet.
 
@@ -128,6 +128,20 @@ följas upp separat från denna avslutade granskning.
   Ett befintligt medlemsutkast för `primary` måste synkas med senaste `main`
   och får inte återinföra metadatahanterade SSH-nycklar eller öppna
   brandväggsregler.
+
+## Statusuppdatering 2026-09-17
+
+- PB-13 är `Done`. PR #54 aktiverade `team2-primary` som `e2-micro` utan extern
+  IP och med OS Login. PR #55 lade till en begränsad brandväggsregel för direkt
+  Tailnet-trafik, och PR #56 gjorde Spectre-NAT persistent och idempotent.
+- Subnet-rutterna `10.0.2.0/24` och `10.0.0.2/32` är annonserade, godkända och
+  aktiva. Klientåtkomst till `primary` verifierades med ping och SSH.
+- NAT-jämförelsen visade först jumphostens `10.0.2.2` och därefter klientens
+  riktiga Tailnet-IP `100.64.0.3` när subnet-router-SNAT stängts av.
+- `dnsmasq` installerades som proxy mot GCP DNS och Headscale Split DNS
+  konfigurerades för `itsx25.chas-lab.dev`. Spectre verifierades via IP och DNS.
+- Varje medlem behöver fortfarande aktivera och verifiera `accept-routes` på
+  sin egen klient. Det blockerar inte den gemensamma PB-13-leveransen.
 
 ## Arbetsflöde
 

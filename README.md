@@ -31,6 +31,7 @@ Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), grans
 - [docs/team_work_summary_2026-09-08.md](docs/team_work_summary_2026-09-08.md): Gemensam sammanfattning av dagens arbete, verifieringar och nästa steg.
 - [docs/team_work_summary_2026-09-14.md](docs/team_work_summary_2026-09-14.md): Gemensam sammanfattning av WIF, IAM, OS Login och övrigt säkerhetsarbete den 14 september.
 - [docs/team_work_summary_2026-09-15.md](docs/team_work_summary_2026-09-15.md): Gemensam sammanfattning av Metadata Service, Headscale, Tailscale och brandväggsarbetet den 15 september.
+- [docs/team_work_summary_2026-09-17.md](docs/team_work_summary_2026-09-17.md): Gemensam sammanfattning av `primary`, subnet routing, direkt routing och Split DNS den 17 september.
 - [members/](members/): Personliga dokumentationsytor för gruppmedlemmarnas anteckningar, loggar och underlag.
 
 ## Arbetsflöde
@@ -160,5 +161,13 @@ Den fullständiga rutinen finns i
 - Terraform begränsar SSH på port 22 till instruktörsnätet `10.0.0.0/24`.
   Jonnys SSH-åtkomst via Tailnet till `team2-jumphost` har verifierats.
 - Workshopens steg 6 är mergat, driftsatt och liveverifierat.
-- Nästa moment är `primary`-instansen, subnet advertisement och routing i
-  PB-13/issue #51. ACL-policy följer i PB-14/issue #52.
+- `team2-primary` kör som `e2-micro` på `10.0.2.3` utan extern IP och använder
+  OS Login.
+- Subnet-rutterna `10.0.2.0/24` och `10.0.0.2/32` är annonserade, godkända och
+  verifierade från Jonnys klient.
+- Direkt routing utan subnet-router-SNAT är verifierad. `primary` såg klientens
+  Tailnet-IP `100.64.0.3`.
+- Spectre svarar via både `10.0.0.2` och
+  `spectre.itsx25.chas-lab.dev`. Split DNS går genom `dnsmasq` på jumphosten.
+- Workshopens steg 7 och PB-13 är slutförda. Nästa moment är ACL-policy i
+  PB-14/issue #52.
