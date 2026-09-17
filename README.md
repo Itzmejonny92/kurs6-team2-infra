@@ -171,3 +171,10 @@ Den fullständiga rutinen finns i
   `spectre.itsx25.chas-lab.dev`. Split DNS går genom `dnsmasq` på jumphosten.
 - Workshopens steg 7 och PB-13 är slutförda. Nästa moment är ACL-policy i
   PB-14/issue #52.
+- Headscale ACL-policyn från PR #58 är aktiverad. Alla registrerade
+  teammedlemmar har tills vidare adminåtkomst för att underlätta kurslabben.
+  Policyn korrigerades till Headscale v2-syntax med avslutande `@` efter att
+  den första versionen fick kontrolltjänsten att starta om upprepade gånger.
+- PB-14 är fortsatt `In progress` tills rollback samt både tillåten och nekad
+  trafik har verifierats från minst två användare. Amin läggs till i policyn
+  efter personlig Headscale-registrering.

@@ -30,7 +30,7 @@ Syftet är att samla säkerhetsrisker, förbättringar och dokumentationsbehov p
 | PB-11 | [#16](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/16) | Granska och dokumentera uniform bucket-level access | Medel | Done | `bootstrap/main.tf`, GCS IAM |
 | PB-12 | [#41](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/41) | Dokumentera och gör Headscale-installationen reproducerbar | Medel | In progress | Jumphost, Headscale, `docs/` |
 | PB-13 | [#51](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/51) | Aktivera `primary` och verifiera subnet routing | Hög | Done | `main.tf`, Headscale, routing |
-| PB-14 | [#52](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/52) | Inför och verifiera Headscale ACL-policy | Hög | Open | Headscale, ACL, åtkomsttest |
+| PB-14 | [#52](https://github.com/Itzmejonny92/kurs6-team2-infra/issues/52) | Inför och verifiera Headscale ACL-policy | Hög | In progress | Headscale, ACL, åtkomsttest |
 
 ## Första Prioritering
 
@@ -142,6 +142,16 @@ följas upp separat från denna avslutade granskning.
   konfigurerades för `itsx25.chas-lab.dev`. Spectre verifierades via IP och DNS.
 - Varje medlem behöver fortfarande aktivera och verifiera `accept-routes` på
   sin egen klient. Det blockerar inte den gemensamma PB-13-leveransen.
+- PB-14 är `In progress`. PR #58 lade till och aktiverade en policy där alla
+  registrerade teammedlemmar ingår i `group:admin`. Detta är ett medvetet
+  kurslabb-beslut för smidigt samarbete, inte en least-privilege-modell.
+- Den första policyversionen saknade avslutande `@` på användarnamnen och fick
+  Headscale `0.29.3` att krascha i en restart-loop. Policyn korrigerades,
+  validerades med `headscale policy check` och Headscale health verifierades
+  därefter med HTTP 200.
+- Tillåten trafik från Jonny till `primary` och Spectre fungerar. Test av nekad
+  trafik från en andra användare och dokumenterad rollback återstår innan
+  PB-14 kan markeras `Done`.
 
 ## Arbetsflöde
 

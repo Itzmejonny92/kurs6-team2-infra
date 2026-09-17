@@ -1,6 +1,9 @@
 {
   "groups": {
-    "group:admin": ["fajk", "jonny", "lasse", "tim", "willibroad"]
+    // Medvetet kurslabb-beslut: alla registrerade teammedlemmar har adminroll
+    // för att underlätta det gemensamma arbetet. Behörigheten bör omprövas om
+    // miljön används utanför labben. Amin läggs till efter registrering.
+    "group:admin": ["fajk@", "jonny@", "lasse@", "tim@", "willibroad@"]
   },
   "acls": [
     // Tillåt admins att nå alla maskiner på alla portar

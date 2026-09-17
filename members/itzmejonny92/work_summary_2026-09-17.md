@@ -24,6 +24,12 @@ nätverkstester.
 - Konfigurerade och validerade Headscale Split DNS efter att en backup skapats.
 - Verifierade Spectre via både IP och DNS-namn.
 - Dokumenterade medlemskontrollen och dagens resultat.
+- Granskade Fajks ACL-policy efter merge och upptäckte att Headscale låg i en
+  restart-loop på grund av användarnamn utan avslutande `@`.
+- Korrigerade policyn enligt Headscale v2-syntax, validerade den direkt mot
+  databasen och verifierade Headscale health samt tillåtna flöden efteråt.
+- Dokumenterade teamets medvetna beslut att ge alla registrerade medlemmar
+  adminåtkomst under kurslabben.
 
 ## Viktiga lärdomar
 
@@ -40,6 +46,7 @@ nätverkstester.
 
 - Arbeta vidare med PB-14 och en Headscale ACL-policy som först testas med
   rollbackmöjlighet.
+- Testa nekad trafik från en andra användare innan PB-14 stängs.
 - Hjälp övriga medlemmar att verifiera `accept-routes` på sina klienter.
 - Följ reproducerbarhetsarbetet för Headscale och DNS i PB-12.
 
