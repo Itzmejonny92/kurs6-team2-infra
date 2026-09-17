@@ -135,49 +135,49 @@ resource "google_compute_instance" "jumphost" {
   }
 }
 
-resource "google_compute_instance" "primary" {
-  name         = "team${var.team_id}-primary"
-  machine_type = "e2-micro"
-  zone         = local.primary_zone
+# resource "google_compute_instance" "primary" {
+#   name         = "team${var.team_id}-primary"
+#   machine_type = "e2-small"
+#   zone         = local.primary_zone
 
-  allow_stopping_for_update = true
+#   allow_stopping_for_update = true
 
-  tags = ["primary", "no-external-ip"]
+#   tags = ["primary", "no-external-ip"]
 
-  resource_policies = [google_compute_resource_policy.daily_schedule.id]
+#   resource_policies = [google_compute_resource_policy.daily_schedule.id]
 
-  boot_disk {
-    initialize_params {
-      image = "${var.project_id}/debian"
-      size  = 20
-    }
-  }
+#   boot_disk {
+#     initialize_params {
+#       image = "${var.project_id}/debian"
+#       size  = 20
+#     }
+#   }
 
-  network_interface {
-    subnetwork = google_compute_subnetwork.team.id
-    network_ip = cidrhost(local.subnet_cidr, 3)
-  }
+#   network_interface {
+#     subnetwork = google_compute_subnetwork.team.id
+#     network_ip = cidrhost(local.subnet_cidr, 3)
+#   }
 
-  metadata = {
-    ssh-keys               = join("\n", [for user in var.ssh_users : "${user.username}:${user.public_key}"])
-    block-project-ssh-keys = true
-    startup-script         = <<-EOT
-      #!/bin/bash
-      set -e
+#   metadata = {
+#     ssh-keys               = join("\n", [for user in var.ssh_users : "${user.username}:${user.public_key}"])
+#     block-project-ssh-keys = true
+#     startup-script         = <<-EOT
+#       #!/bin/bash
+#       set -e
 
-      if ! swapon --show | grep -q "/swapfile"; then
-        fallocate -l 1G /swapfile
-        chmod 600 /swapfile
-        mkswap /swapfile
-        swapon /swapfile
-        echo '/swapfile none swap sw 0 0' >> /etc/fstab
-      fi
+#       if ! swapon --show | grep -q "/swapfile"; then
+#         fallocate -l 1G /swapfile
+#         chmod 600 /swapfile
+#         mkswap /swapfile
+#         swapon /swapfile
+#         echo '/swapfile none swap sw 0 0' >> /etc/fstab
+#       fi
 
-      echo 'vm.swappiness=20' > /etc/sysctl.d/01-swappiness.conf
-      sysctl --system
-    EOT
-  }
-}
+#       echo 'vm.swappiness=20' > /etc/sysctl.d/01-swappiness.conf
+#       sysctl --system
+#     EOT
+#   }
+# }
 
 # SECURITY FIX (PB-05): Replaced overly permissive allow-all firewall rule
 # with two specific rules following the principle of least privilege.
@@ -229,19 +229,5 @@ resource "google_compute_firewall" "allow_headscale" {
   }
 
   source_ranges = ["10.0.0.2/32"]
-  target_tags   = ["jumphost"]
-}
-
-
-resource "google_compute_firewall" "allow_instructor_ssh" {
-  name    = "team${var.team_id}-allow-instructor-ssh"
-  network = data.google_compute_network.team_vpc.name
-
-  allow {
-    protocol = "tcp"
-    ports    = ["22"]
-  }
-
-  source_ranges = ["10.0.0.0/24"]
   target_tags   = ["jumphost"]
 }
