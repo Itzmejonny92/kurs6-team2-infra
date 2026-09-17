@@ -214,7 +214,47 @@ En administratör kan kontrollera registreringen på jumphosten:
 sudo headscale nodes list
 ```
 
-## 12. Starta en SOCKS5-tunnel
+## 12. Acceptera subnet-rutter
+
+Varje medlem behöver aktivera annonserade rutter på sin egen klient. På Linux
+eller WSL:
+
+```bash
+sudo tailscale set --accept-routes=true
+tailscale status
+```
+
+På macOS används samma `tailscale set`-kommando, med `sudo` om klienten kräver
+det. Inställningen är lokal och behöver därför verifieras av varje medlem.
+
+## 13. Verifiera privata resurser och Split DNS
+
+Kontrollera först den privata `primary`-instansen:
+
+```bash
+ping 10.0.2.3
+ssh DIN_OS_LOGIN_ANVANDARE@10.0.2.3
+```
+
+Kontrollera därefter Spectre via både IP och DNS:
+
+```bash
+ping 10.0.0.2
+getent ahostsv4 spectre.itsx25.chas-lab.dev
+ping spectre.itsx25.chas-lab.dev
+```
+
+Namnet ska lösas till `10.0.0.2`. Teamets jumphost annonserar
+`10.0.2.0/24` och `10.0.0.2/32`. Split DNS skickar endast frågor för
+`itsx25.chas-lab.dev` till DNS-proxyn på jumphostens Tailnet-IP
+`100.64.0.2`.
+
+Teamets gemensamma NAT-test behöver bara genomföras en gång. Med SNAT
+aktiverat såg `primary` källan `10.0.2.2`. Efter att
+`--snat-subnet-routes=false` aktiverats såg servern klientens riktiga
+Tailnet-IP `100.64.0.3`.
+
+## 14. Starta en SOCKS5-tunnel
 
 ```bash
 ssh -i "$HOME/.ssh/id_ed25519" \
@@ -226,7 +266,7 @@ Låt terminalen vara öppen. Att inget nytt skrivs ut är normalt: processen
 håller tunneln aktiv. Första gången kan SSH fråga om jumphostens host key;
 kontrollera fingeravtrycket med teamet innan du godkänner det.
 
-## 13. Kontrollera den lokala proxyn
+## 15. Kontrollera den lokala proxyn
 
 Linux eller macOS:
 
@@ -244,7 +284,7 @@ På Windows betyder `TcpTestSucceeded : True` att den lokala SOCKS5-porten är
 öppen. Om Windows inte når WSL-tunneln via `127.0.0.1`, hämta WSL-adressen med
 `hostname -I` och använd den adressen som proxyvärd.
 
-## 14. Starta webbläsaren via proxyn
+## 16. Starta webbläsaren via proxyn
 
 Starta en separat webbläsarprofil med följande inställningar:
 
@@ -270,7 +310,7 @@ https://spectre.itsx25.chas-lab.dev
 
 Kontrollera att sidan identifierar anslutningen som Team 2.
 
-## 15. Avsluta SOCKS5-tunneln säkert
+## 17. Avsluta SOCKS5-tunneln säkert
 
 1. Stäng webbläsarens separata labbprofil.
 2. Gå tillbaka till terminalen som kör SSH-tunneln.
@@ -296,6 +336,10 @@ Kontrollera att sidan identifierar anslutningen som Team 2.
   måste även köra `tailscale up` och en administratör måste godkänna auth-id:t.
 - **En registrerad enhet är offline:** starta `tailscaled` och kör
   `sudo tailscale up` på den aktuella arbetsstationen.
+- **`10.0.2.3` timear ut:** kontrollera att klienten är online och att
+  `--accept-routes=true` är aktiverat.
+- **Spectre fungerar via IP men inte via namn:** kontrollera att Headscale har
+  distribuerat Split DNS och att `dnsmasq` är aktivt på jumphosten.
 - **Labbsidan laddas inte:** kontrollera att SSH-terminalen är öppen och att
   webbläsaren verkligen startades med den separata proxyprofilen.
 - **Fel team visas:** stäng andra proxy- eller VPN-anslutningar och verifiera
