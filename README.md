@@ -12,7 +12,8 @@ Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), grans
 - Subnet: `10.0.2.0/24`
 - Region: `europe-north2`
 - Terraform backend: Google Cloud Storage
-- Repo: `Itzmejonny92/kurs6-team2-infra`
+- GitHub-organisation: `itsx25-team2`
+- Repo: `itsx25-team2/kurs6-team2-infra`
 
 ## Viktiga Filer
 

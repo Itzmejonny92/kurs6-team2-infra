@@ -89,7 +89,7 @@ PR #49 införde följande begränsningar enligt workshopens steg 6:
 - [Projektets README](../../README.md)
 - [Gemensam anslutningsguide](../../docs/gemensam_anslutningsguide.md)
 - [Product Backlog](../../docs/product_backlog.md)
-- [PR #49](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/49)
+- [PR #49](https://github.com/itsx25-team2/kurs6-team2-infra/pull/49)
 
 ### 2. Synka din branch
 

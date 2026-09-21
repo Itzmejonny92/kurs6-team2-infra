@@ -58,7 +58,7 @@ ping spectre.itsx25.chas-lab.dev
 - [Gemensam anslutningsguide](../../docs/gemensam_anslutningsguide.md)
 - [Dagens teamsammanfattning](../../docs/team_work_summary_2026-09-17.md)
 - [Product Backlog](../../docs/product_backlog.md)
-- [PR #58](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/58)
+- [PR #58](https://github.com/itsx25-team2/kurs6-team2-infra/pull/58)
 
 ## Säkerhet
 
