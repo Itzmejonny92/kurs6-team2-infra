@@ -8,7 +8,7 @@ variable "team_id" {
   type        = number
 }
 
-variable "github_repo" {
-  description = "GitHub repository in 'owner/repo' format allowed to authenticate via WIF"
-  type        = string
+variable "github_repositories" {
+  description = "GitHub repositories in 'owner/repo' format allowed to authenticate via WIF"
+  type        = set(string)
 }
