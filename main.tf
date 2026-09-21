@@ -90,7 +90,7 @@ resource "google_compute_instance_iam_member" "primary_os_login" {
 
 resource "google_compute_instance" "jumphost" {
   name         = "team${var.team_id}-jumphost"
-  machine_type = "e2-small"
+  machine_type = "e2-micro"
   zone         = local.jumphost_zone
 
   allow_stopping_for_update = true
@@ -148,7 +148,7 @@ resource "google_compute_instance" "jumphost" {
 
 resource "google_compute_instance" "primary" {
   name         = "team${var.team_id}-primary"
-  machine_type = "e2-micro"
+  machine_type = "e2-small"
   zone         = local.primary_zone
 
   allow_stopping_for_update = true
