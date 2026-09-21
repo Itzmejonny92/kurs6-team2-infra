@@ -35,6 +35,13 @@ resource "google_compute_subnetwork" "team" {
   network       = data.google_compute_network.team_vpc.id
 }
 
+resource "google_project_iam_member" "iap_tunnel_access" {
+  for_each = toset(var.os_admin_users) 
+  project  = "itsx25-lab"
+  role     = "roles/iap.tunnelResourceAccessor"
+  member   = "user:${each.value}"
+}
+
 resource "google_compute_address" "jumphost" {
   name   = "team${var.team_id}-jumphost-ip"
   region = var.region
@@ -90,7 +97,7 @@ resource "google_compute_instance_iam_member" "primary_os_login" {
 
 resource "google_compute_instance" "jumphost" {
   name         = "team${var.team_id}-jumphost"
-  machine_type = "e2-small"
+  machine_type = "e2-micro"
   zone         = local.jumphost_zone
 
   allow_stopping_for_update = true
@@ -148,7 +155,7 @@ resource "google_compute_instance" "jumphost" {
 
 resource "google_compute_instance" "primary" {
   name         = "team${var.team_id}-primary"
-  machine_type = "e2-micro"
+  machine_type = "e2-small"
   zone         = local.primary_zone
 
   allow_stopping_for_update = true
