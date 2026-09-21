@@ -50,7 +50,7 @@ resource "google_compute_firewall" "allow_iap_ssh" {
 
 resource "google_compute_firewall" "allow_k3s" {
   name    = "allow-team2-k3s"
-  network = "default" # eller ert vpc-namn
+  network = data.google_compute_network.team_vpc.name
 
   allow {
     protocol = "tcp"
@@ -58,7 +58,7 @@ resource "google_compute_firewall" "allow_k3s" {
   }
 
   source_ranges = ["10.0.2.0/24"]
-  target_tags   = ["primary"] # eller motsvarande tagg
+  target_tags   = ["primary"]
 }
 
 resource "google_project_iam_member" "iap_tunnel_access" {
