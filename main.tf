@@ -36,7 +36,7 @@ resource "google_compute_subnetwork" "team" {
 }
 
 resource "google_project_iam_member" "iap_tunnel_access" {
-  for_each = toset(var.os_admin_users) 
+  for_each = toset(var.os_admin_users)
   project  = "itsx25-lab"
   role     = "roles/iap.tunnelResourceAccessor"
   member   = "user:${each.value}"
