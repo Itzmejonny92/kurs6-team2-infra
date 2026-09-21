@@ -1,6 +1,6 @@
-# Sammanfattning för Amin - 2026-09-14 och 2026-09-15
+# Sammanfattning för Amin - 2026-09-14, 2026-09-15 och 2026-09-17
 
-Detta dokument sammanfattar de två Blue Team-dagar som Amin inte deltog i.
+Detta dokument sammanfattar de tre Blue Team-dagar som Amin inte deltog i.
 Syftet är att göra det möjligt att förstå gruppens beslut och ansluta den egna
 arbetsstationen utan att behöva göra om teamets gemensamma serverarbete.
 
@@ -47,15 +47,40 @@ långlivade service account-nycklar inte längre behövdes i GitHub Secrets.
 
 ### Brandvägg och steg 6
 
-PR #49 förbereder följande begränsningar enligt workshopens steg 6:
+PR #49 införde följande begränsningar enligt workshopens steg 6:
 
 - Headscale på TCP 8080 tillåts endast från utbildarens reverse proxy
   `10.0.0.2/32`.
 - SSH på TCP 22 tillåts endast från instruktörsnätet `10.0.0.0/24`.
 - Medlemmarnas fortsatta åtkomst sker via det krypterade Tailnet.
 
-Ändringarna ska inte betraktas som driftsatta förrän PR:n är granskad, mergad,
-Terraform-apply är godkänd och en efterkontroll har genomförts.
+Ändringarna är mergade, driftsatta och verifierade.
+
+## Arbete den 2026-09-17
+
+### Steg 7: primary och routing
+
+- `team2-primary` aktiverades som `e2-micro` på `10.0.2.3` utan extern IP och
+  med OS Login.
+- Jumphosten annonserar `10.0.2.0/24` och Spectre-adressen `10.0.0.2/32`.
+- Subnet routing, direkt routing utan SNAT och returroute verifierades.
+- Spectre-NAT gjordes persistent i Terraform.
+- `dnsmasq` och Headscale Split DNS konfigurerades så att
+  `spectre.itsx25.chas-lab.dev` löses till `10.0.0.2`.
+
+### Steg 8: Headscale ACL
+
+- PR #58 införde en första `policy.hujson`.
+- Teamet beslutade att alla registrerade medlemmar tills vidare ska ingå i
+  `group:admin` för att förenkla kursarbetet. Detta är ett medvetet undantag
+  från least privilege.
+- Den första policyversionen hade fel användarsyntax och fick Headscale att
+  krascha. Policyn korrigerades med avslutande `@`, validerades och tjänstens
+  health kontrollerades med HTTP 200.
+- Amins användare finns ännu inte. När registreringen är klar ska `amin@`
+  läggas till i policyn via en granskad PR.
+- PB-14 är fortfarande pågående eftersom nekad trafik och rollback behöver
+  verifieras.
 
 ## Det här behöver Amin göra
 
@@ -137,6 +162,17 @@ tailscale ping team2-jumphost
 En administratör kontrollerar därefter att `amin-workstation` ligger under
 användaren `amin` och är online.
 
+### 8. Acceptera och testa privata rutter
+
+```bash
+sudo tailscale set --accept-routes=true
+ping 10.0.2.3
+ping spectre.itsx25.chas-lab.dev
+```
+
+Meddela teamet när registreringen fungerar så att `amin@` kan läggas till i
+ACL-policyn och åtkomsten kan verifieras.
+
 ## Säkerhet att komma ihåg
 
 - Skapa inte någon lokal service account-nyckel.
@@ -145,4 +181,3 @@ användaren `amin` och är online.
 - Kör Headscale-administrationskommandon på jumphosten med `sudo`.
 - Använd `team2.itsx25.chas-lab.dev` för Headscale och
   `spectre.itsx25.chas-lab.dev` endast för Spectre-portalen.
-
