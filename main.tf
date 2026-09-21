@@ -35,6 +35,19 @@ resource "google_compute_subnetwork" "team" {
   network       = data.google_compute_network.team_vpc.id
 }
 
+resource "google_compute_firewall" "allow_iap_ssh" {
+  name    = "team2-allow-iap-ssh"
+  network = data.google_compute_network.team_vpc.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["35.235.240.0/20"]
+  target_tags   = ["jumphost", "primary"] # Lägger till båda för säkerhets skull
+}
+
 resource "google_project_iam_member" "iap_tunnel_access" {
   for_each = toset(var.os_admin_users)
   project  = "itsx25-lab"
