@@ -48,6 +48,19 @@ resource "google_compute_firewall" "allow_iap_ssh" {
   target_tags   = ["jumphost", "primary"] # Lägger till båda för säkerhets skull
 }
 
+resource "google_compute_firewall" "allow_k3s" {
+  name    = "allow-team2-k3s"
+  network = "default" # eller ert vpc-namn
+
+  allow {
+    protocol = "tcp"
+    ports    = ["6443"]
+  }
+
+  source_ranges = ["10.0.2.0/24"]
+  target_tags   = ["team2-primary"] # eller motsvarande tagg
+}
+
 resource "google_project_iam_member" "iap_tunnel_access" {
   for_each = toset(var.os_admin_users)
   project  = "itsx25-lab"
