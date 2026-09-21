@@ -109,11 +109,6 @@ resource "google_service_account_iam_member" "cicd_workload_identity" {
   member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github.name}/attribute.repository/${each.value}"
 }
 
-moved {
-  from = google_service_account_iam_member.cicd_workload_identity
-  to   = google_service_account_iam_member.cicd_workload_identity["Itzmejonny92/kurs6-team2-infra"]
-}
-
 resource "google_storage_bucket_iam_member" "cicd_state_access" {
   bucket = google_storage_bucket.terraform_state.name
   role   = "roles/storage.objectAdmin"
