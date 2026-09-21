@@ -1,10 +1,11 @@
-# Sammanfattning för Amin - 2026-09-14, 2026-09-15 och 2026-09-17
+# Sammanfattning för Amin - uppföljning till 2026-09-21
 
-Detta dokument sammanfattar de tre Blue Team-dagar som Amin inte deltog i.
+Detta dokument sammanfattar Blue Team-arbetet den 14, 15, 17 och 21 september
+som Amin behöver följa upp.
 Syftet är att göra det möjligt att förstå gruppens beslut och ansluta den egna
 arbetsstationen utan att behöva göra om teamets gemensamma serverarbete.
 
-## Status före de två dagarna
+## Status före perioden
 
 Teamets Terraform-infrastruktur och CI/CD-pipeline fanns redan i GCP. GitHub
 Actions använde Workload Identity Federation (WIF), vilket gjorde att
@@ -82,7 +83,55 @@ PR #49 införde följande begränsningar enligt workshopens steg 6:
 - PB-14 är fortfarande pågående eftersom nekad trafik och rollback behöver
   verifieras.
 
+## Arbete den 2026-09-21
+
+### Primary, IAP och K3s
+
+- `team2-primary` uppgraderades till `e2-small` för att klara K3s och
+  applikationslasten bättre.
+- IAP Tunnel Access lades till för teamets verifierade OS Login-identiteter.
+- En brandväggsregel för IAP SSH lades till från Googles IAP-intervall
+  `35.235.240.0/20` till jumphost och primary.
+- K3s API på TCP 6443 tilläts från teamets privata subnet `10.0.2.0/24` till
+  `primary`.
+- Nätverkskoppling och target tags för K3s-brandväggen korrigerades och
+  verifierades genom PR #66-#70.
+- Headscale-policyn kompletterades så att den tillfälliga GitHub-runnern kan nå
+  K3s API genom den avsedda privata routen.
+
+### GitHub-organisation och repositorytransfer
+
+- Teamets gemensamma GitHub-organisation är `itsx25-team2`.
+- Infra-repot flyttades från Jonnys personliga konto till
+  `itsx25-team2/kurs6-team2-infra`.
+- Branches, Issues, pull requests, medlemmar, Actions-variabler och branch
+  protection följde med transfern.
+- Den lokala huvudklonen pekar nu på organisationens repositoryadress.
+- WIF uppdaterades och verifierades mot den nya repositoryidentiteten. Den
+  gamla personliga WIF-identiteten är borttagen.
+- En efterföljande bootstrap-plan visade `No changes`.
+- [PR #71](https://github.com/itsx25-team2/kurs6-team2-infra/pull/71)
+  innehåller den spårbara Terraform- och dokumentationsändringen och väntar på
+  två godkännanden.
+
+### Separat CI-observation
+
+Ett manuellt Actions-test från organisationsrepot bekräftade att WIF fungerade
+och att Terraform kunde läsa state och GCP-resurser. Körningen stoppades senare
+av att CI-kontot saknar rättighet att läsa projektets IAM-policy för
+`google_project_iam_member`. Det är ett separat behörighetsproblem och inte ett
+fel i repositorytransfern eller WIF.
+
 ## Det här behöver Amin göra
+
+### Viktigast först: godkänn organisationsinbjudan
+
+Amins medlemskap i `itsx25-team2` har status `pending`. Godkänn inbjudan på
+GitHub innan arbetet fortsätter. Kontrollera därefter att följande repository
+går att öppna:
+
+- [Infra-repot](https://github.com/itsx25-team2/kurs6-team2-infra)
+- [Applikationsrepot](https://github.com/itsx25-team2/company-website)
 
 ### 1. Läs gemensam dokumentation
 
@@ -96,6 +145,7 @@ PR #49 införde följande begränsningar enligt workshopens steg 6:
 Kör från repots rot:
 
 ```bash
+git remote set-url origin https://github.com/itsx25-team2/kurs6-team2-infra.git
 git fetch origin
 git switch member/aminmahamoud-arch
 git pull --ff-only origin main
@@ -113,9 +163,10 @@ gcloud auth application-default login
 gcloud config set project itsx25-lab
 ```
 
-Amins verifierade Chas Academy-adress behöver läggas till i `os_admin_users`
-via en granskad pull request. Dela endast den publika SSH-nyckeln och aldrig den
-privata nyckeln.
+Amin saknas fortfarande i `os_admin_users`. Hans Chas Academy-adress och behov
+av administrativ OS Login ska verifieras innan den läggs till via en granskad
+pull request. Dela endast den publika SSH-nyckeln och aldrig den privata
+nyckeln.
 
 ### 4. Installera Tailscale lokalt
 
