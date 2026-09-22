@@ -62,10 +62,10 @@ Amin Mahamoud (`aminmahamoud-arch`) och Lars Törngren
 
 | PR | Resultat |
 | --- | --- |
-| [#54](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/54) | `primary` aktiverad med OS Login; deploy lyckades. |
-| [#55](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/55) | Begränsad Tailnet-regel till `primary`; deploy lyckades. |
-| [#56](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/56) | Persistent Spectre-NAT; deploy lyckades. |
-| [#58](https://github.com/Itzmejonny92/kurs6-team2-infra/pull/58) | Första ACL-policyn mergad; syntaxfel upptäcktes och korrigerades efter livekontroll. |
+| [#54](https://github.com/itsx25-team2/kurs6-team2-infra/pull/54) | `primary` aktiverad med OS Login; deploy lyckades. |
+| [#55](https://github.com/itsx25-team2/kurs6-team2-infra/pull/55) | Begränsad Tailnet-regel till `primary`; deploy lyckades. |
+| [#56](https://github.com/itsx25-team2/kurs6-team2-infra/pull/56) | Persistent Spectre-NAT; deploy lyckades. |
+| [#58](https://github.com/itsx25-team2/kurs6-team2-infra/pull/58) | Första ACL-policyn mergad; syntaxfel upptäcktes och korrigerades efter livekontroll. |
 
 Terraform-planerna visade inga borttagningar. Format, validering och relevanta
 säkerhetskontroller lyckades före merge.

@@ -11,7 +11,7 @@ Den här mappen är Amins personliga dokumentationsyta för Kurs 6, vecka 4 och
 
 | Fil | Syfte |
 | --- | --- |
-| [Sammanfattning av 2026-09-14, 2026-09-15 och 2026-09-17](sammanfattning_missade_dagar_2026-09-14_2026-09-15.md) | Gruppens genomförda arbete och Amins checklista för OS Login, Headscale, routing och ACL. |
+| [Uppföljning till 2026-09-21](sammanfattning_missade_dagar_2026-09-14_2026-09-15.md) | Gruppens genomförda arbete och Amins checklista för OS Login, Headscale, routing, ACL, K3s och organisationens repositories. |
 
 ## Användning
 
@@ -27,6 +27,7 @@ Den här mappen är Amins personliga dokumentationsyta för Kurs 6, vecka 4 och
 | 2026-09-08 | Personlig dokumentationsyta skapad. | Lägg till egna anteckningar från Blue Team-arbetet. |
 | 2026-09-15 | En tvådagarssammanfattning och återanslutningschecklista lades till efter frånvaro. | Läs sammanfattningen, verifiera OS Login och registrera `amin-workstation` i teamets Tailnet. |
 | 2026-09-17 | Upphämtningsdokumentet kompletterades med steg 7, Split DNS och ACL-status. | Registrera `amin-workstation`, aktivera privata rutter och be teamet lägga till `amin@` i policyn. |
+| 2026-09-21 | Uppföljningen kompletterades med K3s, IAP, GitHub-organisationen och infra-repots transfer. | Godkänn organisationsinbjudan, uppdatera Git-remote och följ checklistan i uppföljningsfilen. |
 
 ## Viktigt
 

@@ -30,7 +30,7 @@ ssh -V
 ## 2. Klona repot och välj din branch
 
 ```bash
-git clone https://github.com/Itzmejonny92/kurs6-team2-infra.git
+git clone https://github.com/itsx25-team2/kurs6-team2-infra.git
 cd kurs6-team2-infra
 git fetch origin
 git switch member/DIN_GITHUB_ANVANDARE
