@@ -297,6 +297,18 @@ ping 10.0.2.3
 ssh DIN_OS_LOGIN_ANVANDARE@10.0.2.3
 ```
 
+Kontrollera sedan applikationens interna MagicDNS-post:
+
+```bash
+getent ahostsv4 company-website.team2.arpa
+ping company-website.team2.arpa
+```
+
+Namnet ska lösas till `10.0.2.3`. Posten distribueras gemensamt av Headscale
+som en `extra_records`-post och kräver därför ingen lokal `hosts`-fil eller
+webbläsarproxy. Varje klient måste ha Tailscale DNS och subnet-rutter
+aktiverade.
+
 Kontrollera därefter Spectre via både IP och DNS:
 
 ```bash
@@ -411,6 +423,11 @@ Kontrollera att sidan identifierar anslutningen som Team 2.
   `sudo tailscale up` på den aktuella arbetsstationen.
 - **`10.0.2.3` timear ut:** kontrollera att klienten är online och att
   `--accept-routes=true` är aktiverat.
+- **`company-website.team2.arpa` är okänt:** kontrollera först
+  `tailscale dns status` och att MagicDNS-suffixet är `team2.arpa`. Efter en
+  ändring av `extra_records` på jumphosten ska konfigurationen valideras med
+  `sudo headscale configtest` och Headscale startas om. `systemctl reload`
+  läser endast om ACL-policyn i den installerade Headscale-versionen.
 - **Spectre fungerar via IP men inte via namn:** kontrollera att Headscale har
   distribuerat Split DNS och att `dnsmasq` är aktivt på jumphosten.
 - **Labbsidan laddas inte:** kontrollera först Tailscale-status, accepterade
