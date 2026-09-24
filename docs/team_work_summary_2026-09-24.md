@@ -133,3 +133,17 @@ Efter godkänd merge genomfördes en separat health check:
 En separat interaktiv K3s-kontroll via SSH stoppades av lokal OS Login-
 nyckelautentisering. Detta ändrade ingenting i driftmiljön; K3s-rollouten är
 verifierad genom company-repots gröna deploylogg och fungerande live-endpoints.
+
+## Gruppens CTF-resultat
+
+Lars Törngren löste dagens sista flagga och dokumenterade arbetsgången i
+[sin CTF-anteckning](../members/larstorngrenchas/flags_lt_2026-09-24.md).
+
+Lasse hade tidigt hypotesen att flaggan fanns i lösenordsfältet för användaren
+`flag`. Efter flera manuella försök och ytterligare vägledning använde han
+`sqlmap` i den godkända kursmiljön med de tilldelade uppgifterna för
+`dev`-användaren. Genom att lista databastabellerna upptäckte han att den
+förväntade tabellen hade bytt namn till `legacy_users`. Innehållet bekräftade
+hypotesen och den sista flaggan kunde identifieras.
+
+Själva flaggvärdet dokumenteras inte i den gemensamma sammanfattningen.
