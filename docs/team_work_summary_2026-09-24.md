@@ -72,3 +72,31 @@ status `200` efter att Ingress hade konfigurerats i applikationsrepot.
 
 Applikationens Ingress-, image- och Cosign-arbete dokumenteras i det separata
 [`company-website`](https://github.com/itsx25-team2/company-website)-repot.
+
+## CI/IAM-uppföljning
+
+Återkommande röda `Deploy Infrastructure`-körningar analyserades. PR-kontrollerna
+var gröna, men deploymenten stoppades i `terraform plan` med HTTP `403` när
+det begränsade CI-kontot försökte läsa projektets IAM-policy.
+
+Projektets IAP-bindningar flyttades därför till den privilegierade
+bootstrap-konfigurationen i stället för att ge `team2-cicd` en bred
+Project IAM Admin-roll.
+
+Migreringen verifierades i följande ordning:
+
+1. Root-planen visade endast sex `forget` och `0 destroy`.
+2. Bootstrap-planen visade sex befintliga IAP-medlemmar som skulle tas under
+   bootstrap-förvaltning och `0 destroy`.
+3. Bootstrap applicerades först och en ny plan gav `No changes`.
+4. Root-planen applicerades därefter med
+   `0 added, 0 changed, 0 destroyed`.
+5. Root-state innehåller inte längre projekt-IAM, medan bootstrap-state
+   innehåller samtliga sex Team 2-bindningar.
+6. Slutliga planer för både root och bootstrap gav `No changes`.
+7. Tailnet, MagicDNS och `company-website.team2.arpa` verifierades efter
+   migreringen; webbplatsen svarade med HTTP `200`.
+
+Deploy-workflowen har även förberetts med path-filter, serialiserad körning och
+fem minuters väntetid på Terraform-låset. Den slutliga WIF-verifieringen görs
+från GitHub Actions efter att branchen har pushats, innan merge till `main`.

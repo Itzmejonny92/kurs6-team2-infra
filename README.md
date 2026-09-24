@@ -22,10 +22,10 @@ Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), grans
 - [outputs.tf](outputs.tf): Outputs från team-modulen.
 - [terraform.tfvars](terraform.tfvars): Teamets projekt- och teaminställningar. Fältet `ssh_users` är kvar som äldre konfiguration men används inte av jumphosten efter OS Login-migreringen.
 - [backend.tf](backend.tf): Remote backend för teamets Terraform state.
-- [bootstrap/main.tf](bootstrap/main.tf): Bootstrap-resurser, bland annat state-bucket och CI/CD service account.
+- [bootstrap/main.tf](bootstrap/main.tf): Privilegierade bootstrap-resurser, bland annat state-bucket, CI/CD service account, WIF och projektets IAP-IAM.
 - [bootstrap/terraform.tfvars](bootstrap/terraform.tfvars): Projekt- och team-id för bootstrap.
 - [.github/workflows/pr-checks.yml](.github/workflows/pr-checks.yml): CI-kontroller för pull requests.
-- [.github/workflows/deploy.yml](.github/workflows/deploy.yml): Deploy-pipeline för main.
+- [.github/workflows/deploy.yml](.github/workflows/deploy.yml): Deploy-pipeline för relevanta root-Terraformändringar på main, med serialisering och väntetid på state-lås.
 - [docs/](docs/): Sammanfattningar, beslut och arbetsanteckningar.
 - [docs/gemensam_anslutningsguide.md](docs/gemensam_anslutningsguide.md): Gemensam säker guide för Git, GCP, Terraform, OS Login, Headscale/Tailscale, subnet routing och Split DNS. SOCKS5 dokumenteras endast som reservmetod.
 - [docs/product_backlog.md](docs/product_backlog.md): Backlog med säkerhetsrisker, förbättringar och status.
@@ -106,6 +106,8 @@ Exempel på säkerhetsområden att granska:
 - GitHub Actions autentiserar mot GCP med WIF och deploy har verifierats utan
   långlivade service account-nycklar.
 - Inga användarhanterade nycklar finns kvar för `team2-cicd`.
+- Projektets IAP-IAM förvaltas av privilegierad bootstrap; det vanliga CI-kontot
+  behåller sina begränsade Compute- och state-behörigheter.
 - State-bucketens tidigare publika `allAuthenticatedUsers`-bindning är
   borttagen.
 - Headscale-porten är begränsad till utbildarens reverse proxy och SSH-porten
