@@ -108,9 +108,9 @@ Exempel på säkerhetsområden att granska:
 - Inga användarhanterade nycklar finns kvar för `team2-cicd`.
 - Projektets IAP-IAM förvaltas av privilegierad bootstrap; det vanliga CI-kontot
   behåller sina begränsade Compute- och state-behörigheter.
-- Den separerade IAM-modellen och deploy-workflowet har verifierats med en
-  lyckad WIF-körning från `member/itzmejonny92` på commit `f313d7c`. Ändringen
-  inväntar granskning och merge till `main`.
+- Den separerade IAM-modellen och deploy-workflowet mergades via PR #75.
+  Efterföljande deploy från `main` lyckades, och både root och bootstrap gav
+  `No changes` i efterkontrollen.
 - State-bucketens tidigare publika `allAuthenticatedUsers`-bindning är
   borttagen.
 - Headscale-porten är begränsad till utbildarens reverse proxy och SSH-porten

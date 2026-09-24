@@ -113,5 +113,23 @@ Den nya körningen slutfördes framgångsrikt:
 - Ingen långlivad service account-nyckel användes.
 - Körningen finns i [GitHub Actions #36023608975](https://github.com/itsx25-team2/kurs6-team2-infra/actions/runs/36023608975).
 
-Ändringen är därmed tekniskt verifierad på medlemsbranchen och redo för
-granskning via pull request innan merge till `main`.
+Ändringen mergades till `main` via [PR #75](https://github.com/itsx25-team2/kurs6-team2-infra/pull/75).
+Den efterföljande [deployen från `main`](https://github.com/itsx25-team2/kurs6-team2-infra/actions/runs/36051272258)
+använde mergecommit `20b4693` och slutfördes framgångsrikt.
+
+## Efterkontroll efter merge
+
+Efter godkänd merge genomfördes en separat health check:
+
+- root-konfigurationen validerades och gav `No changes`,
+- bootstrap-konfigurationen validerades och gav `No changes`,
+- samtliga sex IAP-bindningar lästes från bootstrap-state,
+- `team2-jumphost` och `team2-primary` rapporterades som `RUNNING` i GCP,
+- Tailnet nådde jumphosten via DERP,
+- `company-website.team2.arpa` löstes till `10.0.2.3`,
+- `/healthz` svarade HTTP `200` med `db=connected`, och
+- webbplatsens startsida svarade HTTP `200`.
+
+En separat interaktiv K3s-kontroll via SSH stoppades av lokal OS Login-
+nyckelautentisering. Detta ändrade ingenting i driftmiljön; K3s-rollouten är
+verifierad genom company-repots gröna deploylogg och fungerande live-endpoints.
