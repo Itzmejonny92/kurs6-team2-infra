@@ -69,7 +69,7 @@ Senast verifierad: 2026-09-24.
 | 2026-09-17 | `primary` aktiverades säkert, subnet- och direkt routing verifierades samt Spectre-NAT och Split DNS färdigställdes. | Fortsätt med PB-14 och en begränsad Headscale ACL-policy. |
 | 2026-09-22 | LookingGlass-patchen analyserades, Metadata Service nåddes kontrollerat och två Storage-generationer verifierades. | Gå igenom resultaten med gruppen före eventuell inlämning. |
 | 2026-09-24 | Allt flaggarbete sammanställdes med separat status för identifiering och Spectre-inlämning. | Granska dokumentet med gruppen och fortsätt därefter med SQLi-flaggan. |
-| 2026-09-24, Workshop 3.5-4 | Headscales MagicDNS-post för `company-website` lades till, tjänstens reload-beteende analyserades och åtkomsten verifierades. | Låt fler medlemmar verifiera DNS-posten och granska PR:n. |
+| 2026-09-24, Workshop 3.5-4 | Headscales MagicDNS-post för `company-website` lades till, tjänstens reload-beteende analyserades och åtkomsten verifierades. | PR #72 är mergad; låt fler medlemmar verifiera DNS-posten. |
 
 ## Viktigt
 

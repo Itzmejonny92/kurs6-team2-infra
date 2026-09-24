@@ -61,8 +61,7 @@ status `200` efter att Ingress hade konfigurerats i applikationsrepot.
 
 - Commit `8dc6f19` dokumenterar DNS-posten och felsökningen i den gemensamma
   anslutningsguiden.
-- Ändringen ligger på `member/itzmejonny92` och ska granskas via pull request
-  innan den blir en del av `main`.
+- Ändringen mergades till `main` via PR #72 i mergecommit `eddbade`.
 
 ## Uppföljning
 
