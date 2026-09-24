@@ -98,5 +98,20 @@ Migreringen verifierades i följande ordning:
    migreringen; webbplatsen svarade med HTTP `200`.
 
 Deploy-workflowen har även förberetts med path-filter, serialiserad körning och
-fem minuters väntetid på Terraform-låset. Den slutliga WIF-verifieringen görs
-från GitHub Actions efter att branchen har pushats, innan merge till `main`.
+fem minuters väntetid på Terraform-låset.
+
+Den första manuella branchkörningen använde den äldre committen `def2be9` och
+misslyckades därför som väntat med HTTP `403` när root-konfigurationen försökte
+återskapa projektets IAP-IAM. Efter att rättningen pushats genomfördes en ny
+manuell körning från `member/itzmejonny92` med commit `f313d7c`.
+
+Den nya körningen slutfördes framgångsrikt:
+
+- GitHub Actions autentiserade mot GCP med WIF.
+- Terraform initiering, validering, plan och apply gick igenom.
+- Workflowet använde rätt commit och rätt medlemsbranch.
+- Ingen långlivad service account-nyckel användes.
+- Körningen finns i [GitHub Actions #36023608975](https://github.com/itsx25-team2/kurs6-team2-infra/actions/runs/36023608975).
+
+Ändringen är därmed tekniskt verifierad på medlemsbranchen och redo för
+granskning via pull request innan merge till `main`.

@@ -165,7 +165,11 @@ följas upp separat från denna avslutade granskning.
 - Deploy-workflowen begränsas till relevanta root-Terraformfiler, serialiseras
   och väntar upp till fem minuter på state-låset.
 - PR-kontrollen validerar både root och bootstrap.
-- En riktig WIF-körning från medlemsbranchen återstår före merge.
+- En riktig WIF-körning från `member/itzmejonny92` lyckades med commit
+  `f313d7c`. Initiering, validering, plan och apply slutfördes via WIF i
+  [GitHub Actions #36023608975](https://github.com/itsx25-team2/kurs6-team2-infra/actions/runs/36023608975).
+- CI/IAM-rättningen är verifierad och går vidare till review innan merge till
+  `main`.
 
 ## Arbetsflöde
 
