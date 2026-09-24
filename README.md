@@ -33,6 +33,7 @@ Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), grans
 - [docs/team_work_summary_2026-09-14.md](docs/team_work_summary_2026-09-14.md): Gemensam sammanfattning av WIF, IAM, OS Login och övrigt säkerhetsarbete den 14 september.
 - [docs/team_work_summary_2026-09-15.md](docs/team_work_summary_2026-09-15.md): Gemensam sammanfattning av Metadata Service, Headscale, Tailscale och brandväggsarbetet den 15 september.
 - [docs/team_work_summary_2026-09-17.md](docs/team_work_summary_2026-09-17.md): Gemensam sammanfattning av `primary`, subnet routing, direkt routing och Split DNS den 17 september.
+- [docs/team_work_summary_2026-09-24.md](docs/team_work_summary_2026-09-24.md): Gemensam sammanfattning av MagicDNS-posten för `company-website` och dagens verifieringar.
 - [members/](members/): Personliga dokumentationsytor för gruppmedlemmarnas anteckningar, loggar och underlag.
 
 ## Arbetsflöde
@@ -178,6 +179,11 @@ Den fullständiga rutinen finns i
   Tailnet-IP `100.64.0.3`.
 - Spectre svarar via både `10.0.0.2` och
   `spectre.itsx25.chas-lab.dev`. Split DNS går genom `dnsmasq` på jumphosten.
+- MagicDNS-posten `company-website.team2.arpa` pekar på primary-servern
+  `10.0.2.3` och är verifierad med namnuppslagning, ping och HTTP från Jonnys
+  WSL-klient.
+- Ändringar i Headscales `extra_records` kräver en omstart av tjänsten i den
+  installerade versionen. `systemctl reload` läser endast om ACL-policyn.
 - Den dokumenterade standardvägen är direkt åtkomst via Tailscale. Äldre
   SOCKS5-instruktioner är märkta som historisk reservmetod.
 - Workshopens steg 7 och PB-13 är slutförda. Nästa moment är ACL-policy i

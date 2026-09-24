@@ -19,6 +19,7 @@ flagganalys.
 | [Arbetssammanfattning 2026-09-17](work_summary_2026-09-17.md) | Individuell sammanfattning av `primary`, subnet routing, direkt routing och Split DNS. |
 | [Arbetssammanfattning 2026-09-22](work_summary_2026-09-22.md) | Pedagogisk analys av LookingGlass, Metadata Service och Cloud Storage-versionering. |
 | [Samlad flagganalys 2026-09-24](flaggar_individuell_sammanfattning_2026-09-24.md) | Samlad status, lösningsmetod och defensiva lärdomar för kursens åtta flaggområden. |
+| [Gemensam arbetssammanfattning 2026-09-24](../../docs/team_work_summary_2026-09-24.md) | MagicDNS för `company-website`, Headscale-verifiering och återställningsinformation. |
 | [Gemensam arbetssammanfattning 2026-09-08](../../docs/team_work_summary_2026-09-08.md) | Gruppens gemensamma resultat, bidrag, säkerhetsstatus och nästa steg. |
 | [Gemensam arbetssammanfattning 2026-09-14](../../docs/team_work_summary_2026-09-14.md) | Teamets verifierade säkerhetsarbete och aktuella status. |
 | [Gemensam arbetssammanfattning 2026-09-15](../../docs/team_work_summary_2026-09-15.md) | Teamets gemensamma Workshop 2-resultat, PR:er och nästa steg. |
@@ -49,6 +50,8 @@ Senast verifierad: 2026-09-24.
   `100.64.0.3`.
 - Spectre är verifierad via både `10.0.0.2` och Split DNS-namnet
   `spectre.itsx25.chas-lab.dev`.
+- `company-website.team2.arpa` är verifierat mot `10.0.2.3` med
+  namnuppslagning, ping och HTTP.
 - Sju av åtta flaggor har identifierats genom defensiv analys utan att
   flaggvärden har dokumenterats i repot.
 - De två metadata- och Storage-flaggorna har inte skickats in till Spectre.
@@ -66,6 +69,7 @@ Senast verifierad: 2026-09-24.
 | 2026-09-17 | `primary` aktiverades säkert, subnet- och direkt routing verifierades samt Spectre-NAT och Split DNS färdigställdes. | Fortsätt med PB-14 och en begränsad Headscale ACL-policy. |
 | 2026-09-22 | LookingGlass-patchen analyserades, Metadata Service nåddes kontrollerat och två Storage-generationer verifierades. | Gå igenom resultaten med gruppen före eventuell inlämning. |
 | 2026-09-24 | Allt flaggarbete sammanställdes med separat status för identifiering och Spectre-inlämning. | Granska dokumentet med gruppen och fortsätt därefter med SQLi-flaggan. |
+| 2026-09-24, Workshop 3.5-4 | Headscales MagicDNS-post för `company-website` lades till, tjänstens reload-beteende analyserades och åtkomsten verifierades. | Låt fler medlemmar verifiera DNS-posten och granska PR:n. |
 
 ## Viktigt
 
@@ -82,4 +86,5 @@ planfiler får aldrig sparas eller commitas här.
 - [Gemensam arbetssammanfattning 2026-09-14](../../docs/team_work_summary_2026-09-14.md)
 - [Gemensam arbetssammanfattning 2026-09-15](../../docs/team_work_summary_2026-09-15.md)
 - [Gemensam arbetssammanfattning 2026-09-17](../../docs/team_work_summary_2026-09-17.md)
+- [Gemensam arbetssammanfattning 2026-09-24](../../docs/team_work_summary_2026-09-24.md)
 - [Setup Summary 2026-09-07](../../docs/setup_summary_2026-09-07.md)
