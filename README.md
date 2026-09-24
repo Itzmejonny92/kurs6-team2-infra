@@ -1,7 +1,7 @@
 # Kurs 6 Team 2 Infra
 
 Detta repository innehåller grupp 2:s Terraform-baserade infrastruktur för Kurs
-6, vecka 4 och 5: Blue Team.
+6, vecka 4-6: Blue Team.
 
 Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), granska Terraform-kod ur ett säkerhetsperspektiv och förbättra lösningen steg för steg via ett agilt arbetsflöde.
 
@@ -27,7 +27,7 @@ Syftet är att arbeta med molninfrastruktur i Google Cloud Platform (GCP), grans
 - [.github/workflows/pr-checks.yml](.github/workflows/pr-checks.yml): CI-kontroller för pull requests.
 - [.github/workflows/deploy.yml](.github/workflows/deploy.yml): Deploy-pipeline för main.
 - [docs/](docs/): Sammanfattningar, beslut och arbetsanteckningar.
-- [docs/gemensam_anslutningsguide.md](docs/gemensam_anslutningsguide.md): Gemensam säker guide för Git, GCP, Terraform, SSH och proxyanslutning.
+- [docs/gemensam_anslutningsguide.md](docs/gemensam_anslutningsguide.md): Gemensam säker guide för Git, GCP, Terraform, OS Login, Headscale/Tailscale, subnet routing och Split DNS. SOCKS5 dokumenteras endast som reservmetod.
 - [docs/product_backlog.md](docs/product_backlog.md): Backlog med säkerhetsrisker, förbättringar och status.
 - [docs/team_work_summary_2026-09-08.md](docs/team_work_summary_2026-09-08.md): Gemensam sammanfattning av dagens arbete, verifieringar och nästa steg.
 - [docs/team_work_summary_2026-09-14.md](docs/team_work_summary_2026-09-14.md): Gemensam sammanfattning av WIF, IAM, OS Login och övrigt säkerhetsarbete den 14 september.
@@ -66,6 +66,11 @@ GitHub Issues är teamets källa för det dagliga arbetet. [Produktbackloggen](d
 - Uppdateringar av backlogfilen görs via branch och pull request på samma sätt som övriga ändringar.
 
 Backlogfilen synkroniseras inte automatiskt med GitHub Issues. Den som ändrar ett issue ansvarar därför för att kontrollera om även den sammanfattade backloggen behöver uppdateras.
+
+En medlem som ligger efter behöver inte mergea för att läsa senaste materialet.
+Kör `git fetch origin` och använd `git show origin/main:SÖKVÄG`, eller
+läs dokumentet direkt på GitHub. Detta ändrar inte medlemsbranchen eller
+arbetsfilerna. Fullständig rutin finns i den gemensamma anslutningsguiden.
 
 ## Brancher
 
@@ -115,6 +120,9 @@ Exempel på säkerhetsområden att granska:
 - Pull requests kräver två approvals.
 - `Format & Validate` krävs som statuscheck.
 - Gruppens member-branches finns på GitHub.
+- Direkt åtkomst till privata resurser och Spectre sker normalt via personliga
+  Tailscale-noder, annonserade subnet-rutter och Split DNS. SOCKS5 är endast en
+  avgränsad reservmetod.
 
 ## Viktigt
 
@@ -170,6 +178,8 @@ Den fullständiga rutinen finns i
   Tailnet-IP `100.64.0.3`.
 - Spectre svarar via både `10.0.0.2` och
   `spectre.itsx25.chas-lab.dev`. Split DNS går genom `dnsmasq` på jumphosten.
+- Den dokumenterade standardvägen är direkt åtkomst via Tailscale. Äldre
+  SOCKS5-instruktioner är märkta som historisk reservmetod.
 - Workshopens steg 7 och PB-13 är slutförda. Nästa moment är ACL-policy i
   PB-14/issue #52.
 - Headscale ACL-policyn från PR #58 är aktiverad. Alla registrerade
