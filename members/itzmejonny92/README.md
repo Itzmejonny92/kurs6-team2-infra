@@ -1,7 +1,8 @@
 # Jonny Nguyen - individuell arbetsyta
 
-Den här mappen är Jonnys personliga dokumentationsyta för Kurs 6, vecka 4 och
-5 samt gruppens Blue Team-arbete med GCP, Terraform, Headscale och Tailscale.
+Den här mappen är Jonnys personliga dokumentationsyta för Kurs 6 och gruppens
+Blue Team-arbete med GCP, Terraform, Headscale, Tailscale och defensiv
+flagganalys.
 
 ## Arbetsbranch
 
@@ -16,6 +17,8 @@ Den här mappen är Jonnys personliga dokumentationsyta för Kurs 6, vecka 4 och
 | [Arbetssammanfattning 2026-09-14](work_summary_2026-09-14.md) | Individuell sammanfattning av slutförd WIF-migrering, IAM, brandvägg och dokumentation. |
 | [Arbetssammanfattning 2026-09-15](work_summary_2026-09-15.md) | Individuell sammanfattning av Metadata Service, Headscale, Tailscale och steg 6. |
 | [Arbetssammanfattning 2026-09-17](work_summary_2026-09-17.md) | Individuell sammanfattning av `primary`, subnet routing, direkt routing och Split DNS. |
+| [Arbetssammanfattning 2026-09-22](work_summary_2026-09-22.md) | Pedagogisk analys av LookingGlass, Metadata Service och Cloud Storage-versionering. |
+| [Samlad flagganalys 2026-09-24](flaggar_individuell_sammanfattning_2026-09-24.md) | Samlad status, lösningsmetod och defensiva lärdomar för kursens åtta flaggområden. |
 | [Gemensam arbetssammanfattning 2026-09-08](../../docs/team_work_summary_2026-09-08.md) | Gruppens gemensamma resultat, bidrag, säkerhetsstatus och nästa steg. |
 | [Gemensam arbetssammanfattning 2026-09-14](../../docs/team_work_summary_2026-09-14.md) | Teamets verifierade säkerhetsarbete och aktuella status. |
 | [Gemensam arbetssammanfattning 2026-09-15](../../docs/team_work_summary_2026-09-15.md) | Teamets gemensamma Workshop 2-resultat, PR:er och nästa steg. |
@@ -30,7 +33,7 @@ Den här mappen är Jonnys personliga dokumentationsyta för Kurs 6, vecka 4 och
 
 ## Aktuell personlig status
 
-Senast verifierad: 2026-09-17.
+Senast verifierad: 2026-09-24.
 
 - OS Login fungerar med Jonnys personliga Google-identitet och SSH-nyckel.
 - Metadata Service och jumphostens service account har verifierats utan att
@@ -46,6 +49,11 @@ Senast verifierad: 2026-09-17.
   `100.64.0.3`.
 - Spectre är verifierad via både `10.0.0.2` och Split DNS-namnet
   `spectre.itsx25.chas-lab.dev`.
+- Sju av åtta flaggor har identifierats genom defensiv analys utan att
+  flaggvärden har dokumenterats i repot.
+- De två metadata- och Storage-flaggorna har inte skickats in till Spectre.
+- SQL injection är verifierad i kursmiljön, men den tillhörande flaggan
+  återstår att identifiera.
 
 ## Arbetslogg
 
@@ -56,6 +64,8 @@ Senast verifierad: 2026-09-17.
 | 2026-09-15 | Metadata och instansidentitet verifierades, Headscales serveradress rättades och den personliga WSL-klienten anslöts till teamets Tailnet. | Granska och mergea säkerhetsrättningen, verifiera brandväggen och fortsätt med workshopens steg 6. |
 | 2026-09-15, avslut | PR #49 och #50 mergades, steg 6 verifierades live och backloggen kompletterades med steg 7 och 8. | Synka och granska PB-13 innan `primary` driftsätts. |
 | 2026-09-17 | `primary` aktiverades säkert, subnet- och direkt routing verifierades samt Spectre-NAT och Split DNS färdigställdes. | Fortsätt med PB-14 och en begränsad Headscale ACL-policy. |
+| 2026-09-22 | LookingGlass-patchen analyserades, Metadata Service nåddes kontrollerat och två Storage-generationer verifierades. | Gå igenom resultaten med gruppen före eventuell inlämning. |
+| 2026-09-24 | Allt flaggarbete sammanställdes med separat status för identifiering och Spectre-inlämning. | Granska dokumentet med gruppen och fortsätt därefter med SQLi-flaggan. |
 
 ## Viktigt
 

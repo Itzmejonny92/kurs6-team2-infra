@@ -1,8 +1,13 @@
 # Gemensam anslutningsguide för Team 2
 
 Den här guiden beskriver hur gruppmedlemmar arbetar med repot, autentiserar sig
-mot GCP, ansluter till Team 2:s Tailnet och når labbsidan via jumphosten. Guiden
-innehåller inga hemligheter. Ersätt platshållare med dina egna lokala uppgifter.
+mot GCP, ansluter till Team 2:s Tailnet och når labbresurser genom teamets
+Headscale/Tailscale-lösning. Guiden innehåller inga hemligheter. Ersätt
+platshållare med dina egna lokala uppgifter.
+
+> **Aktuell standard sedan 2026-09-17:** Spectre nås direkt via Tailscale,
+> annonserade subnet-rutter och Split DNS. SOCKS5-avsnitten längre ned är en
+> historisk reservmetod och behövs inte för normal åtkomst.
 
 ## Säkerhetsregler
 
@@ -27,18 +32,74 @@ terraform version
 ssh -V
 ```
 
-## 2. Klona repot och välj din branch
+## 2. Hämta repot och läs aktuellt material utan konflikter
+
+Klona repot första gången:
 
 ```bash
 git clone https://github.com/itsx25-team2/kurs6-team2-infra.git
 cd kurs6-team2-infra
 git fetch origin
 git switch member/DIN_GITHUB_ANVANDARE
-git pull --ff-only origin main
 ```
 
-Ersätt `DIN_GITHUB_ANVANDARE` med namnet på din member-branch. Gör ändringar i
-din egen branch och använd en pull request för att föra dem till `main`.
+Ersätt `DIN_GITHUB_ANVANDARE` med namnet på din member-branch. Gör
+ändringar i din egen branch och använd en pull request för att föra dem till
+`main`.
+
+### Läs senaste materialet utan att ändra din branch
+
+En medlem som ligger efter, exempelvis efter frånvaro, behöver inte mergea för
+att läsa den senaste guiden. Följande kommandon uppdaterar endast remote-
+referenser och visar filen direkt från `origin/main`:
+
+```bash
+git fetch origin
+git show origin/main:docs/gemensam_anslutningsguide.md | less
+```
+
+Samma material kan läsas direkt på GitHub:
+
+```text
+https://github.com/itsx25-team2/kurs6-team2-infra/blob/main/docs/gemensam_anslutningsguide.md
+```
+
+Ingen checkout, merge eller ändring av arbetsfiler sker med `git show`.
+
+För en separat lokal läskopia av hela `main` kan en worktree användas:
+
+```bash
+git fetch origin
+git worktree add --detach ../kurs6-team2-infra-main origin/main
+```
+
+Den befintliga medlemsbranchen lämnas då orörd. Läskopian tas bort efteråt med:
+
+```bash
+git worktree remove ../kurs6-team2-infra-main
+```
+
+### Synka medlemsbranchen först efter kontroll
+
+Kontrollera alltid arbetsytan och jämför brancherna:
+
+```bash
+git status --short --branch
+git fetch origin
+git log --oneline --left-right HEAD...origin/main
+```
+
+Om arbetsytan är ren och medlemsbranchen saknar egna avvikande commits kan en
+fast-forward genomföras:
+
+```bash
+git merge --ff-only origin/main
+git push origin member/DIN_GITHUB_ANVANDARE
+```
+
+Om `--ff-only` misslyckas ska medlemmen stanna. Gör inte reset, rebase
+eller konfliktlösning på eget initiativ. Be teamet granska branchen och välj
+sedan en vanlig merge eller pull request tillsammans.
 
 ## 3. Logga in lokalt i GCP
 
@@ -254,7 +315,19 @@ aktiverat såg `primary` källan `10.0.2.2`. Efter att
 `--snat-subnet-routes=false` aktiverats såg servern klientens riktiga
 Tailnet-IP `100.64.0.3`.
 
-## 14. Starta en SOCKS5-tunnel
+När DNS och routing fungerar öppnas Spectre normalt, utan webbläsarproxy:
+
+```text
+https://spectre.itsx25.chas-lab.dev
+```
+
+På Windows måste Windows-klienten vara registrerad i Tailnet för att en
+Windows-webbläsare ska få åtkomst. En registrerad WSL-nod gäller endast WSL.
+
+## 14. Reservmetod: starta en SOCKS5-tunnel
+
+> **Inaktuell som standard:** använd endast denna metod om teamet uttryckligen
+> väljer den för avgränsad felsökning. Normal åtkomst sker enligt steg 10-13.
 
 ```bash
 ssh -i "$HOME/.ssh/id_ed25519" \
@@ -266,7 +339,7 @@ Låt terminalen vara öppen. Att inget nytt skrivs ut är normalt: processen
 håller tunneln aktiv. Första gången kan SSH fråga om jumphostens host key;
 kontrollera fingeravtrycket med teamet innan du godkänner det.
 
-## 15. Kontrollera den lokala proxyn
+## 15. Reservmetod: kontrollera den lokala proxyn
 
 Linux eller macOS:
 
@@ -284,7 +357,7 @@ På Windows betyder `TcpTestSucceeded : True` att den lokala SOCKS5-porten är
 öppen. Om Windows inte når WSL-tunneln via `127.0.0.1`, hämta WSL-adressen med
 `hostname -I` och använd den adressen som proxyvärd.
 
-## 16. Starta webbläsaren via proxyn
+## 16. Reservmetod: starta webbläsaren via proxyn
 
 Starta en separat webbläsarprofil med följande inställningar:
 
@@ -310,7 +383,7 @@ https://spectre.itsx25.chas-lab.dev
 
 Kontrollera att sidan identifierar anslutningen som Team 2.
 
-## 17. Avsluta SOCKS5-tunneln säkert
+## 17. Reservmetod: avsluta SOCKS5-tunneln säkert
 
 1. Stäng webbläsarens separata labbprofil.
 2. Gå tillbaka till terminalen som kör SSH-tunneln.
@@ -326,8 +399,8 @@ Kontrollera att sidan identifierar anslutningen som Team 2.
   efter steg 6. Starta Tailscale och anslut via jumphostens Tailnet-adress.
 - **Terraform kan inte läsa backend:** kör båda `gcloud auth`-kommandona igen
   och kontrollera valt projekt.
-- **Port 1080 används redan:** stäng en gammal tunnel eller välj samma nya port
-  i både SSH-kommandot och webbläsarens proxyinställning.
+- **Port 1080 används redan vid reservmetoden:** stäng en gammal tunnel eller
+  välj samma nya port i både SSH-kommandot och webbläsarens proxyinställning.
 - **Headscale returnerar `403`:** kontrollera att klienten använder
   `https://team2.itsx25.chas-lab.dev`, inte Spectre-portalens adress.
 - **`Unable to read/write to headscale socket`:** kör Headscale-kommandot på
@@ -340,8 +413,9 @@ Kontrollera att sidan identifierar anslutningen som Team 2.
   `--accept-routes=true` är aktiverat.
 - **Spectre fungerar via IP men inte via namn:** kontrollera att Headscale har
   distribuerat Split DNS och att `dnsmasq` är aktivt på jumphosten.
-- **Labbsidan laddas inte:** kontrollera att SSH-terminalen är öppen och att
-  webbläsaren verkligen startades med den separata proxyprofilen.
+- **Labbsidan laddas inte:** kontrollera först Tailscale-status, accepterade
+  subnet-rutter och Split DNS. Kontrollera SSH-terminal och separat
+  proxyprofil endast om reservmetoden används.
 - **Fel team visas:** stäng andra proxy- eller VPN-anslutningar och verifiera
   att trafiken går genom Team 2:s jumphost.
 
