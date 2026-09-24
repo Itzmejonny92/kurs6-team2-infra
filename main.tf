@@ -61,13 +61,6 @@ resource "google_compute_firewall" "allow_k3s" {
   target_tags   = ["primary"]
 }
 
-resource "google_project_iam_member" "iap_tunnel_access" {
-  for_each = toset(var.os_admin_users)
-  project  = "itsx25-lab"
-  role     = "roles/iap.tunnelResourceAccessor"
-  member   = "user:${each.value}"
-}
-
 resource "google_compute_address" "jumphost" {
   name   = "team${var.team_id}-jumphost-ip"
   region = var.region

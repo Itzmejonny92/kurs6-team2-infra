@@ -114,3 +114,11 @@ resource "google_storage_bucket_iam_member" "cicd_state_access" {
   role   = "roles/storage.objectAdmin"
   member = "serviceAccount:${google_service_account.cicd.email}"
 }
+
+# Project IAM stays in bootstrap so the regular CI identity cannot grant roles.
+resource "google_project_iam_member" "iap_tunnel_access" {
+  for_each = var.os_admin_users
+  project  = var.project_id
+  role     = "roles/iap.tunnelResourceAccessor"
+  member   = "user:${each.value}"
+}

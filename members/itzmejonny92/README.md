@@ -52,6 +52,9 @@ Senast verifierad: 2026-09-24.
   `spectre.itsx25.chas-lab.dev`.
 - `company-website.team2.arpa` är verifierat mot `10.0.2.3` med
   namnuppslagning, ping och HTTP.
+- Infra-repots återkommande deployfel har felsökts till projekt-IAM i
+  root-konfigurationen. IAM flyttades till bootstrap utan resursborttagning,
+  och deployen verifierades framgångsrikt via WIF från den egna branchen.
 - Sju av åtta flaggor har identifierats genom defensiv analys utan att
   flaggvärden har dokumenterats i repot.
 - De två metadata- och Storage-flaggorna har inte skickats in till Spectre.
@@ -70,6 +73,7 @@ Senast verifierad: 2026-09-24.
 | 2026-09-22 | LookingGlass-patchen analyserades, Metadata Service nåddes kontrollerat och två Storage-generationer verifierades. | Gå igenom resultaten med gruppen före eventuell inlämning. |
 | 2026-09-24 | Allt flaggarbete sammanställdes med separat status för identifiering och Spectre-inlämning. | Granska dokumentet med gruppen och fortsätt därefter med SQLi-flaggan. |
 | 2026-09-24, Workshop 3.5-4 | Headscales MagicDNS-post för `company-website` lades till, tjänstens reload-beteende analyserades och åtkomsten verifierades. | PR #72 är mergad; låt fler medlemmar verifiera DNS-posten. |
+| 2026-09-24, CI/IAM | Återkommande Terraform-fel analyserades, projekt-IAM flyttades säkert från root till bootstrap och en fullständig GitHub Actions-deploy verifierades via WIF. | Skapa PR, invänta gruppens granskning och verifiera därefter deploy från `main`. |
 
 ## Viktigt
 
