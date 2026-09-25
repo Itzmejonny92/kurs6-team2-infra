@@ -168,8 +168,11 @@ följas upp separat från denna avslutade granskning.
 - En riktig WIF-körning från `member/itzmejonny92` lyckades med commit
   `f313d7c`. Initiering, validering, plan och apply slutfördes via WIF i
   [GitHub Actions #36023608975](https://github.com/itsx25-team2/kurs6-team2-infra/actions/runs/36023608975).
-- CI/IAM-rättningen är verifierad och går vidare till review innan merge till
-  `main`.
+- CI/IAM-rättningen mergades via [PR #75](https://github.com/itsx25-team2/kurs6-team2-infra/pull/75).
+- Efterföljande deploy från `main` lyckades i
+  [GitHub Actions #36051272258](https://github.com/itsx25-team2/kurs6-team2-infra/actions/runs/36051272258).
+- En efterkontroll gav `No changes` för både root och bootstrap. GCP-instanser,
+  intern DNS och applikationens health endpoint verifierades som friska.
 
 ## Arbetsflöde
 
